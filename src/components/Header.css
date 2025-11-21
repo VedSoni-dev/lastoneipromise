@@ -1,0 +1,38 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 3rem;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.initials {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: black;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.initials:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 2rem;
+  }
+  
+  .initials {
+    top: 2rem;
+    right: 2rem;
+    font-size: 1.2rem;
+  }
+}
+
