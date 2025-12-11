@@ -10,7 +10,7 @@ function Particles() {
 
     const ctx = canvas.getContext('2d')
     const particles = []
-    const particleCount = 30
+    const particleCount = 20
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth
@@ -24,10 +24,10 @@ function Particles() {
       constructor() {
         this.x = Math.random() * canvas.width
         this.y = Math.random() * canvas.height
-        this.size = Math.random() * 2 + 1
-        this.speedX = Math.random() * 0.3 - 0.15
-        this.speedY = Math.random() * 0.3 - 0.15
-        this.opacity = Math.random() * 0.3 + 0.1
+        this.size = Math.random() * 1.5 + 0.5
+        this.speedX = Math.random() * 0.2 - 0.1
+        this.speedY = Math.random() * 0.2 - 0.1
+        this.opacity = Math.random() * 0.15 + 0.05
       }
 
       update() {
@@ -41,7 +41,10 @@ function Particles() {
       }
 
       draw() {
-        ctx.fillStyle = `rgba(186, 230, 253, ${this.opacity})`
+        const isDark = document.body.classList.contains('dark')
+        ctx.fillStyle = isDark 
+          ? `rgba(255, 255, 255, ${this.opacity})`
+          : `rgba(0, 0, 0, ${this.opacity})`
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.fill()
@@ -73,9 +76,12 @@ function Particles() {
             const dy = particle.y - otherParticle.y
             const distance = Math.sqrt(dx * dx + dy * dy)
 
-            if (distance < 150) {
-              ctx.strokeStyle = `rgba(186, 230, 253, ${0.15 * (1 - distance / 150)})`
-              ctx.lineWidth = 0.5
+            if (distance < 120) {
+              const isDark = document.body.classList.contains('dark')
+              ctx.strokeStyle = isDark
+                ? `rgba(255, 255, 255, ${0.08 * (1 - distance / 120)})`
+                : `rgba(0, 0, 0, ${0.08 * (1 - distance / 120)})`
+              ctx.lineWidth = 0.3
               ctx.beginPath()
               ctx.moveTo(particle.x, particle.y)
               ctx.lineTo(otherParticle.x, otherParticle.y)

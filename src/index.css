@@ -5,17 +5,31 @@
 }
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif;
   line-height: 1.6;
-  font-weight: 400;
+  font-weight: 300;
 
   color: black;
-  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
+  background: #fafafa;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+:root.dark,
+.dark {
+  color: #000000;
+  background: #000000;
+}
+
+* {
+  cursor: default;
+}
+
+a, button {
+  cursor: pointer;
 }
 
 html {
@@ -31,9 +45,15 @@ body {
   height: 100vh;
   max-height: 100vh;
   overflow: visible;
-  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%) !important;
+  background: #fafafa;
   color: black;
   display: block;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  background: #000000;
+  color: #000000;
 }
 
 #root {
@@ -42,7 +62,12 @@ body {
   max-height: 100vh;
   overflow: visible;
   display: block;
-  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
+  background: #fafafa;
+  transition: background 0.3s ease;
+}
+
+#root.dark {
+  background: #000000;
 }
 
 h1 {

@@ -8,6 +8,8 @@ A modern, minimalist single-page portfolio website built with React and Vite. Op
 - ⚛️ React 18 single-page application
 - 🎨 Clean white background with minimalist design
 - 🃏 Animated CardSwap component with GSAP for showcasing projects
+- 🎰 **AI-Powered Poker Game** - Play against 3 LLM agents with unique personalities
+- 💬 **Interactive Chat** - Talk to AI opponents and influence their decisions
 - 📱 Fully responsive with mobile-optimized scaling
 - 🚢 Ready for Vercel deployment
 - 🧩 Easy to integrate React component libraries
@@ -138,9 +140,38 @@ npm run preview
 
 ## 🔧 Configuration
 
+### AI Poker Game Setup (RECOMMENDED for best experience)
+
+The poker game uses Google's Gemini API (free tier) for truly intelligent AI opponents that:
+- Generate unique responses based on game context
+- React to community cards and betting patterns
+- Have genuine conversations influenced by their personality
+- Make strategic decisions using actual AI reasoning
+
+**To enable full AI functionality:**
+
+1. Get a FREE API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - Sign in with your Google account
+   - Click "Get API Key" → "Create API Key"
+   - Copy the key
+
+2. Create a `.env` file in the root directory:
+   ```
+   VITE_GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+
+3. Restart your dev server:
+   ```bash
+   npm run dev
+   ```
+
+**Note:** Without an API key, the game uses a fallback system with pre-generated responses. While playable, the AI won't be truly conversational or context-aware. **Setting up the API key is highly recommended for the full experience.**
+
 ### Vercel Configuration
 
 The `vercel.json` file is already configured for optimal deployment.
+
+**For Vercel deployment:** Add `VITE_GEMINI_API_KEY` as an environment variable in your Vercel project settings.
 
 ### Vite Configuration
 
