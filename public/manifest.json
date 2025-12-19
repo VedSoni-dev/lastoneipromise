@@ -1,0 +1,21 @@
+{
+  "name": "Vedant Soni - Portfolio",
+  "short_name": "Vedant Soni",
+  "description": "Portfolio of Vedant Soni - AI developer, entrepreneur, and researcher",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/ace-spades.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "developer", "technology"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

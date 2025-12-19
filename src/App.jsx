@@ -399,27 +399,28 @@ const projects = [
             ))}
           </div>
           
-          <main className="main-content scrollable">
-            <section className="hero">
+          <main className="main-content scrollable" role="main">
+            <section className="hero" aria-labelledby="blog-title">
               <button 
                 className="back-link"
                 onClick={() => setCurrentPage('home')}
+                aria-label="Return to home page"
               >
                 ← back
               </button>
               
-              <h1 className="hero-title">blog</h1>
+              <h1 className="hero-title" id="blog-title">blog</h1>
               <p className="hero-subtitle">i shitpost here</p>
               
-              <div className="blog-section">
+              <article className="blog-section" aria-label="Blog posts">
                 {blogPosts.map((post, index) => (
-                  <div key={index} className="blog-item">
-                    <div className="blog-date">{post.date}</div>
+                  <article key={index} className="blog-item">
+                    <time className="blog-date" dateTime={post.date}>{post.date}</time>
                     <h2 className="blog-title-link">{post.title}</h2>
                     <p className="blog-excerpt">{post.body}</p>
-                  </div>
+                  </article>
                 ))}
-              </div>
+              </article>
             </section>
           </main>
         </div>
@@ -462,16 +463,17 @@ const projects = [
             ))}
           </div>
           
-          <main className="main-content">
-            <section className="hero">
+          <main className="main-content" role="main">
+            <section className="hero" aria-labelledby="about-title">
               <button 
                 className="back-link"
                 onClick={() => setCurrentPage('home')}
+                aria-label="Return to home page"
               >
                 ← back
               </button>
               
-              <h1 className="hero-title">about</h1>
+              <h1 className="hero-title" id="about-title">about</h1>
               <p className="hero-subtitle">just a guy who builds things. sometimes they work, sometimes they don't.</p>
               
               <div className="about-content">
@@ -479,19 +481,19 @@ const projects = [
                   {aboutText}
                 </p>
                 
-                <div className="bold-statements">
+                <section className="bold-statements" aria-label="Achievements">
                   {boldStatements.map((statement, index) => (
                     <div key={index} className="bold-statement">
                       {statement}
                     </div>
                   ))}
-                </div>
+                </section>
                 
-                <div className="about-education">
-                  <div className="education-name">{education.name}</div>
-                  <div className="education-degree">{education.degree}</div>
-                  <div className="education-description">{education.description}</div>
-                </div>
+                <section className="about-education" aria-label="Education">
+                  <h2 className="education-name">{education.name}</h2>
+                  <p className="education-degree">{education.degree}</p>
+                  <p className="education-description">{education.description}</p>
+                </section>
               </div>
             </section>
           </main>
@@ -535,94 +537,97 @@ const projects = [
             ))}
           </div>
           
-          <main className="main-content scrollable">
-            <section className="hero">
+          <main className="main-content scrollable" role="main">
+            <section className="hero" aria-labelledby="stuff-title">
               <button 
                 className="back-link"
                 onClick={() => setCurrentPage('home')}
+                aria-label="Return to home page"
               >
                 ← back
               </button>
               
-              <h1 className="hero-title">other cool stuff</h1>
+              <h1 className="hero-title" id="stuff-title">other cool stuff</h1>
               <p className="hero-subtitle">projects & experiences</p>
               <p className="hero-attitude">the stuff that actually matters</p>
               
               <div className="stuff-section">
-                <div className="stuff-category">
-                  <h2 className="stuff-category-title">experiences</h2>
-                  <div className="experiences-list">
+                <section className="stuff-category" aria-labelledby="experiences-heading">
+                  <h2 className="stuff-category-title" id="experiences-heading">experiences</h2>
+                  <div className="experiences-list" role="list">
                     {experiences.map((exp, index) => (
-                      <div key={index} className="experience-item">
+                      <article key={index} className="experience-item" role="listitem">
                         <a 
                           href={exp.link}
                           className="experience-link"
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`View ${exp.name} - ${exp.role}`}
                         >
                           <div className="experience-header">
                             <span className="experience-name">{exp.name}</span>
                             <span className="experience-role">{exp.role}</span>
                           </div>
                           {exp.date && (
-                            <div className="experience-date">{exp.date}</div>
+                            <time className="experience-date" dateTime={exp.date}>{exp.date}</time>
                           )}
                           {exp.description && (
-                            <div className="experience-description">{exp.description}</div>
+                            <p className="experience-description">{exp.description}</p>
                           )}
                         </a>
-                      </div>
+                      </article>
                     ))}
                   </div>
-                </div>
+                </section>
 
-                <div className="stuff-category">
-                  <h2 className="stuff-category-title">projects</h2>
-                  <div className="experiences-list">
+                <section className="stuff-category" aria-labelledby="projects-heading">
+                  <h2 className="stuff-category-title" id="projects-heading">projects</h2>
+                  <div className="experiences-list" role="list">
                     {projects.map((project, index) => (
-                      <div key={index} className="experience-item">
+                      <article key={index} className="experience-item" role="listitem">
                         <a 
                           href={project.link}
                           className="experience-link"
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`View project ${project.name}`}
                         >
                           <div className="experience-header">
                             <span className="experience-name">{project.name}</span>
                           </div>
                           {project.date && (
-                            <div className="experience-date">{project.date}</div>
+                            <time className="experience-date" dateTime={project.date}>{project.date}</time>
                           )}
                           {project.description && (
-                            <div className="experience-description">{project.description}</div>
+                            <p className="experience-description">{project.description}</p>
                           )}
                         </a>
-                      </div>
+                      </article>
                     ))}
                   </div>
-                </div>
+                </section>
 
-                <div className="stuff-category">
-                  <h2 className="stuff-category-title">volunteering</h2>
-                  <div className="experiences-list">
+                <section className="stuff-category" aria-labelledby="volunteering-heading">
+                  <h2 className="stuff-category-title" id="volunteering-heading">volunteering</h2>
+                  <div className="experiences-list" role="list">
                     {volunteering.map((vol, index) => (
-                      <div key={index} className="experience-item">
+                      <article key={index} className="experience-item" role="listitem">
                         <div className="experience-link">
                           <div className="experience-header">
                             <span className="experience-name">{vol.name}</span>
                             <span className="experience-role">{vol.role}</span>
                           </div>
                           {vol.date && (
-                            <div className="experience-date">{vol.date}</div>
+                            <time className="experience-date" dateTime={vol.date}>{vol.date}</time>
                           )}
                           {vol.description && (
-                            <div className="experience-description">{vol.description}</div>
+                            <p className="experience-description">{vol.description}</p>
                           )}
                         </div>
-                      </div>
+                      </article>
                     ))}
                   </div>
-                </div>
+                </section>
               </div>
             </section>
           </main>
@@ -675,12 +680,12 @@ const projects = [
           ))}
         </div>
         
-        <main className="main-content">
-          <section className="hero">
-            <h1 className="hero-title">Vedant</h1>
+        <main className="main-content" role="main">
+          <section className="hero" aria-labelledby="hero-title">
+            <h1 className="hero-title" id="hero-title">Vedant</h1>
             <p className="hero-subtitle">i make cool shit.</p>
             
-            <div className="cool-things">
+            <nav className="cool-things" aria-label="Featured projects">
               {currentCoolThings.map((thing, index) => (
                 <a 
                   key={index}
@@ -688,66 +693,75 @@ const projects = [
                   className="cool-thing-link"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`Visit ${thing.name}`}
                 >
                   {thing.name}
                 </a>
               ))}
-            </div>
+            </nav>
 
-            <div className="other-stuff-link-wrapper">
-              <button 
-                className="other-stuff-link"
-                onClick={() => setCurrentPage('stuff')}
-              >
-                other cool stuff ive done
-              </button>
-            </div>
+            <nav className="main-navigation" aria-label="Main navigation">
+              <div className="other-stuff-link-wrapper">
+                <button 
+                  className="other-stuff-link"
+                  onClick={() => setCurrentPage('stuff')}
+                  aria-label="View projects and experiences"
+                >
+                  other cool stuff ive done
+                </button>
+              </div>
 
-            <div className="about-link-wrapper">
-              <button 
-                className="other-stuff-link"
-                onClick={() => setCurrentPage('about')}
-              >
-                about
-              </button>
-                    </div>
+              <div className="about-link-wrapper">
+                <button 
+                  className="other-stuff-link"
+                  onClick={() => setCurrentPage('about')}
+                  aria-label="Learn more about me"
+                >
+                  about
+                </button>
+              </div>
 
-            <div className="about-link-wrapper">
-              <button 
-                className="other-stuff-link"
-                onClick={() => setCurrentPage('blog')}
-              >
-                blog
-              </button>
-            </div>
+              <div className="about-link-wrapper">
+                <button 
+                  className="other-stuff-link"
+                  onClick={() => setCurrentPage('blog')}
+                  aria-label="Read blog posts"
+                >
+                  blog
+                </button>
+              </div>
 
-            <div className="about-link-wrapper">
-              <button 
-                className="other-stuff-link"
-                onClick={() => setShowHive(true)}
-              >
-                hive
-              </button>
-            </div>
+              <div className="about-link-wrapper">
+                <button 
+                  className="other-stuff-link"
+                  onClick={() => setShowHive(true)}
+                  aria-label="Access Hive AI assistant"
+                >
+                  hive
+                </button>
+              </div>
 
-            <div className="about-link-wrapper">
-              <button 
-                className="other-stuff-link"
-                onClick={() => setShowBlackjack(true)}
-              >
-                keep playing blackjack
-              </button>
-            </div>
+              <div className="about-link-wrapper">
+                <button 
+                  className="other-stuff-link"
+                  onClick={() => setShowBlackjack(true)}
+                  aria-label="Play blackjack game"
+                >
+                  keep playing blackjack
+                </button>
+              </div>
+            </nav>
           </section>
         </main>
       </div>
       
-      <footer className="footer">
-        <p className="footer-text">© {new Date().getFullYear()}</p>
+      <footer className="footer" role="contentinfo">
+        <p className="footer-text">© {new Date().getFullYear()} Vedant Soni. All rights reserved.</p>
         <button 
           className="reset-button"
           onClick={resetProgress}
           title="Reset all game progress"
+          aria-label="Reset all game progress"
         >
           reset progress
         </button>

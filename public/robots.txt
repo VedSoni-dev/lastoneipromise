@@ -1,0 +1,24 @@
+# robots.txt for vedantsoni.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://vedantsoni.com/sitemap.xml
+
+# Disallow admin or private areas (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow all search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1
