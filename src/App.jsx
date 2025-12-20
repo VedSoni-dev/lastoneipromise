@@ -4,6 +4,7 @@ import ShinyText from './components/ShinyText'
 import Blackjack from './components/Blackjack'
 import Poker from './components/Poker'
 import SocialLink from './components/SocialLink'
+import Resume from './pages/Resume'
 import './App.css'
 
 function App() {
@@ -14,7 +15,33 @@ function App() {
   const [showPoker, setShowPoker] = useState(false)
   const [hiveMessage, setHiveMessage] = useState('')
 
+  // Handle hash-based routing for resume page
   useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1) // Remove the #
+      if (hash === 'resume') {
+        setCurrentPage('resume')
+      }
+    }
+
+    // Check initial hash on mount
+    handleHashChange()
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange)
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange)
+    }
+  }, [])
+
+  useEffect(() => {
+    // Skip blackjack if resume hash is present
+    const hash = window.location.hash.slice(1)
+    if (hash === 'resume') {
+      return
+    }
+    
     const hasWon = localStorage.getItem('blackjackWon')
     if (!hasWon) {
       setShowBlackjack(true)
@@ -65,6 +92,50 @@ function App() {
       // Reload to restart from beginning
       window.location.reload()
     }
+  }
+
+  // Check for resume page first (before game overlays)
+  if (currentPage === 'resume') {
+    return (
+      <div className={`app-container scrollable ${darkMode ? 'dark' : ''}`}>
+        <Particles />
+        
+        <div className={`app scrollable ${darkMode ? 'dark' : ''}`}>
+          <button 
+            className="dark-mode-toggle"
+            onClick={() => setDarkMode(!darkMode)}
+            aria-label="Toggle dark mode"
+          >
+            {darkMode ? '☀' : '☾'}
+          </button>
+          
+          {darkMode && (
+            <div className="dark-mode-message">
+              🔦 its dark, how tf u gna see shit
+            </div>
+          )}
+          
+          <div className="social-links">
+            {socialLinks.map((social, index) => (
+              <SocialLink
+                key={index}
+                social={social}
+                onHiveClick={() => setShowHive(true)}
+                onBlackjackClick={() => setShowBlackjack(true)}
+              />
+            ))}
+          </div>
+          
+          <main className="main-content scrollable" role="main">
+            <Resume />
+          </main>
+        </div>
+        
+        <footer className="footer">
+          <p className="footer-text">© {new Date().getFullYear()}</p>
+        </footer>
+      </div>
+    )
   }
 
   if (showBlackjack) {
