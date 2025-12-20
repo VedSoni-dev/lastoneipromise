@@ -38,8 +38,24 @@ function App() {
     // Listen for popstate events (back/forward navigation)
     window.addEventListener('popstate', handlePathChange)
     
+    // Intercept link clicks for SPA navigation
+    const handleLinkClick = (e) => {
+      const link = e.target.closest('a')
+      if (link && link.href && link.href.startsWith(window.location.origin)) {
+        const url = new URL(link.href)
+        if (url.pathname === '/resume' || url.pathname === '/') {
+          e.preventDefault()
+          window.history.pushState({}, '', url.pathname)
+          handlePathChange()
+        }
+      }
+    }
+    
+    document.addEventListener('click', handleLinkClick)
+    
     return () => {
       window.removeEventListener('popstate', handlePathChange)
+      document.removeEventListener('click', handleLinkClick)
     }
   }, [])
 
@@ -102,6 +118,15 @@ function App() {
       window.location.reload()
     }
   }
+
+  const email = 'ved.06.soni@gmail.com'
+
+  const socialLinks = [
+    { name: 'linkedin', url: 'https://www.linkedin.com/in/vedantsonimech' },
+    { name: 'x', url: 'https://x.com/VedantRobot' },
+    { name: 'github', url: 'https://github.com/VedSoni-dev' },
+    { name: 'email', url: `mailto:${email}` }
+  ]
 
   // Check for resume page first (before game overlays)
   if (currentPage === 'resume') {
@@ -253,15 +278,6 @@ function App() {
     'backed by nvidia & google deepmind',
     'skipping class to build the future',
     '10k+ users on a nonprofit i built in my free time'
-  ]
-
-  const email = 'ved.06.soni@gmail.com'
-
-  const socialLinks = [
-    { name: 'linkedin', url: 'https://www.linkedin.com/in/vedantsonimech' },
-    { name: 'x', url: 'https://x.com/VedantRobot' },
-    { name: 'github', url: 'https://github.com/VedSoni-dev' },
-    { name: 'email', url: `mailto:${email}` }
   ]
 
   const blogPosts = [
