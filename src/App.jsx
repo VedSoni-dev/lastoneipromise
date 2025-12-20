@@ -8,7 +8,13 @@ import Resume from './pages/Resume'
 import './App.css'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home')
+  // Initialize currentPage based on hash if present
+  const getInitialPage = () => {
+    const hash = window.location.hash.slice(1)
+    return hash === 'resume' ? 'resume' : 'home'
+  }
+
+  const [currentPage, setCurrentPage] = useState(getInitialPage)
   const [darkMode, setDarkMode] = useState(false)
   const [showBlackjack, setShowBlackjack] = useState(false)
   const [showHive, setShowHive] = useState(false)
@@ -21,6 +27,8 @@ function App() {
       const hash = window.location.hash.slice(1) // Remove the #
       if (hash === 'resume') {
         setCurrentPage('resume')
+      } else {
+        setCurrentPage('home')
       }
     }
 
@@ -36,9 +44,10 @@ function App() {
   }, [])
 
   useEffect(() => {
-    // Skip blackjack if resume hash is present
+    // Skip blackjack if resume hash is present or currentPage is resume
     const hash = window.location.hash.slice(1)
-    if (hash === 'resume') {
+    if (hash === 'resume' || currentPage === 'resume') {
+      setShowBlackjack(false)
       return
     }
     
@@ -46,7 +55,7 @@ function App() {
     if (!hasWon) {
       setShowBlackjack(true)
     }
-  }, [])
+  }, [currentPage])
 
   const handleBlackjackWin = () => {
     setShowBlackjack(false)
