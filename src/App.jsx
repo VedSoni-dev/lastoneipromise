@@ -8,10 +8,10 @@ import Resume from './pages/Resume'
 import './App.css'
 
 function App() {
-  // Initialize currentPage based on hash if present
+  // Initialize currentPage based on pathname if present
   const getInitialPage = () => {
-    const hash = window.location.hash.slice(1)
-    return hash === 'resume' ? 'resume' : 'home'
+    const pathname = window.location.pathname
+    return pathname === '/resume' ? 'resume' : 'home'
   }
 
   const [currentPage, setCurrentPage] = useState(getInitialPage())
@@ -21,32 +21,32 @@ function App() {
   const [showPoker, setShowPoker] = useState(false)
   const [hiveMessage, setHiveMessage] = useState('')
 
-  // Handle hash-based routing for resume page
+  // Handle path-based routing for resume page
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.slice(1) // Remove the #
-      if (hash === 'resume') {
+    const handlePathChange = () => {
+      const pathname = window.location.pathname
+      if (pathname === '/resume') {
         setCurrentPage('resume')
       } else {
         setCurrentPage('home')
       }
     }
 
-    // Check initial hash on mount
-    handleHashChange()
+    // Check initial path on mount
+    handlePathChange()
 
-    // Listen for hash changes
-    window.addEventListener('hashchange', handleHashChange)
+    // Listen for popstate events (back/forward navigation)
+    window.addEventListener('popstate', handlePathChange)
     
     return () => {
-      window.removeEventListener('hashchange', handleHashChange)
+      window.removeEventListener('popstate', handlePathChange)
     }
   }, [])
 
   useEffect(() => {
-    // Skip blackjack if resume hash is present or currentPage is resume
-    const hash = window.location.hash.slice(1)
-    if (hash === 'resume' || currentPage === 'resume') {
+    // Skip blackjack if resume path is present or currentPage is resume
+    const pathname = window.location.pathname
+    if (pathname === '/resume' || currentPage === 'resume') {
       setShowBlackjack(false)
       return
     }

@@ -15,7 +15,8 @@ function Resume() {
   }
 
   const handleGoHome = () => {
-    window.location.hash = ''
+    window.history.pushState({}, '', '/')
+    window.dispatchEvent(new PopStateEvent('popstate'))
     setShowModal(false)
   }
 
