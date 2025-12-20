@@ -14,7 +14,7 @@ function App() {
     return hash === 'resume' ? 'resume' : 'home'
   }
 
-  const [currentPage, setCurrentPage] = useState(getInitialPage)
+  const [currentPage, setCurrentPage] = useState(getInitialPage())
   const [darkMode, setDarkMode] = useState(false)
   const [showBlackjack, setShowBlackjack] = useState(false)
   const [showHive, setShowHive] = useState(false)
