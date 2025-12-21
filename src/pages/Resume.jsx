@@ -1,9 +1,21 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './Resume.css'
 
 function Resume() {
   const [showModal, setShowModal] = useState(false)
+  const [pdfError, setPdfError] = useState(false)
   const resumePdfPath = '/resume.pdf'
+  
+  useEffect(() => {
+    // Check if PDF is accessible
+    fetch(resumePdfPath, { method: 'HEAD' })
+      .then(response => {
+        if (!response.ok) {
+          setPdfError(true)
+        }
+      })
+      .catch(() => setPdfError(true))
+  }, [])
 
   const handleDownload = () => {
     const link = document.createElement('a')
@@ -81,17 +93,32 @@ function Resume() {
         </div>
 
         <div className="resume-pdf-container">
-          <object
-            data={`${resumePdfPath}#toolbar=0`}
-            type="application/pdf"
-            className="resume-pdf-viewer"
-            title="Resume PDF"
-          >
-            <p>
-              Your browser doesn't support PDFs. 
-              <a href={resumePdfPath} download="Vedant_Soni_Resume.pdf">Download the PDF instead</a>.
-            </p>
-          </object>
+          {pdfError ? (
+            <div style={{ padding: '2rem', textAlign: 'center' }}>
+              <p>Unable to load PDF preview. Please use the download button above.</p>
+            </div>
+          ) : (
+            <iframe
+              src={`${resumePdfPath}#toolbar=0`}
+              className="resume-pdf-viewer"
+              title="Resume PDF"
+              onLoad={(e) => {
+                // Check if iframe loaded HTML instead of PDF
+                try {
+                  const iframe = e.target
+                  if (iframe.contentDocument && iframe.contentDocument.body) {
+                    const bodyText = iframe.contentDocument.body.innerText || ''
+                    if (bodyText.includes('root') || bodyText.includes('React')) {
+                      setPdfError(true)
+                    }
+                  }
+                } catch (err) {
+                  // Cross-origin or other error - assume it's working
+                }
+              }}
+              onError={() => setPdfError(true)}
+            />
+          )}
         </div>
       </div>
     </div>
