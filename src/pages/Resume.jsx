@@ -81,12 +81,17 @@ function Resume() {
         </div>
 
         <div className="resume-pdf-container">
-          <iframe
-            src={`${resumePdfPath}#toolbar=0`}
+          <object
+            data={`${resumePdfPath}#toolbar=0`}
+            type="application/pdf"
             className="resume-pdf-viewer"
             title="Resume PDF"
-            type="application/pdf"
-          />
+          >
+            <p>
+              Your browser doesn't support PDFs. 
+              <a href={resumePdfPath} download="Vedant_Soni_Resume.pdf">Download the PDF instead</a>.
+            </p>
+          </object>
         </div>
       </div>
     </div>
