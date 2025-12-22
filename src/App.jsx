@@ -4,6 +4,8 @@ import ShinyText from './components/ShinyText'
 import Blackjack from './components/Blackjack'
 import Poker from './components/Poker'
 import SocialLink from './components/SocialLink'
+import MediaGallery from './components/MediaGallery'
+import SEOHead from './components/SEOHead'
 import Resume from './pages/Resume'
 import './App.css'
 
@@ -131,8 +133,14 @@ function App() {
   // Check for resume page first (before game overlays)
   if (currentPage === 'resume') {
     return (
-      <div className={`app-container scrollable ${darkMode ? 'dark' : ''}`}>
-        <Particles />
+      <>
+        <SEOHead 
+          title="Resume - Vedant Soni | AI Developer & Entrepreneur"
+          description="Resume of Vedant Soni - Co-Founder at Cognition, AI researcher, and entrepreneur. Experience in machine learning, robotics, and full-stack development."
+          url="https://vedantsoni.com/resume"
+        />
+        <div className={`app-container scrollable ${darkMode ? 'dark' : ''}`}>
+          <Particles />
         
         <div className={`app scrollable ${darkMode ? 'dark' : ''}`}>
           <button 
@@ -169,6 +177,7 @@ function App() {
           <p className="footer-text">© {new Date().getFullYear()}</p>
         </footer>
       </div>
+      </>
     )
   }
 
@@ -289,31 +298,69 @@ const projects = [
       name: 'recreach', 
       description: 'pickup sports startup',
       link: '#',
-      date: ''
+      date: '',
+      media: [] // Add images/videos here: [{ type: 'image', url: '/path/to/image.jpg', alt: 'description' }, { type: 'video', url: '/path/to/video.mp4', thumbnail: '/path/to/thumbnail.jpg' }]
     },
     { 
       name: 'Hive', 
       description: 'My personal AI. If you\'ve ever sent me an email, message, calendar invite, or anything else, it went through Hive first. Completely local.',
       link: '#',
-      date: 'Jun 2025 - Present'
+      date: 'Jun 2025 - Present',
+      media: [] // Add images/videos here
     },
     { 
       name: 'TalkR', 
       description: 'Talkr is a completely free, AI-driven Augmentative and Alternative Communication (AAC) app designed to empower nonverbal individuals with intuitive, accessible communication. Built with inclusivity at its core, Talkr integrates visual sentence building, AI-enhanced text-to-speech, and real-time image and location recognition to create personalized, contextual conversations.',
       link: 'https://v0-child-friendly-sentence-builder.vercel.app/',
-      date: 'Mar 2025 - Present'
+      date: 'Mar 2025 - Present',
+      media: [] // Add images/videos here
     },
     { 
       name: 'SNAIC', 
       description: 'SNAIC uses the Raspberry Pi 5 with camera attachments, battery packs, heat sinks, and a touchscreen to develop an AI-powered object recognition system. The device scans real-world items using advanced AI algorithms and provides immediate online links related to the scanned objects. Optimized for portability and performance, it integrates cooling solutions for sustained operation during intensive tasks.',
       link: '#',
-      date: 'Sep 2024 - Present'
+      date: 'Sep 2024 - Present',
+      media: [] // Add images/videos here
     },
     { 
       name: 'Roni\'s Business Analyzer', 
       description: 'My team and I created website during a 24-hour hackathon that can analyze the recent order history of a local location of the chain Roni\'s Mac Bar. The website has the ability to take in a CV file of the order history and display it in a way that it can be easily searched through; additionally, the website provides insights into what was popular that month, and provides order predictions for the coming months.',
       link: '#',
-      date: ''
+      date: '',
+      media: [] // Add images/videos here
+    }
+  ]
+
+  const achievements = [
+    {
+      title: 'McFerrin Startup Fast Pass Winner',
+      description: '1st place at TAMU\'s biggest entrepreneurship hackathon',
+      date: '2025',
+      category: 'Entrepreneurship'
+    },
+    {
+      title: 'Ideas Challenge Finalist',
+      description: 'Top 1% of 4,500+ applicants in TAMU\'s premier entrepreneurship competition',
+      date: '2025',
+      category: 'Entrepreneurship'
+    },
+    {
+      title: '35k+ Users',
+      description: 'Before I could legally drink',
+      date: '2024-2025',
+      category: 'Product'
+    },
+    {
+      title: 'Backed by NVIDIA & Google DeepMind',
+      description: 'Cognition received backing from leading AI companies',
+      date: '2025',
+      category: 'Business'
+    },
+    {
+      title: '10k+ Users on Nonprofit',
+      description: 'Fern reached 10,000+ users across Texas',
+      date: '2025',
+      category: 'Social Impact'
     }
   ]
 
@@ -676,28 +723,57 @@ const projects = [
                   </div>
                 </section>
 
+                <section className="stuff-category" aria-labelledby="achievements-heading">
+                  <h2 className="stuff-category-title" id="achievements-heading">achievements</h2>
+                  <div className="experiences-list" role="list">
+                    {achievements.map((achievement, index) => (
+                      <article key={index} className="experience-item" role="listitem">
+                        <div className="experience-link">
+                          <div className="experience-header">
+                            <span className="experience-name">{achievement.title}</span>
+                            {achievement.category && (
+                              <span className="experience-role">{achievement.category}</span>
+                            )}
+                          </div>
+                          {achievement.date && (
+                            <time className="experience-date" dateTime={achievement.date}>{achievement.date}</time>
+                          )}
+                          {achievement.description && (
+                            <p className="experience-description">{achievement.description}</p>
+                          )}
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
                 <section className="stuff-category" aria-labelledby="projects-heading">
                   <h2 className="stuff-category-title" id="projects-heading">projects</h2>
                   <div className="experiences-list" role="list">
                     {projects.map((project, index) => (
                       <article key={index} className="experience-item" role="listitem">
-                        <a 
-                          href={project.link}
-                          className="experience-link"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`View project ${project.name}`}
-                        >
-                          <div className="experience-header">
-                            <span className="experience-name">{project.name}</span>
-                          </div>
-                          {project.date && (
-                            <time className="experience-date" dateTime={project.date}>{project.date}</time>
+                        <div>
+                          <a 
+                            href={project.link}
+                            className="experience-link"
+                            target={project.link !== '#' ? "_blank" : undefined}
+                            rel={project.link !== '#' ? "noopener noreferrer" : undefined}
+                            aria-label={`View project ${project.name}`}
+                          >
+                            <div className="experience-header">
+                              <span className="experience-name">{project.name}</span>
+                            </div>
+                            {project.date && (
+                              <time className="experience-date" dateTime={project.date}>{project.date}</time>
+                            )}
+                            {project.description && (
+                              <p className="experience-description">{project.description}</p>
+                            )}
+                          </a>
+                          {project.media && project.media.length > 0 && (
+                            <MediaGallery media={project.media} />
                           )}
-                          {project.description && (
-                            <p className="experience-description">{project.description}</p>
-                          )}
-                        </a>
+                        </div>
                       </article>
                     ))}
                   </div>
@@ -744,8 +820,10 @@ const projects = [
   }
 
   return (
-    <div className={`app-container ${darkMode ? 'dark' : ''}`}>
-      <Particles />
+    <>
+      <SEOHead />
+      <div className={`app-container ${darkMode ? 'dark' : ''}`}>
+        <Particles />
       
       <div className={`app ${darkMode ? 'dark' : ''}`}>
         <button 
@@ -863,6 +941,7 @@ const projects = [
         </button>
       </footer>
     </div>
+    </>
   )
 }
 
