@@ -153,7 +153,7 @@ function App() {
           
           {darkMode && (
             <div className="dark-mode-message">
-              🔦 its dark, how tf u gna see stuff
+              🔦 its dark, how do you expect to see anything.
             </div>
           )}
           
@@ -205,7 +205,7 @@ function App() {
           
           {darkMode && (
             <div className="dark-mode-message">
-              🔦 its dark, how tf u gna see stuff
+              🔦 its dark, how do you expect to see anything.
             </div>
           )}
           
@@ -472,7 +472,7 @@ const projects = [
           
           {darkMode && (
             <div className="dark-mode-message">
-              🔦 its dark, how tf u gna see stuff
+              🔦 its dark, how do you expect to see anything.
             </div>
           )}
           
@@ -527,7 +527,7 @@ const projects = [
           
           {darkMode && (
             <div className="dark-mode-message">
-              🔦 its dark, how tf u gna see stuff
+              🔦 its dark, how do you expect to see anything.
             </div>
           )}
           
@@ -591,7 +591,7 @@ const projects = [
           
           {darkMode && (
             <div className="dark-mode-message">
-              🔦 its dark, how tf u gna see stuff
+              🔦 its dark, how do you expect to see anything.
             </div>
           )}
           
@@ -665,7 +665,7 @@ const projects = [
           
           {darkMode && (
             <div className="dark-mode-message">
-              🔦 its dark, how tf u gna see stuff
+              🔦 its dark, how do you expect to see anything.
             </div>
           )}
           
