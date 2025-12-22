@@ -100,6 +100,17 @@
   margin: 0;
 }
 
+.resume-item-title a {
+  color: #000;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.resume-item-title a:hover {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
 .resume-item-company {
   color: #666;
   font-weight: 500;
@@ -150,6 +161,14 @@
 .app-container.dark .resume-section-title,
 .app-container.dark .resume-item-title {
   color: #fff;
+}
+
+.app-container.dark .resume-item-title a {
+  color: #fff;
+}
+
+.app-container.dark .resume-item-title a:hover {
+  color: #4da6ff;
 }
 
 .app-container.dark .resume-contact {

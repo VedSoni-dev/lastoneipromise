@@ -98,7 +98,9 @@ function Resume() {
             
             <div className="resume-item">
               <div className="resume-item-header">
-                <span className="resume-item-title">Cognition</span>
+                <span className="resume-item-title">
+                  <a href="https://cognitionus.com" target="_blank" rel="noopener noreferrer">Cognition</a>
+                </span>
                 <span className="resume-item-date">August 2025 – Present</span>
               </div>
               <p className="resume-item-company">Co-Founder & COO | San Francisco, CA</p>
