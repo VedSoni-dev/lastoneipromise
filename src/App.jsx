@@ -266,7 +266,7 @@ function App() {
   }
 
   const currentCoolThings = [
-    { name: 'cool thing num 1', link: 'https://cognition-two.vercel.app/' },
+    { name: 'cool thing num 1', link: 'https://cognitionus.com' },
     { name: 'cool thing num 2', link: 'https://github.com/EDEN-robotics' },
     { name: 'cool thing num 3', link: 'https://recreach.com' }
   ]
