@@ -153,7 +153,7 @@ function App() {
           
           {darkMode && (
             <div className="dark-mode-message">
-              🔦 its dark, how tf u gna see shit
+              🔦 its dark, how tf u gna see stuff
             </div>
           )}
           
@@ -205,7 +205,7 @@ function App() {
           
           {darkMode && (
             <div className="dark-mode-message">
-              🔦 its dark, how tf u gna see shit
+              🔦 its dark, how tf u gna see stuff
             </div>
           )}
           
@@ -223,7 +223,7 @@ function App() {
               
               <div className="hive-content">
                 <p className="hive-description">
-                  hive handles all my daily shit for me. emails, messages, calendar invites, 
+                  hive handles all my daily stuff for me. emails, messages, calendar invites, 
                   everything goes through hive first. completely local. my ai assistant.
                 </p>
                 
@@ -472,7 +472,7 @@ const projects = [
           
           {darkMode && (
             <div className="dark-mode-message">
-              🔦 its dark, how tf u gna see shit
+              🔦 its dark, how tf u gna see stuff
             </div>
           )}
           
@@ -527,7 +527,7 @@ const projects = [
           
           {darkMode && (
             <div className="dark-mode-message">
-              🔦 its dark, how tf u gna see shit
+              🔦 its dark, how tf u gna see stuff
             </div>
           )}
           
@@ -553,7 +553,7 @@ const projects = [
               </button>
               
               <h1 className="hero-title" id="blog-title">blog</h1>
-              <p className="hero-subtitle">i shitpost here</p>
+              <p className="hero-subtitle">i post stuff here</p>
               
               <article className="blog-section" aria-label="Blog posts">
                 {blogPosts.map((post, index) => (
@@ -591,7 +591,7 @@ const projects = [
           
           {darkMode && (
             <div className="dark-mode-message">
-              🔦 its dark, how tf u gna see shit
+              🔦 its dark, how tf u gna see stuff
             </div>
           )}
           
@@ -665,7 +665,7 @@ const projects = [
           
           {darkMode && (
             <div className="dark-mode-message">
-              🔦 its dark, how tf u gna see shit
+              🔦 its dark, how tf u gna see stuff
             </div>
           )}
           
@@ -857,7 +857,7 @@ const projects = [
         <main className="main-content" role="main">
           <section className="hero" aria-labelledby="hero-title">
             <h1 className="hero-title" id="hero-title">Vedant</h1>
-            <p className="hero-subtitle">i make cool shit.</p>
+            <p className="hero-subtitle">i make cool stuff.</p>
             
             <nav className="cool-things" aria-label="Featured projects">
               {currentCoolThings.map((thing, index) => (
