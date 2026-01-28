@@ -20,15 +20,16 @@
 
 :root.dark,
 .dark {
-  color: #000000;
-  background: #000000;
+  color: #eeeeee;
+  background: #0a0a0a;
 }
 
 * {
   cursor: default;
 }
 
-a, button {
+a,
+button {
   cursor: pointer;
 }
 
@@ -52,8 +53,8 @@ body {
 }
 
 body.dark {
-  background: #000000;
-  color: #000000;
+  background: #0a0a0a;
+  color: #eeeeee;
 }
 
 #root {
@@ -67,7 +68,7 @@ body.dark {
 }
 
 #root.dark {
-  background: #000000;
+  background: #0a0a0a;
 }
 
 h1 {
@@ -107,4 +108,3 @@ button:focus,
 button:focus-visible {
   outline: 2px solid black;
 }
-

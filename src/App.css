@@ -12,7 +12,7 @@
 }
 
 .app-container.dark {
-  background: #000000;
+  background: #0a0a0a;
 }
 
 .app {
@@ -30,7 +30,7 @@
 }
 
 .app.dark {
-  color: #000000;
+  color: #eeeeee;
   background: transparent;
 }
 
@@ -49,7 +49,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     radial-gradient(circle at 20% 50%, rgba(0, 0, 0, 0.02) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.02) 0%, transparent 50%);
   animation: backgroundShift 25s ease-in-out infinite;
@@ -64,17 +64,20 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.01) 50%, transparent 100%);
   pointer-events: none;
   z-index: 0;
 }
 
 @keyframes backgroundShift {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1) rotate(0deg);
   }
+
   50% {
     opacity: 0.8;
     transform: scale(1.02) rotate(0.5deg);
@@ -124,6 +127,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -145,7 +149,7 @@
 }
 
 .dark .hero-title {
-  color: #000000;
+  color: #ffffff;
 }
 
 .hero-title::before {
@@ -166,9 +170,12 @@
 }
 
 @keyframes subtleFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
   }
+
   50% {
     transform: translateY(-3px) rotate(0.2deg);
   }
@@ -189,7 +196,7 @@
 }
 
 .dark .hero-subtitle {
-  color: #000000;
+  color: #cccccc;
 }
 
 .hero-attitude {
@@ -206,11 +213,16 @@
   font-style: italic;
 }
 
+.dark .hero-attitude {
+  color: #aaaaaa;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(15px);
   }
+
   to {
     opacity: 0.7;
     transform: translateY(0);
@@ -240,7 +252,17 @@
 }
 
 .dark .cool-thing-link {
-  color: #000000;
+  color: #eeeeee;
+  opacity: 0.7;
+}
+
+.dark .cool-thing-link:hover {
+  opacity: 1;
+  color: #ffffff;
+}
+
+.dark .cool-thing-link::before {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .cool-thing-link::before {
@@ -276,6 +298,65 @@
 .cool-thing-link:hover::after {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* Cool Thing Hover Preview */
+.cool-thing-wrapper {
+  position: relative;
+}
+
+.cool-thing-preview {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(20px);
+  width: 280px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 8px 16px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.cool-thing-wrapper:hover .cool-thing-preview {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(30px);
+}
+
+.cool-thing-preview-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.cool-thing-preview-text {
+  font-size: 0.85rem;
+  color: #333;
+  line-height: 1.5;
+  font-weight: 300;
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Mobile responsiveness - hide preview on small screens */
+@media (max-width: 900px) {
+  .cool-thing-preview {
+    display: none;
+  }
 }
 
 .other-stuff-link-wrapper {
@@ -321,6 +402,10 @@
   margin-bottom: 3rem;
 }
 
+.dark .about-text {
+  color: #cccccc;
+}
+
 .about-education {
   margin-top: 2rem;
   padding-top: 2rem;
@@ -337,6 +422,10 @@
   margin-bottom: 0.5rem;
 }
 
+.dark .education-name {
+  color: #ffffff;
+}
+
 .education-degree {
   font-size: 0.9rem;
   color: #000;
@@ -348,6 +437,10 @@
   margin-bottom: 0.75rem;
 }
 
+.dark .education-degree {
+  color: #bbbbbb;
+}
+
 .education-description {
   font-size: 0.95rem;
   color: #333;
@@ -356,6 +449,10 @@
   letter-spacing: 0.2px;
   font-family: 'Space Grotesk', sans-serif;
   font-style: italic;
+}
+
+.dark .education-description {
+  color: #cccccc;
 }
 
 .bold-statements {
@@ -379,6 +476,10 @@
   position: relative;
   padding-left: 1.5rem;
   transition: all 0.3s ease;
+}
+
+.dark .bold-statement {
+  color: #eeeeee;
 }
 
 .bold-statement::before {
@@ -422,7 +523,15 @@
 }
 
 .dark .other-stuff-link {
-  color: #000000;
+  color: #eeeeee;
+}
+
+.dark .other-stuff-link:hover {
+  color: #ffffff;
+}
+
+.dark .other-stuff-link::before {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .hive-content {
@@ -481,8 +590,13 @@
 }
 
 .dark .hive-textarea {
-  color: #000000;
-  border-color: rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.dark .hive-textarea:focus {
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .hive-send-button {
@@ -600,7 +714,15 @@
 }
 
 .dark .back-link {
-  color: #000000;
+  color: #eeeeee;
+}
+
+.dark .back-link:hover {
+  color: #ffffff;
+}
+
+.dark .back-link::before {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .back-link::before {
@@ -650,6 +772,10 @@
   font-weight: 300;
 }
 
+.dark .stuff-category-title {
+  color: #aaaaaa;
+}
+
 .experiences-list {
   display: flex;
   flex-direction: column;
@@ -689,7 +815,7 @@
 }
 
 .dark .experience-name {
-  color: #000000;
+  color: #ffffff;
 }
 
 .experience-role {
@@ -704,7 +830,7 @@
 }
 
 .dark .experience-role {
-  color: #000000;
+  color: #bbbbbb;
 }
 
 .experience-date {
@@ -716,6 +842,10 @@
   font-family: 'JetBrains Mono', monospace;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
+}
+
+.dark .experience-date {
+  color: #aaaaaa;
 }
 
 .experience-description {
@@ -731,7 +861,7 @@
 }
 
 .dark .experience-description {
-  color: #000000;
+  color: #cccccc;
 }
 
 .experience-link:hover .experience-name {
@@ -968,6 +1098,10 @@ button.social-link {
   text-transform: uppercase;
 }
 
+.dark .blog-date {
+  color: #aaaaaa;
+}
+
 .blog-title-link {
   font-size: 1.5rem;
   color: #000;
@@ -975,6 +1109,10 @@ button.social-link {
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
   letter-spacing: -0.5px;
+}
+
+.dark .blog-title-link {
+  color: #ffffff;
 }
 
 .blog-excerpt {
@@ -988,12 +1126,16 @@ button.social-link {
   margin: 0;
 }
 
+.dark .blog-excerpt {
+  color: #cccccc;
+}
+
 @media (max-width: 768px) {
   .main-content {
     padding: 2rem 1.5rem;
     justify-content: center;
   }
-  
+
   .hero {
     padding: 0;
     text-align: center;
@@ -1026,4 +1168,3 @@ button.social-link {
     font-size: 0.95rem;
   }
 }
-
