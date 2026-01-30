@@ -28,7 +28,7 @@ function Blackjack({ onWin }) {
     const shuffled = [...deck]
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
-      ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+        ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
     }
     return shuffled
   }
@@ -155,11 +155,19 @@ function Blackjack({ onWin }) {
     setMessage('')
   }
 
+  const handleSkip = () => {
+    localStorage.setItem('blackjackWon', 'true')
+    onWin()
+  }
+
   return (
     <div className="blackjack-overlay">
       <div className="blackjack-container">
         <h1 className="blackjack-title">blackjack</h1>
         <p className="blackjack-subtitle">win once to enter</p>
+        <button className="skip-button" onClick={handleSkip}>
+          skip →
+        </button>
 
         {!gameStarted ? (
           <button className="blackjack-button" onClick={startGame}>

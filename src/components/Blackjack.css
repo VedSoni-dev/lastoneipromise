@@ -32,10 +32,30 @@
   font-size: 1rem;
   color: #333;
   opacity: 0.6;
-  margin: 0 0 3rem 0;
+  margin: 0 0 1rem 0;
   font-weight: 300;
   text-transform: lowercase;
 }
+
+.skip-button {
+  font-size: 0.85rem;
+  color: #000;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 300;
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: lowercase;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.skip-button:hover {
+  opacity: 0.8;
+}
+
 
 .blackjack-game {
   margin: 2rem 0;
@@ -149,5 +169,3 @@
     font-size: 1rem;
   }
 }
-
-

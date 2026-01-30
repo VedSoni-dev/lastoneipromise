@@ -161,13 +161,13 @@ function App() {
     {
       name: 'Cognition',
       link: 'https://cognitionus.com',
-      previewImage: 'https://cognitionus.com/og-image.png',
+      previewImage: '/cognition-preview.png',
       previewText: 'An adaptive AI learning platform with over 35,000 users. Backed by NVIDIA and Google DeepMind.'
     },
     {
       name: 'Eden Robotics',
       link: 'https://eden-robotics.github.io/Eden/',
-      previewImage: 'https://avatars.githubusercontent.com/u/189949205?s=400&v=4',
+      previewImage: '/eden-preview.png',
       previewText: 'Humanoid robotics research at Texas A&M, focusing on AI-driven control systems.'
     },
     {
@@ -181,7 +181,7 @@ function App() {
   const aboutText = `AI Developer and Researcher dedicated to engineering intelligent systems at scale. Currently focused on adaptive learning architectures and autonomous humanoid robotics.`
 
   const boldStatements = [
-    'Co-Founded Cognition - Backed by NVIDIA Inception & Google DeepMind',
+    'Co-Founded Cognition - Backed by NVIDIA & Google DeepMind',
     'Leading AI Research & Robotics Development',
     'Founder of Fern (Non-profit) - 10,000+ Active Users'
   ]
