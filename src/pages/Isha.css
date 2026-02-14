@@ -1,0 +1,291 @@
+/* Existing styles */
+.isha-page {
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* Changed from center to allow scrolling from top */
+    padding: 2rem 0;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: black;
+}
+
+.grainient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.glass-box {
+    width: auto;
+    min-width: 400px;
+    max-width: 90vw;
+    padding: 4rem 3rem;
+    background: rgba(0, 0, 0, 0.4);
+    /* Darker tint for better contrast */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+}
+
+.valentine-text {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 5rem;
+    font-weight: 400;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+/* Game Styles */
+.game-instruction {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.start-btn,
+.submit-btn {
+    padding: 12px 32px;
+    background: #be0404;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Outfit', sans-serif;
+}
+
+.start-btn:hover,
+.submit-btn:hover {
+    background: #d60505;
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(190, 4, 4, 0.3);
+}
+
+.progress-indicator {
+    position: absolute;
+    top: 20px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.question-text {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.game-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.game-input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 16px;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.25rem;
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.game-input:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.flower-reveal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.flower-emoji-large {
+    font-size: 8rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+}
+
+.correct-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    color: #4ade80;
+    font-weight: 600;
+}
+
+.inventory-bar {
+    position: absolute;
+    bottom: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 12px 24px;
+    border-radius: 100px;
+    display: flex;
+    gap: 12px;
+    z-index: 20;
+}
+
+.inventory-flower {
+    font-size: 1.5rem;
+    animation: slideInUp 0.5s ease;
+}
+
+.inventory-slot {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.bouquet-display {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* New style for the bouquet image */
+.bouquet-image {
+    width: 600px;
+    /* Fixed width for larger size */
+    height: 600px;
+    /* Square aspect ratio or similar */
+    max-width: 90vw;
+    /* Responsive constraint */
+    max-height: 70vh;
+    object-fit: cover;
+    /* Zooms in to fill the box */
+    object-position: center top;
+    /* Focuses on the top of the image */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.love-note {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 1rem;
+    line-height: 1.6;
+}
+
+/* Animations */
+@keyframes popIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.shake {
+    animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+@media (max-width: 768px) {
+    .valentine-text {
+        font-size: 3.5rem;
+    }
+
+    .question-text {
+        font-size: 2rem;
+    }
+
+    .glass-box {
+        padding: 3rem 1.5rem;
+        width: 90%;
+        min-width: auto;
+    }
+
+    .bouquet-image {
+        max-width: 100%;
+        max-height: 40vh;
+    }
+
+    .inventory-bar {
+        bottom: 20px;
+        padding: 8px 16px;
+        gap: 8px;
+    }
+
+    .flower-emoji-large {
+        font-size: 5rem;
+    }
+}

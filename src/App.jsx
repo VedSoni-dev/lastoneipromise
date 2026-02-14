@@ -5,14 +5,18 @@ import Blackjack from './components/Blackjack'
 import MediaGallery from './components/MediaGallery'
 import SEOHead from './components/SEOHead'
 import Resume from './pages/Resume'
+import Isha from './pages/Isha'
 
-import './App.css'
+import './App.css';
+import ProjectsGrid from './components/ProjectsGrid';
 
 function App() {
   // Initialize currentPage based on pathname if present
   const getInitialPage = () => {
     const pathname = window.location.pathname
-    return pathname === '/resume' ? 'resume' : 'home'
+    if (pathname === '/resume') return 'resume'
+    if (pathname === '/isha') return 'isha'
+    return 'home'
   }
 
   const [currentPage, setCurrentPage] = useState(getInitialPage())
@@ -25,6 +29,8 @@ function App() {
       const pathname = window.location.pathname
       if (pathname === '/resume') {
         setCurrentPage('resume')
+      } else if (pathname === '/isha') {
+        setCurrentPage('isha')
       } else {
         setCurrentPage('home')
       }
@@ -41,7 +47,7 @@ function App() {
       const link = e.target.closest('a')
       if (link && link.href && link.href.startsWith(window.location.origin)) {
         const url = new URL(link.href)
-        if (url.pathname === '/resume' || url.pathname === '/') {
+        if (url.pathname === '/resume' || url.pathname === '/isha' || url.pathname === '/') {
           e.preventDefault()
           window.history.pushState({}, '', url.pathname)
           handlePathChange()
@@ -100,6 +106,10 @@ function App() {
     { name: 'github', url: 'https://github.com/VedSoni-dev' },
     { name: 'email', url: `mailto:${email}` }
   ]
+
+  if (currentPage === 'isha') {
+    return <Isha />
+  }
 
   // Check for resume page first (before game overlays)
   if (currentPage === 'resume') {
@@ -563,6 +573,38 @@ function App() {
               <p className="hero-attitude">Focusing on Impact & Innovation</p>
 
               <div className="stuff-section">
+                {/* Projects Grid */}
+                <ProjectsGrid items={projects} />
+                {/* Professional Experience */}
+                <section className="stuff-category" aria-labelledby="experiences-heading">
+                  <h2 className="stuff-category-title" id="experiences-heading">Professional Experience</h2>
+                  <div className="experiences-list" role="list">
+                    {experiences.map((exp, index) => (
+                      <article key={index} className="experience-card" role="listitem">
+                        <a
+                          href={exp.link}
+                          className="experience-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`View ${exp.name} - ${exp.role}`}
+                        >
+                          <div className="experience-header">
+                            <span className="experience-name">{exp.name}</span>
+                            <span className="experience-role">{exp.role}</span>
+                          </div>
+                          {exp.date && (
+                            <time className="experience-date" dateTime={exp.date}>{exp.date}</time>
+                          )}
+                          {exp.description && (
+                            <p className="experience-description">{exp.description}</p>
+                          )}
+                        </a>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+                {/* Projects grid */}
+                <ProjectsGrid items={projects} />
                 <section className="stuff-category" aria-labelledby="experiences-heading">
                   <h2 className="stuff-category-title" id="experiences-heading">Professional Experience</h2>
                   <div className="experiences-list" role="list">
