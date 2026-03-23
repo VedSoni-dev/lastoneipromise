@@ -39,7 +39,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 4rem 2rem;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   width: 100%;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
@@ -54,6 +54,35 @@
 .hero-section {
   padding-top: 0;
   animation: fadeIn 1.5s ease-out;
+}
+
+.hero-split {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  width: 100%;
+}
+
+.hero-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-right {
+  flex: 0 0 auto;
+  width: 340px;
+}
+
+@media (max-width: 900px) {
+  .hero-split {
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+
+  .hero-right {
+    width: 100%;
+  }
 }
 
 .hero-title {

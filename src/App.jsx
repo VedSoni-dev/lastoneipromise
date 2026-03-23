@@ -4,6 +4,7 @@ import ScrollGrainient from './components/ScrollGrainient'
 import Grainient from './components/Grainient'
 import Blackjack from './components/Blackjack'
 import SEOHead from './components/SEOHead'
+import ProjectShowcase from './components/ProjectShowcase'
 import EmailCapture from './components/EmailCapture'
 import Resume from './pages/Resume'
 import Isha from './pages/Isha'
@@ -244,30 +245,16 @@ function HomePage() {
 
         {/* Hero */}
         <ScrollSection className="hero-section" id="hero">
-          <h1 className="hero-title">Vedant Soni</h1>
-          <p className="hero-subtitle">i build things that learn.</p>
-
-          <nav className="cool-things" aria-label="Featured projects">
-            {COOL_THINGS.map((thing, index) => (
-              <div key={index} className="cool-thing-wrapper">
-                <a
-                  href={thing.link}
-                  className="cool-thing-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Visit ${thing.name}`}
-                >
-                  {thing.name}
-                </a>
-                <div className="cool-thing-preview">
-                  <img src={thing.previewImage} alt={thing.name} className="cool-thing-preview-image" />
-                  <p className="cool-thing-preview-text">{thing.previewText}</p>
-                </div>
-              </div>
-            ))}
-          </nav>
-
-          <div className="scroll-hint">scroll</div>
+          <div className="hero-split">
+            <div className="hero-left">
+              <h1 className="hero-title">Vedant Soni</h1>
+              <p className="hero-subtitle">i build things that learn.</p>
+              <div className="scroll-hint">scroll</div>
+            </div>
+            <div className="hero-right">
+              <ProjectShowcase />
+            </div>
+          </div>
         </ScrollSection>
 
         {/* Work */}
