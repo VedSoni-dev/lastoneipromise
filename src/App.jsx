@@ -5,7 +5,6 @@ import Grainient from './components/Grainient'
 import Blackjack from './components/Blackjack'
 import SEOHead from './components/SEOHead'
 import EmailCapture from './components/EmailCapture'
-import ExitIntent from './components/ExitIntent'
 import Resume from './pages/Resume'
 import Isha from './pages/Isha'
 import './App.css'
@@ -229,8 +228,6 @@ function HomePage() {
       <SEOHead />
       <div className="home-scroll-container" ref={scrollRef}>
         <ScrollGrainient scrollRef={scrollRef} />
-        <ExitIntent engagement={engagement} alreadySubscribed={subscribed} />
-
         <div className="social-links">
           {SOCIAL_LINKS.map((social, index) => (
             <a
