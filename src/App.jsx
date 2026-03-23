@@ -1,822 +1,408 @@
-import { useState, useEffect } from 'react'
-import Particles from './components/Particles'
-import ShinyText from './components/ShinyText'
+import { useState, useEffect, useRef, createContext, useContext } from 'react'
+import { Routes, Route, Outlet, Link } from 'react-router-dom'
+import ScrollGrainient from './components/ScrollGrainient'
+import Grainient from './components/Grainient'
 import Blackjack from './components/Blackjack'
-import MediaGallery from './components/MediaGallery'
 import SEOHead from './components/SEOHead'
+import EmailCapture from './components/EmailCapture'
+import ExitIntent from './components/ExitIntent'
 import Resume from './pages/Resume'
 import Isha from './pages/Isha'
+import './App.css'
 
-import './App.css';
-import ProjectsGrid from './components/ProjectsGrid';
+// --- Data ---
+const SOCIAL_LINKS = [
+  { name: 'linkedin', url: 'https://www.linkedin.com/in/vedantsonimech' },
+  { name: 'x', url: 'https://x.com/VedantRobot' },
+  { name: 'github', url: 'https://github.com/VedSoni-dev' },
+  { name: 'email', url: 'mailto:ved.06.soni@gmail.com' }
+]
 
-function App() {
-  // Initialize currentPage based on pathname if present
-  const getInitialPage = () => {
-    const pathname = window.location.pathname
-    if (pathname === '/resume') return 'resume'
-    if (pathname === '/isha') return 'isha'
-    return 'home'
+const COOL_THINGS = [
+  {
+    name: 'Cognition',
+    link: 'https://cognitionus.com',
+    previewImage: '/cognition-preview.png',
+    previewText: 'adaptive AI learning platform. 35,000+ users. backed by NVIDIA and Google DeepMind.'
+  },
+  {
+    name: 'Fern',
+    link: 'https://fern-chi.vercel.app/',
+    previewImage: '/fern-preview.png',
+    previewText: 'AI communication tools for nonverbal kids. 10,000+ active users. nonprofit.'
+  },
+  {
+    name: 'Eden Robotics',
+    link: 'https://eden-robotics.github.io/Eden/',
+    previewImage: '/eden-preview.png',
+    previewText: 'humanoid robots that learn. reinforcement learning + cognitive architectures. built at texas a&m.'
   }
+]
 
-  const [currentPage, setCurrentPage] = useState(getInitialPage())
-  const [darkMode, setDarkMode] = useState(false)
-  const [showBlackjack, setShowBlackjack] = useState(false)
+const VENTURES = [
+  { name: 'Cognition', role: 'co-founder', description: 'AI learning platform that adapts to how you think. 35,000+ users. backed by NVIDIA, Google DeepMind, CMU LearnLab.', link: 'https://cognitionus.com', date: 'Jul 2025 - Present' },
+  { name: 'Fern', role: 'founder', description: 'built an AI AAC system for nonverbal children with autism. 10,000+ users across texas. nonprofit.', link: 'https://fern-chi.vercel.app/', date: 'Apr 2025 - Present' },
+  { name: 'RecReach', role: 'co-founder', description: 'pickup sports coordination platform. supported by Google for Startups.', link: 'https://recreach.com', date: 'Mar 2025 - Present' }
+]
 
-  // Handle path-based routing for resume page
-  useEffect(() => {
-    const handlePathChange = () => {
-      const pathname = window.location.pathname
-      if (pathname === '/resume') {
-        setCurrentPage('resume')
-      } else if (pathname === '/isha') {
-        setCurrentPage('isha')
-      } else {
-        setCurrentPage('home')
-      }
-    }
+const RESEARCH = [
+  { name: 'Eden Robotics', role: 'founder & lead', description: 'humanoid robots with cognitive architectures. 15-person team. RL policies in Isaac Sim.', link: 'https://eden-robotics.github.io/Eden/', date: 'May 2025 - Present' },
+  { name: 'ART Lab, Texas A&M', role: 'ML & robotics researcher', description: 'deep RL for autonomous agricultural robot swarms. decentralized GNNs for cooperative behaviors.', link: 'https://art.engr.tamu.edu/', date: 'Apr 2025 - Present' },
+  { name: 'DIGIT Lab, Texas A&M', role: 'AI researcher', description: 'multi-agent systems for structured data extraction. built the largest open-source database for plastic compatibilizers.', link: 'https://digitlab23.github.io/', date: 'Feb 2025 - Aug 2025' }
+]
 
-    // Check initial path on mount
-    handlePathChange()
+const BLOG_POSTS = [
+  { date: 'mar 2026', title: 'the robot arm finally stopped punching the table', body: 'after 3 weeks of tuning PID controllers and questioning my life choices, eden\'s arm can now pick up a cup without launching it across the lab. small wins.' },
+  { date: 'feb 2026', title: 'why i mass-dropped every AI wrapper startup pitch', body: 'got 14 linkedin messages this month asking me to join "the uber of AI." if your startup is a wrapper around an API call, it\'s not a startup. it\'s a weekend project with a landing page.' },
+  { date: 'jan 2026', title: 'fern hit 10k users and i almost missed it', body: 'was debugging a memory leak at 2am when the analytics email came in. 10,000 people using something i built to help people communicate. cried a little. kept debugging.' },
+]
 
-    // Listen for popstate events (back/forward navigation)
-    window.addEventListener('popstate', handlePathChange)
+const BLOG_POSTS_ALL = [
+  ...BLOG_POSTS,
+  { date: 'dec 2025', title: 'used cognition for my midterm and got a 98', body: 'within 2 days of learning half the sem\'s work. if i can\'t trust my own product then what am i even doing.' },
+  { date: 'nov 2025', title: 'the nvidia call that changed everything', body: 'got a cold email i almost marked as spam. turned out to be a deepmind researcher who\'d been using cognition. two weeks later we had backing. always read your emails.' },
+  { date: 'oct 2025', title: 'i wrote 10,000 lines of code this week and mass deleted 8,000', body: 'the best code is the code you don\'t ship. refactored the entire cognition backend and it\'s 3x faster with half the complexity. less is more.' }
+]
 
-    // Intercept link clicks for SPA navigation
-    const handleLinkClick = (e) => {
-      const link = e.target.closest('a')
-      if (link && link.href && link.href.startsWith(window.location.origin)) {
-        const url = new URL(link.href)
-        if (url.pathname === '/resume' || url.pathname === '/isha' || url.pathname === '/') {
-          e.preventDefault()
-          window.history.pushState({}, '', url.pathname)
-          handlePathChange()
-        }
-      }
-    }
+const BOLD_STATEMENTS = [
+  'co-founded cognition — backed by NVIDIA & Google DeepMind',
+  'leading AI research & robotics at texas a&m',
+  'founded fern (nonprofit) — 10,000+ active users'
+]
 
-    document.addEventListener('click', handleLinkClick)
+const EDUCATION = {
+  name: 'Texas A&M University',
+  degree: 'b.s. computer science',
+  description: 'AI research & enterprise software. 3.7 GPA.'
+}
 
-    return () => {
-      window.removeEventListener('popstate', handlePathChange)
-      document.removeEventListener('click', handleLinkClick)
-    }
-  }, [])
+// --- Blackjack Context ---
+const BlackjackContext = createContext()
 
-  useEffect(() => {
-    // Skip blackjack if resume path is present or currentPage is resume
-    const pathname = window.location.pathname
-    if (pathname === '/resume' || currentPage === 'resume') {
-      setShowBlackjack(false)
-      return
-    }
-
-    const hasWon = localStorage.getItem('blackjackWon')
-    if (!hasWon) {
-      setShowBlackjack(true)
-    }
-  }, [currentPage])
-
-  const handleBlackjackWin = () => {
-    setShowBlackjack(false)
-  }
-
-  const hasWonBlackjack = () => {
-    return localStorage.getItem('blackjackWon') === 'true'
-  }
-
-
-
-  const resetProgress = () => {
-    if (window.confirm('Reset all progress? This will clear blackjack wins.')) {
-      localStorage.removeItem('blackjackWon')
-      // Reset app state
-      setShowBlackjack(false)
-      setCurrentPage('home')
-      // Reload to restart from beginning
-      window.location.reload()
-    }
-  }
-
-  const email = 'ved.06.soni@gmail.com'
-
-  const socialLinks = [
-    { name: 'linkedin', url: 'https://www.linkedin.com/in/vedantsonimech' },
-    { name: 'x', url: 'https://x.com/VedantRobot' },
-    { name: 'github', url: 'https://github.com/VedSoni-dev' },
-    { name: 'email', url: `mailto:${email}` }
-  ]
-
-  if (currentPage === 'isha') {
-    return <Isha />
-  }
-
-  // Check for resume page first (before game overlays)
-  if (currentPage === 'resume') {
-    return (
-      <>
-        <SEOHead
-          title="Resume - Vedant Soni | AI Developer & Entrepreneur"
-          description="Resume of Vedant Soni - Co-Founder at Cognition, AI researcher, and entrepreneur. Experience in machine learning, robotics, and full-stack development."
-          url="https://vedantsoni.com/resume"
+// --- Shared Layout for sub-pages (blog full, resume) ---
+function SubPageLayout() {
+  return (
+    <div className="app-container scrollable">
+      <div className="static-grainient-bg">
+        <Grainient
+          color1="#845EC2"
+          color2="#4ECDC4"
+          color3="#FF6B6B"
+          timeSpeed={0.1}
+          warpStrength={1}
+          warpFrequency={3}
+          warpSpeed={1}
+          warpAmplitude={70}
+          blendSoftness={0.1}
+          rotationAmount={300}
+          noiseScale={2}
+          grainAmount={0.08}
+          grainScale={2}
+          grainAnimated
+          contrast={1.2}
+          gamma={1.0}
+          saturation={1.0}
+          zoom={0.9}
         />
-        <div className={`app-container scrollable ${darkMode ? 'dark' : ''}`}>
-          <Particles />
+      </div>
 
-          <div className={`app scrollable ${darkMode ? 'dark' : ''}`}>
-            <button
-              className="dark-mode-toggle"
-              onClick={() => setDarkMode(!darkMode)}
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? '☀' : '☾'}
-            </button>
+      <div className="social-links">
+        {SOCIAL_LINKS.map((social, index) => (
+          <a
+            key={index}
+            href={social.url}
+            className="social-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {social.name}
+          </a>
+        ))}
+      </div>
 
+      <main className="main-content scrollable" role="main">
+        <Outlet />
+      </main>
 
+      <footer className="footer" role="contentinfo">
+        <p className="footer-text">&copy; {new Date().getFullYear()} Vedant Soni</p>
+      </footer>
+    </div>
+  )
+}
 
-            <div className="social-links">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.url}
-                  className="social-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {social.name}
-                </a>
-              ))}
+// --- Experience List ---
+function ExperienceList({ items, linked = true }) {
+  return (
+    <div className="experiences-list" role="list">
+      {items.map((item, index) => (
+        <article key={index} className="experience-item" role="listitem">
+          {linked && item.link ? (
+            <a href={item.link} className="experience-link" target="_blank" rel="noopener noreferrer" aria-label={`View ${item.name || item.title}`}>
+              <ExperienceContent item={item} />
+            </a>
+          ) : (
+            <div className="experience-link">
+              <ExperienceContent item={item} />
             </div>
+          )}
+        </article>
+      ))}
+    </div>
+  )
+}
 
-            <main className="main-content scrollable" role="main">
-              <Resume />
-            </main>
-          </div>
-
-          <footer className="footer">
-            <p className="footer-text">© {new Date().getFullYear()}</p>
-          </footer>
-        </div>
-      </>
-    )
-  }
-
-  if (showBlackjack) {
-    return <Blackjack onWin={handleBlackjackWin} />
-  }
-
-
-
-  const currentCoolThings = [
-    {
-      name: 'Cognition',
-      link: 'https://cognitionus.com',
-      previewImage: '/cognition-preview.png',
-      previewText: 'An adaptive AI learning platform with over 35,000 users. Backed by NVIDIA and Google DeepMind.'
-    },
-    {
-      name: 'Eden Robotics',
-      link: 'https://eden-robotics.github.io/Eden/',
-      previewImage: '/eden-preview.png',
-      previewText: 'Humanoid robotics research at Texas A&M, focusing on AI-driven control systems.'
-    },
-    {
-      name: 'RecReach',
-      link: 'https://recreach.com',
-      previewImage: '/recreach-preview.png',
-      previewText: 'A sports-tech platform connecting athletes for community-driven games and team building.'
-    }
-  ]
-
-  const aboutText = `AI Developer and Researcher dedicated to engineering intelligent systems at scale. Currently focused on adaptive learning architectures and autonomous humanoid robotics.`
-
-  const boldStatements = [
-    'Co-Founded Cognition - Backed by NVIDIA & Google DeepMind',
-    'Leading AI Research & Robotics Development',
-    'Founder of Fern (Non-profit) - 10,000+ Active Users'
-  ]
-
-  const blogPosts = [
-    { date: 'recently', title: 'used cognition for my midterm and got a 98', body: 'within 2 days of learning half the sem\'s work' }
-  ]
-
-  const projects = [
-    {
-      name: 'Hive',
-      description: 'A locally-deployed personal AI architect for automated workflow management and intent-based filtering of digital communications.',
-      link: '#',
-      date: 'Jun 2025 - Present',
-      media: []
-    },
-    {
-      name: 'TalkR',
-      description: 'An AI-driven Augmentative and Alternative Communication (AAC) platform designed for accessibility. Integrates visual sentence construction and contextual AI speech synthesis.',
-      link: 'https://v0-child-friendly-sentence-builder.vercel.app/',
-      date: 'Mar 2025 - Present',
-      media: []
-    },
-    {
-      name: 'SNAIC',
-      description: 'A portable AI-powered object recognition system built on edge computing hardware. Optimized for real-time inference and mobile operation.',
-      link: '#',
-      date: 'Sep 2024 - Present',
-      media: []
-    }
-  ]
-
-  const achievements = [
-    {
-      title: 'McFerrin Startup Fast Pass Winner',
-      description: '1st place at TAMU\'s biggest entrepreneurship hackathon',
-      date: '2025',
-      category: 'Entrepreneurship'
-    },
-    {
-      title: 'Ideas Challenge Finalist',
-      description: 'Top 1% of 4,500+ applicants in TAMU\'s premier entrepreneurship competition',
-      date: '2025',
-      category: 'Entrepreneurship'
-    }
-  ]
-
-  const education = {
-    name: 'Texas A&M University',
-    degree: 'Bachelor of Science, Computer Science',
-    description: 'Focusing on AI Research and Enterprise Software Development.'
-  }
-
-  const volunteering = [
-    {
-      name: 'Texas A&M University Robotics Team',
-      role: 'Project Lead & Workshop Director',
-      date: 'May 2025 - Present',
-      description: 'Directing AI-driven humanoid robotics research and organizing technical workshops for the student community.'
-    },
-    {
-      name: 'tidalTAMU',
-      role: 'Machine Learning Engineer',
-      date: 'Aug 2024 - Nov 2024',
-      description: 'Implemented reinforcement learning algorithms for autonomous vehicle navigation.'
-    },
-    {
-      name: 'TAMU ThinkTank',
-      role: 'Research Project Lead',
-      date: 'Aug 2024 - May 2025',
-      description: 'Led Team Orion to write a 100 page paper for future Mars exploration'
-    },
-    {
-      name: 'Aggie Coding Club',
-      role: 'Hardware Engineer',
-      date: 'Aug 2024 - Dec 2024',
-      description: ''
-    }
-  ]
-
-  const experiences = [
-    {
-      name: 'Cognition',
-      role: 'Co-Founder',
-      description: 'Scaling a venture-backed (NVIDIA, Google DeepMind) AI platform. Engineering adaptive learning systems.',
-      link: 'https://cognitionus.com',
-      date: 'Jul 2025 - Present'
-    },
-    {
-      name: 'RecReach',
-      role: 'Co-Founder',
-      description: 'A sports-tech startup facilitating athletic networking and game coordination.',
-      link: '#',
-      date: '2025 - Present'
-    },
-    {
-      name: 'Pillar AI',
-      role: 'Founder',
-      description: 'Developed AI-driven automation workflows for real estate enterprises, optimizing lead management and operational efficiency.',
-      link: '#',
-      date: 'Jul 2025 - Present'
-    },
-    {
-      name: 'Texas A&M University - ART Lab',
-      role: 'AI Robotics Researcher',
-      description: 'Researching AI-driven hivemind architectures for robotic swarms.',
-      link: 'https://art.engr.tamu.edu/',
-      date: 'Apr 2025 - Present'
-    },
-    {
-      name: 'Texas A&M University - DIGIT Lab',
-      role: 'AI Researcher',
-      description: 'Developing multi-agent systems and fine-tuning large language models for structured data extraction.',
-      link: 'https://digitlab23.github.io/',
-      date: 'Feb 2025 - Aug 2025'
-    },
-    {
-      name: 'Fern',
-      role: 'Founder',
-      description: 'Developing AI-enhanced tools for individuals with disabilities. Reached 10,000+ users across regional networks.',
-      link: 'https://fern-chi.vercel.app/',
-      date: 'Apr 2025 - Present'
-    },
-    {
-      name: 'DeepSky',
-      role: 'AI Ambassador',
-      description: 'Strategic advisor for business automation and intelligent agent deployment.',
-      link: '#',
-      date: 'Sep 2025 - Present'
-    },
-    {
-      name: 'Autodesk',
-      role: 'Ambassador',
-      description: 'Representing Autodesk technologies within the academic and startup ecosystem.',
-      link: '#',
-      date: 'Jul 2025 - Present'
-    },
-    {
-      name: 'Code Ninjas',
-      role: 'Computer Science Intern',
-      description: 'Architected and developed educational curriculum infrastructure for technical learning programs.',
-      link: '#',
-      date: 'Jul 2023 - Aug 2024'
-    }
-  ]
-
-  if (currentPage === '404') {
-    return (
-      <div className={`app-container ${darkMode ? 'dark' : ''}`}>
-        <Particles />
-
-        <div className={`app ${darkMode ? 'dark' : ''}`}>
-          <button
-            className="dark-mode-toggle"
-            onClick={() => setDarkMode(!darkMode)}
-            aria-label="Toggle dark mode"
-          >
-            {darkMode ? '☀' : '☾'}
-          </button>
-
-
-
-          <div className="social-links">
-            {socialLinks.map((social, index) => (
-              <a
-                key={index}
-                href={social.url}
-                className="social-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {social.name}
-              </a>
-            ))}
-          </div>
-
-          <main className="main-content">
-            <section className="hero">
-              <h1 className="hero-title">404</h1>
-              <p className="hero-subtitle">page not found</p>
-
-              <div className="about-link-wrapper">
-                <button
-                  className="other-stuff-link"
-                  onClick={() => setCurrentPage('home')}
-                >
-                  ← back home
-                </button>
-              </div>
-            </section>
-          </main>
-        </div>
-
-        <footer className="footer">
-          <p className="footer-text">© {new Date().getFullYear()}</p>
-        </footer>
+function ExperienceContent({ item }) {
+  return (
+    <>
+      <div className="experience-header">
+        <span className="experience-name">{item.name || item.title}</span>
+        <span className="experience-role">{item.role || item.category}</span>
       </div>
-    )
-  }
+      {item.date && <time className="experience-date" dateTime={item.date}>{item.date}</time>}
+      {item.description && <p className="experience-description">{item.description}</p>}
+    </>
+  )
+}
 
-  if (currentPage === 'blog') {
-    return (
-      <div className={`app-container scrollable ${darkMode ? 'dark' : ''}`}>
-        <Particles />
+// --- Scroll Section wrapper ---
+function ScrollSection({ children, className = '', id }) {
+  return (
+    <section className={`scroll-section ${className}`} id={id}>
+      {children}
+    </section>
+  )
+}
 
-        <div className={`app scrollable ${darkMode ? 'dark' : ''}`}>
-          <button
-            className="dark-mode-toggle"
-            onClick={() => setDarkMode(!darkMode)}
-            aria-label="Toggle dark mode"
-          >
-            {darkMode ? '☀' : '☾'}
-          </button>
+// --- Scroll Engagement Hook ---
+function useScrollEngagement(scrollRef) {
+  const [engagement, setEngagement] = useState(() => ({
+    sectionsViewed: [],
+    maxScrollDepth: 0,
+    startTime: Date.now(),
+  }))
 
+  useEffect(() => {
+    const el = scrollRef?.current
+    if (!el) return
 
+    const sectionIds = ['hero', 'work', 'blog', 'about']
+    const seen = new Set(['hero']) // hero is always seen on load
 
-          <div className="social-links">
-            {socialLinks.map((social, index) => (
-              <a
-                key={index}
-                href={social.url}
-                className="social-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {social.name}
-              </a>
-            ))}
-          </div>
+    const handleScroll = () => {
+      const maxScroll = el.scrollHeight - el.clientHeight
+      const depth = maxScroll > 0 ? Math.round((el.scrollTop / maxScroll) * 100) : 0
 
-          <main className="main-content scrollable" role="main">
-            <section className="hero" aria-labelledby="blog-title">
-              <button
-                className="back-link"
-                onClick={() => setCurrentPage('home')}
-                aria-label="Return to home page"
-              >
-                ← Return
-              </button>
+      // Check which sections are in view
+      sectionIds.forEach(id => {
+        const section = document.getElementById(id)
+        if (!section) return
+        const rect = section.getBoundingClientRect()
+        if (rect.top < window.innerHeight * 0.6 && rect.bottom > 0) {
+          seen.add(id)
+        }
+      })
 
-              <h1 className="hero-title" id="blog-title">Blog</h1>
-              <p className="hero-subtitle">Perspectives on AI, Engineering, and Startups.</p>
+      setEngagement(prev => ({
+        ...prev,
+        sectionsViewed: [...seen],
+        maxScrollDepth: Math.max(prev.maxScrollDepth, depth),
+      }))
+    }
 
-              <article className="blog-section" aria-label="Blog posts">
-                {blogPosts.map((post, index) => (
-                  <article key={index} className="blog-item">
-                    <time className="blog-date" dateTime={post.date}>{post.date}</time>
-                    <h2 className="blog-title-link">{post.title}</h2>
-                    <p className="blog-excerpt">{post.body}</p>
-                  </article>
-                ))}
-              </article>
-            </section>
-          </main>
-        </div>
+    el.addEventListener('scroll', handleScroll, { passive: true })
+    return () => el.removeEventListener('scroll', handleScroll)
+  }, [scrollRef])
 
-        <footer className="footer">
-          <p className="footer-text">© {new Date().getFullYear()}</p>
-        </footer>
-      </div>
-    )
-  }
+  return engagement
+}
 
-  if (currentPage === 'about') {
-    return (
-      <div className={`app-container ${darkMode ? 'dark' : ''}`}>
-        <Particles />
-
-        <div className={`app ${darkMode ? 'dark' : ''}`}>
-          <button
-            className="dark-mode-toggle"
-            onClick={() => setDarkMode(!darkMode)}
-            aria-label="Toggle dark mode"
-          >
-            {darkMode ? '☀' : '☾'}
-          </button>
-
-
-
-          <div className="social-links">
-            {socialLinks.map((social, index) => (
-              <a
-                key={index}
-                href={social.url}
-                className="social-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {social.name}
-              </a>
-            ))}
-          </div>
-
-          <main className="main-content" role="main">
-            <section className="hero" aria-labelledby="about-title">
-              <button
-                className="back-link"
-                onClick={() => setCurrentPage('home')}
-                aria-label="Return to home page"
-              >
-                ← Return
-              </button>
-
-              <h1 className="hero-title" id="about-title">About</h1>
-              <p className="hero-subtitle">Engineering the intersection of Artificial Intelligence and Robotics.</p>
-
-              <div className="about-content">
-                <p className="about-text">
-                  {aboutText}
-                </p>
-
-                <section className="bold-statements" aria-label="Achievements">
-                  {boldStatements.map((statement, index) => (
-                    <div key={index} className="bold-statement">
-                      {statement}
-                    </div>
-                  ))}
-                </section>
-
-                <section className="about-education" aria-label="Education">
-                  <h2 className="education-name">{education.name}</h2>
-                  <p className="education-degree">{education.degree}</p>
-                  <p className="education-description">{education.description}</p>
-                </section>
-              </div>
-            </section>
-          </main>
-        </div>
-
-        <footer className="footer">
-          <p className="footer-text">© {new Date().getFullYear()}</p>
-        </footer>
-      </div>
-    )
-  }
-
-  if (currentPage === 'stuff') {
-    return (
-      <div className={`app-container scrollable ${darkMode ? 'dark' : ''}`}>
-        <Particles />
-
-        <div className={`app scrollable ${darkMode ? 'dark' : ''}`}>
-          <button
-            className="dark-mode-toggle"
-            onClick={() => setDarkMode(!darkMode)}
-            aria-label="Toggle dark mode"
-          >
-            {darkMode ? '☀' : '☾'}
-          </button>
-
-
-
-          <div className="social-links">
-            {socialLinks.map((social, index) => (
-              <a
-                key={index}
-                href={social.url}
-                className="social-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {social.name}
-              </a>
-            ))}
-          </div>
-
-          <main className="main-content scrollable" role="main">
-            <section className="hero" aria-labelledby="stuff-title">
-              <button
-                className="back-link"
-                onClick={() => setCurrentPage('home')}
-                aria-label="Return to home page"
-              >
-                ← Return
-              </button>
-
-              <h1 className="hero-title" id="stuff-title">Portfolio</h1>
-              <p className="hero-subtitle">Selected Projects & Professional Experiences</p>
-              <p className="hero-attitude">Focusing on Impact & Innovation</p>
-
-              <div className="stuff-section">
-                {/* Projects Grid */}
-                <ProjectsGrid items={projects} />
-                {/* Professional Experience */}
-                <section className="stuff-category" aria-labelledby="experiences-heading">
-                  <h2 className="stuff-category-title" id="experiences-heading">Professional Experience</h2>
-                  <div className="experiences-list" role="list">
-                    {experiences.map((exp, index) => (
-                      <article key={index} className="experience-card" role="listitem">
-                        <a
-                          href={exp.link}
-                          className="experience-link"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`View ${exp.name} - ${exp.role}`}
-                        >
-                          <div className="experience-header">
-                            <span className="experience-name">{exp.name}</span>
-                            <span className="experience-role">{exp.role}</span>
-                          </div>
-                          {exp.date && (
-                            <time className="experience-date" dateTime={exp.date}>{exp.date}</time>
-                          )}
-                          {exp.description && (
-                            <p className="experience-description">{exp.description}</p>
-                          )}
-                        </a>
-                      </article>
-                    ))}
-                  </div>
-                </section>
-                {/* Projects grid */}
-                <ProjectsGrid items={projects} />
-                <section className="stuff-category" aria-labelledby="experiences-heading">
-                  <h2 className="stuff-category-title" id="experiences-heading">Professional Experience</h2>
-                  <div className="experiences-list" role="list">
-                    {experiences.map((exp, index) => (
-                      <article key={index} className="experience-item" role="listitem">
-                        <a
-                          href={exp.link}
-                          className="experience-link"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`View ${exp.name} - ${exp.role}`}
-                        >
-                          <div className="experience-header">
-                            <span className="experience-name">{exp.name}</span>
-                            <span className="experience-role">{exp.role}</span>
-                          </div>
-                          {exp.date && (
-                            <time className="experience-date" dateTime={exp.date}>{exp.date}</time>
-                          )}
-                          {exp.description && (
-                            <p className="experience-description">{exp.description}</p>
-                          )}
-                        </a>
-                      </article>
-                    ))}
-                  </div>
-                </section>
-
-                <section className="stuff-category" aria-labelledby="volunteering-heading">
-                  <h2 className="stuff-category-title" id="volunteering-heading">Volunteering & Leadership</h2>
-                  <div className="experiences-list" role="list">
-                    {volunteering.map((vol, index) => (
-                      <article key={index} className="experience-item" role="listitem">
-                        <div className="experience-link">
-                          <div className="experience-header">
-                            <span className="experience-name">{vol.name}</span>
-                            <span className="experience-role">{vol.role}</span>
-                          </div>
-                          {vol.date && (
-                            <time className="experience-date" dateTime={vol.date}>{vol.date}</time>
-                          )}
-                          {vol.description && (
-                            <p className="experience-description">{vol.description}</p>
-                          )}
-                        </div>
-                      </article>
-                    ))}
-                  </div>
-                </section>
-
-                <section className="stuff-category" aria-labelledby="achievements-heading">
-                  <h2 className="stuff-category-title" id="achievements-heading">Achievements</h2>
-                  <div className="experiences-list" role="list">
-                    {achievements.map((achievement, index) => (
-                      <article key={index} className="experience-item" role="listitem">
-                        <div className="experience-link">
-                          <div className="experience-header">
-                            <span className="experience-name">{achievement.title}</span>
-                            {achievement.category && (
-                              <span className="experience-role">{achievement.category}</span>
-                            )}
-                          </div>
-                          {achievement.date && (
-                            <time className="experience-date" dateTime={achievement.date}>{achievement.date}</time>
-                          )}
-                          {achievement.description && (
-                            <p className="experience-description">{achievement.description}</p>
-                          )}
-                        </div>
-                      </article>
-                    ))}
-                  </div>
-                </section>
-              </div>
-            </section>
-          </main>
-        </div>
-
-        <footer className="footer">
-          <p className="footer-text">© {new Date().getFullYear()}</p>
-          <button
-            className="reset-button"
-            onClick={resetProgress}
-            title="Reset all game progress"
-          >
-            reset progress
-          </button>
-        </footer>
-      </div>
-    )
-  }
+// --- Home Page (scroll-based) ---
+function HomePage() {
+  const { showBlackjack } = useContext(BlackjackContext)
+  const scrollRef = useRef(null)
+  const engagement = useScrollEngagement(scrollRef)
+  const [subscribed, setSubscribed] = useState(false)
 
   return (
     <>
       <SEOHead />
-      <div className={`app-container ${darkMode ? 'dark' : ''}`}>
-        <Particles />
+      <div className="home-scroll-container" ref={scrollRef}>
+        <ScrollGrainient scrollRef={scrollRef} />
+        <ExitIntent engagement={engagement} alreadySubscribed={subscribed} />
 
-        <div className={`app ${darkMode ? 'dark' : ''}`}>
-          <button
-            className="dark-mode-toggle"
-            onClick={() => setDarkMode(!darkMode)}
-            aria-label="Toggle dark mode"
-          >
-            {darkMode ? '☀' : '☾'}
-          </button>
+        <div className="social-links">
+          {SOCIAL_LINKS.map((social, index) => (
+            <a
+              key={index}
+              href={social.url}
+              className="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {social.name}
+            </a>
+          ))}
+        </div>
 
+        {/* Hero */}
+        <ScrollSection className="hero-section" id="hero">
+          <h1 className="hero-title">Vedant Soni</h1>
+          <p className="hero-subtitle">i build things that learn.</p>
 
+          <nav className="cool-things" aria-label="Featured projects">
+            {COOL_THINGS.map((thing, index) => (
+              <div key={index} className="cool-thing-wrapper">
+                <a
+                  href={thing.link}
+                  className="cool-thing-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit ${thing.name}`}
+                >
+                  {thing.name}
+                </a>
+                <div className="cool-thing-preview">
+                  <img src={thing.previewImage} alt={thing.name} className="cool-thing-preview-image" />
+                  <p className="cool-thing-preview-text">{thing.previewText}</p>
+                </div>
+              </div>
+            ))}
+          </nav>
 
-          <div className="social-links">
-            {socialLinks.map((social, index) => (
-              <a
-                key={index}
-                href={social.url}
-                className="social-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {social.name}
-              </a>
+          <div className="scroll-hint">scroll</div>
+        </ScrollSection>
+
+        {/* Work */}
+        <ScrollSection className="work-section" id="work">
+          <h2 className="section-label">ventures</h2>
+          <ExperienceList items={VENTURES} />
+
+          <h2 className="section-label" style={{ marginTop: '3rem' }}>research</h2>
+          <ExperienceList items={RESEARCH} />
+        </ScrollSection>
+
+        {/* Blog */}
+        <ScrollSection className="blog-section-home" id="blog">
+          <h2 className="section-label">lately</h2>
+          <div className="blog-posts-home">
+            {BLOG_POSTS.map((post, index) => (
+              <article key={index} className="blog-item">
+                <time className="blog-date" dateTime={post.date}>{post.date}</time>
+                <h3 className="blog-title-link">{post.title}</h3>
+                <p className="blog-excerpt">{post.body}</p>
+              </article>
+            ))}
+          </div>
+          <Link to="/blog" className="see-more-link">all posts</Link>
+        </ScrollSection>
+
+        {/* About */}
+        <ScrollSection className="about-section" id="about">
+          <h2 className="section-label">about</h2>
+
+          <div className="bold-statements">
+            {BOLD_STATEMENTS.map((statement, index) => (
+              <div key={index} className="bold-statement">{statement}</div>
             ))}
           </div>
 
-          <main className="main-content" role="main">
-            <section className="hero" aria-labelledby="hero-title">
-              <h1 className="hero-title" id="hero-title">Vedant Soni</h1>
-              <p className="hero-subtitle">Building Future-Forward AI & Robotics Systems.</p>
+          <div className="about-education">
+            <h3 className="education-name">{EDUCATION.name}</h3>
+            <p className="education-degree">{EDUCATION.degree}</p>
+            <p className="education-description">{EDUCATION.description}</p>
+          </div>
 
-              <nav className="cool-things" aria-label="Featured projects">
-                {currentCoolThings.map((thing, index) => (
-                  <div key={index} className="cool-thing-wrapper">
-                    <a
-                      href={thing.link}
-                      className="cool-thing-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Visit ${thing.name}`}
-                    >
-                      {thing.name}
-                    </a>
-                    <div className="cool-thing-preview">
-                      <img
-                        src={thing.previewImage}
-                        alt={thing.name}
-                        className="cool-thing-preview-image"
-                      />
-                      <p className="cool-thing-preview-text">{thing.previewText}</p>
-                    </div>
-                  </div>
-                ))}
-              </nav>
+          <div className="home-nav-links">
+            <Link to="/resume" className="nav-link">resume</Link>
+            <button className="nav-link" onClick={showBlackjack}>blackjack</button>
+          </div>
 
-              <nav className="main-navigation" aria-label="Main navigation">
-                <div className="other-stuff-link-wrapper">
-                  <button
-                    className="other-stuff-link"
-                    onClick={() => setCurrentPage('stuff')}
-                    aria-label="View projects and experiences"
-                  >
-                    Projects & Experience
-                  </button>
-                </div>
+          <EmailCapture engagement={engagement} onSubscribed={() => setSubscribed(true)} />
 
-                <div className="about-link-wrapper">
-                  <button
-                    className="other-stuff-link"
-                    onClick={() => setCurrentPage('about')}
-                    aria-label="Learn more about me"
-                  >
-                    About
-                  </button>
-                </div>
-
-                <div className="about-link-wrapper">
-                  <button
-                    className="other-stuff-link"
-                    onClick={() => setCurrentPage('blog')}
-                    aria-label="Read blog posts"
-                  >
-                    Blog
-                  </button>
-                </div>
-
-                <div className="about-link-wrapper">
-                  <button
-                    className="other-stuff-link"
-                    onClick={() => setShowBlackjack(true)}
-                    aria-label="Play blackjack game"
-                  >
-                    Interactive Demo (Blackjack)
-                  </button>
-                </div>
-              </nav>
-            </section>
-          </main>
-        </div>
-
-        <footer className="footer" role="contentinfo">
-          <p className="footer-text">© {new Date().getFullYear()} Vedant Soni. All rights reserved.</p>
-          <button
-            className="reset-button"
-            onClick={resetProgress}
-            title="Reset all game progress"
-            aria-label="Reset all game progress"
-          >
-            reset progress
-          </button>
-        </footer>
+          <footer className="home-footer" role="contentinfo">
+            <p className="footer-text">&copy; {new Date().getFullYear()} Vedant Soni</p>
+          </footer>
+        </ScrollSection>
       </div>
     </>
   )
 }
 
-export default App
+// --- Blog Page (full archive) ---
+function BlogPage() {
+  return (
+    <section className="hero" aria-labelledby="blog-title">
+      <Link to="/" className="back-link" aria-label="Return to home page">
+        &larr; return
+      </Link>
 
+      <h1 className="hero-title" id="blog-title">blog</h1>
+      <p className="hero-subtitle">what i'm thinking about.</p>
+
+      <article className="blog-section" aria-label="Blog posts">
+        {BLOG_POSTS_ALL.map((post, index) => (
+          <article key={index} className="blog-item">
+            <time className="blog-date" dateTime={post.date}>{post.date}</time>
+            <h2 className="blog-title-link">{post.title}</h2>
+            <p className="blog-excerpt">{post.body}</p>
+          </article>
+        ))}
+      </article>
+    </section>
+  )
+}
+
+// --- Resume Page ---
+function ResumePage() {
+  return (
+    <>
+      <SEOHead
+        title="Resume - Vedant Soni | AI Developer & Entrepreneur"
+        description="Resume of Vedant Soni - Co-Founder at Cognition, AI researcher, and entrepreneur."
+        url="https://vedantsoni.com/resume"
+      />
+      <Resume />
+    </>
+  )
+}
+
+// --- 404 Page ---
+function NotFoundPage() {
+  return (
+    <section className="hero">
+      <h1 className="hero-title">404</h1>
+      <p className="hero-subtitle">page not found</p>
+      <div className="about-link-wrapper">
+        <Link to="/" className="other-stuff-link">&larr; back home</Link>
+      </div>
+    </section>
+  )
+}
+
+// --- App ---
+function App() {
+  const [blackjackVisible, setBlackjackVisible] = useState(false)
+
+  if (blackjackVisible) {
+    return <Blackjack onWin={() => setBlackjackVisible(false)} />
+  }
+
+  return (
+    <BlackjackContext.Provider value={{ showBlackjack: () => setBlackjackVisible(true) }}>
+      <Routes>
+        <Route path="/isha" element={<Isha />} />
+        <Route path="/" element={<HomePage />} />
+
+        {/* Sub-pages with static gradient */}
+        <Route element={<SubPageLayout />}>
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/resume" element={<ResumePage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </BlackjackContext.Provider>
+  )
+}
+
+export default App

@@ -1,0 +1,158 @@
+.exit-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: exitFadeIn 0.3s ease-out;
+}
+
+@keyframes exitFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes exitSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.exit-modal {
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  max-width: 420px;
+  width: 90%;
+  position: relative;
+  animation: exitSlideUp 0.4s ease-out 0.1s both;
+}
+
+.exit-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s ease;
+  border-radius: 0;
+}
+
+.exit-close:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background: none;
+}
+
+.exit-heading {
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 400;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.5px;
+}
+
+.exit-body {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.exit-form {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.exit-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 300;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.exit-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.exit-input:focus {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.exit-input:disabled {
+  opacity: 0.5;
+}
+
+.exit-submit {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.exit-submit:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+.exit-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.exit-done {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  text-align: center;
+}
+
+.exit-error {
+  font-size: 0.85rem;
+  color: rgba(255, 150, 150, 0.8);
+  font-weight: 300;
+  font-family: 'Space Grotesk', sans-serif;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .exit-modal {
+    padding: 2rem 1.5rem;
+  }
+
+  .exit-form {
+    flex-direction: column;
+  }
+}

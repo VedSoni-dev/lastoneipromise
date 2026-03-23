@@ -213,12 +213,12 @@ function Isha() {
                     </div>
 
                     <div className="glass-box message-box" style={{ maxWidth: '800px', animation: 'slideInUp 1s ease 0.5s both' }}>
-                        <h2 className="valentine-text" style={{ fontSize: '3rem', marginBottom: '1.5rem' }}>To My Hardest Worker</h2>
-                        <p className="love-note" style={{ fontSize: '1.4rem', lineHeight: '1.8', whiteSpace: 'pre-line' }}>
+                        <h2 className="valentine-text message-title">To My Hardest Worker</h2>
+                        <p className="love-note message-body">
                             I love you so much.
-                            Happy Valentine's Day to the hardest worker I know.
-                            Without you, I wouldn't have any motivation to make it through life.
-                            I appreciate you so much and I'll never forget our almost 3 years together.
+                            {'\n\n'}Happy Valentine's Day to the hardest worker I know.
+                            {'\n\n'}Without you, I wouldn't have any motivation to make it through life.
+                            {'\n\n'}I appreciate you so much and I'll never forget our almost 3 years together.
                         </p>
                     </div>
                 </div>

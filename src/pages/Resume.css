@@ -7,10 +7,12 @@
 }
 
 .resume-content {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   color: #333;
   line-height: 1.6;
   position: relative;
@@ -152,74 +154,6 @@
   white-space: pre-line;
 }
 
-.app-container.dark .resume-content {
-  background: #1a1a1a;
-  color: #e0e0e0;
-}
-
-.app-container.dark .resume-title,
-.app-container.dark .resume-section-title,
-.app-container.dark .resume-item-title {
-  color: #fff;
-}
-
-.app-container.dark .resume-item-title a {
-  color: #fff;
-}
-
-.app-container.dark .resume-item-title a:hover {
-  color: #4da6ff;
-}
-
-.app-container.dark .resume-contact {
-  border-bottom-color: #444;
-}
-
-.app-container.dark .resume-section-title {
-  border-bottom-color: #444;
-}
-
-.app-container.dark .resume-contact p,
-.app-container.dark .resume-item-company {
-  color: #bbb;
-}
-
-.app-container.dark .resume-item-date {
-  color: #999;
-}
-
-.app-container.dark .resume-item-description {
-  color: #ccc;
-}
-
-.app-container.dark .resume-contact a {
-  color: #4da6ff;
-}
-
-.app-container.dark .resume-header {
-  border-bottom-color: #444;
-}
-
-.app-container.dark .resume-download-button {
-  background: #fff;
-  color: #000;
-}
-
-.app-container.dark .resume-download-button:hover {
-  background: #e0e0e0;
-}
-
-.app-container.dark .resume-body {
-  color: #e0e0e0;
-}
-
-.app-container.dark .resume-explore-link {
-  color: #bbb;
-}
-
-.app-container.dark .resume-explore-link:hover {
-  color: #fff;
-}
 
 .resume-modal-overlay {
   position: fixed;
@@ -317,42 +251,6 @@
   color: #000;
 }
 
-.app-container.dark .resume-modal {
-  background: #1a1a1a;
-  color: #e0e0e0;
-}
-
-.app-container.dark .resume-modal-text {
-  color: #e0e0e0;
-}
-
-.app-container.dark .resume-modal-close {
-  color: #bbb;
-}
-
-.app-container.dark .resume-modal-close:hover {
-  color: #fff;
-}
-
-.app-container.dark .resume-modal-download {
-  background: #fff;
-  color: #000;
-}
-
-.app-container.dark .resume-modal-download:hover {
-  background: #e0e0e0;
-}
-
-.app-container.dark .resume-modal-go-home {
-  border-color: #444;
-  color: #bbb;
-}
-
-.app-container.dark .resume-modal-go-home:hover {
-  background: #2a2a2a;
-  border-color: #666;
-  color: #fff;
-}
 
 @media print {
   .resume-page {

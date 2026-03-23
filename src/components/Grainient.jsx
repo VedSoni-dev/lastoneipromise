@@ -42,8 +42,8 @@ uniform vec3 uColor2;
 uniform vec3 uColor3;
 out vec4 fragColor;
 #define S(a,b,t) smoothstep(a,b,t)
-mat2 Rot(float a){float s=sin(a),c=cos(a);return mat2(c,-s,s,c);} 
-vec2 hash(vec2 p){p=vec2(dot(p,vec2(2127.1,81.17)),dot(p,vec2(1269.5,283.37)));return fract(sin(p)*43758.5453);} 
+mat2 Rot(float a){float s=sin(a),c=cos(a);return mat2(c,-s,s,c);}
+vec2 hash(vec2 p){p=vec2(dot(p,vec2(2127.1,81.17)),dot(p,vec2(1269.5,283.37)));return fract(sin(p)*43758.5453);}
 float noise(vec2 p){vec2 i=floor(p),f=fract(p),u=f*f*(3.0-2.0*f);float n=mix(mix(dot(-1.0+2.0*hash(i+vec2(0.0,0.0)),f-vec2(0.0,0.0)),dot(-1.0+2.0*hash(i+vec2(1.0,0.0)),f-vec2(1.0,0.0)),u.x),mix(dot(-1.0+2.0*hash(i+vec2(0.0,1.0)),f-vec2(0.0,1.0)),dot(-1.0+2.0*hash(i+vec2(1.0,1.0)),f-vec2(1.0,1.0)),u.x),u.y);return 0.5+0.5*n;}
 void mainImage(out vec4 o, vec2 C){
   float t=iTime*uTimeSpeed;
@@ -80,7 +80,7 @@ void mainImage(out vec4 o, vec2 C){
   vec3 col=mix(layer1,layer2,S(v0,v1,tuv.y));
 
   vec2 grainUv=uv*max(uGrainScale,0.001);
-  if(uGrainAnimated>0.5){grainUv+=vec2(iTime*0.05);} 
+  if(uGrainAnimated>0.5){grainUv+=vec2(iTime*0.05);}
   float grain=fract(sin(dot(grainUv,vec2(12.9898,78.233)))*43758.5453);
   col+=(grain-0.5)*uGrainAmount;
 
@@ -125,7 +125,9 @@ const Grainient = ({
     className = ''
 }) => {
     const containerRef = useRef(null);
+    const programRef = useRef(null);
 
+    // Create renderer once
     useEffect(() => {
         if (!containerRef.current) return;
 
@@ -176,6 +178,8 @@ const Grainient = ({
             }
         });
 
+        programRef.current = program;
+
         const mesh = new Mesh(gl, { geometry, program });
 
         const setSize = () => {
@@ -204,35 +208,52 @@ const Grainient = ({
         return () => {
             cancelAnimationFrame(raf);
             ro.disconnect();
+            programRef.current = null;
             try {
                 container.removeChild(canvas);
             } catch {
                 // Ignore
             }
         };
+    // Only recreate on non-color props
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // Update uniforms in-place when props change (no re-create)
+    useEffect(() => {
+        const p = programRef.current;
+        if (!p) return;
+        const u = p.uniforms;
+        u.uTimeSpeed.value = timeSpeed;
+        u.uColorBalance.value = colorBalance;
+        u.uWarpStrength.value = warpStrength;
+        u.uWarpFrequency.value = warpFrequency;
+        u.uWarpSpeed.value = warpSpeed;
+        u.uWarpAmplitude.value = warpAmplitude;
+        u.uBlendAngle.value = blendAngle;
+        u.uBlendSoftness.value = blendSoftness;
+        u.uRotationAmount.value = rotationAmount;
+        u.uNoiseScale.value = noiseScale;
+        u.uGrainAmount.value = grainAmount;
+        u.uGrainScale.value = grainScale;
+        u.uGrainAnimated.value = grainAnimated ? 1.0 : 0.0;
+        u.uContrast.value = contrast;
+        u.uGamma.value = gamma;
+        u.uSaturation.value = saturation;
+        u.uCenterOffset.value[0] = centerX;
+        u.uCenterOffset.value[1] = centerY;
+        u.uZoom.value = zoom;
+        const c1 = hexToRgb(color1);
+        const c2 = hexToRgb(color2);
+        const c3 = hexToRgb(color3);
+        u.uColor1.value[0] = c1[0]; u.uColor1.value[1] = c1[1]; u.uColor1.value[2] = c1[2];
+        u.uColor2.value[0] = c2[0]; u.uColor2.value[1] = c2[1]; u.uColor2.value[2] = c2[2];
+        u.uColor3.value[0] = c3[0]; u.uColor3.value[1] = c3[1]; u.uColor3.value[2] = c3[2];
     }, [
-        timeSpeed,
-        colorBalance,
-        warpStrength,
-        warpFrequency,
-        warpSpeed,
-        warpAmplitude,
-        blendAngle,
-        blendSoftness,
-        rotationAmount,
-        noiseScale,
-        grainAmount,
-        grainScale,
-        grainAnimated,
-        contrast,
-        gamma,
-        saturation,
-        centerX,
-        centerY,
-        zoom,
-        color1,
-        color2,
-        color3
+        timeSpeed, colorBalance, warpStrength, warpFrequency, warpSpeed, warpAmplitude,
+        blendAngle, blendSoftness, rotationAmount, noiseScale, grainAmount, grainScale,
+        grainAnimated, contrast, gamma, saturation, centerX, centerY, zoom,
+        color1, color2, color3
     ]);
 
     return <div ref={containerRef} className={`grainient-container ${className}`.trim()} />;

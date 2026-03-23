@@ -1,0 +1,96 @@
+.email-capture {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.email-capture-cta {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 300;
+  font-family: 'Space Grotesk', sans-serif;
+  margin-bottom: 1rem;
+  letter-spacing: 0.3px;
+}
+
+.email-capture-row {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 400px;
+}
+
+.email-capture-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: 0.3px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  outline: none;
+}
+
+.email-capture-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.email-capture-input:focus {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.email-capture-input:disabled {
+  opacity: 0.5;
+}
+
+.email-capture-submit {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.email-capture-submit:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+.email-capture-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.email-capture-done {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  letter-spacing: 0.3px;
+}
+
+.email-capture-error {
+  font-size: 0.85rem;
+  color: rgba(255, 150, 150, 0.8);
+  font-weight: 300;
+  font-family: 'Space Grotesk', sans-serif;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .email-capture-row {
+    max-width: 100%;
+  }
+}
