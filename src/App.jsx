@@ -40,16 +40,27 @@ const COOL_THINGS = [
 ]
 
 const VENTURES = [
-  { name: 'Cognition', role: 'co-founder', description: 'AI learning platform that adapts to how you think. 35,000+ users. backed by NVIDIA, Google DeepMind, CMU LearnLab.', link: 'https://cognitionus.com', date: 'Jul 2025 - Present' },
-  { name: 'Fern', role: 'founder', description: 'built an AI AAC system for nonverbal children with autism. 10,000+ users across texas. nonprofit.', link: 'https://fern-chi.vercel.app/', date: 'Apr 2025 - Present' },
-  { name: 'RecReach', role: 'co-founder', description: 'pickup sports coordination platform. supported by Google for Startups.', link: 'https://recreach.com', date: 'Mar 2025 - Present' }
+  { name: 'Cognition', role: 'co-founder', description: 'AI learning platform that adapts to how you think. 35,000+ users. backed by NVIDIA, Google DeepMind, CMU LearnLab.', link: 'https://cognitionus.com', date: 'Jul 2025 - Present', tags: [{ label: 'shipping', type: 'live' }, { label: 'nvidia', type: 'money' }, { label: '35k users', type: 'people' }] },
+  { name: 'Fern', role: 'founder', description: 'built an AI AAC system for nonverbal children with autism. 10,000+ users across texas. nonprofit.', link: 'https://fern-chi.vercel.app/', date: 'Apr 2025 - Present', tags: [{ label: 'nonprofit' }, { label: '10k users', type: 'people' }] },
+  { name: 'RecReach', role: 'co-founder', description: 'pickup sports coordination platform. supported by Google for Startups.', link: 'https://recreach.com', date: 'Mar 2025 - Present', tags: [{ label: 'google for startups', type: 'money' }] }
 ]
 
 const RESEARCH = [
-  { name: 'Eden Robotics', role: 'founder & lead', description: 'humanoid robots with cognitive architectures. 15-person team. RL policies in Isaac Sim.', link: 'https://eden-robotics.github.io/Eden/', date: 'May 2025 - Present' },
-  { name: 'ART Lab, Texas A&M', role: 'ML & robotics researcher', description: 'deep RL for autonomous agricultural robot swarms. decentralized GNNs for cooperative behaviors.', link: 'https://art.engr.tamu.edu/', date: 'Apr 2025 - Present' },
-  { name: 'DIGIT Lab, Texas A&M', role: 'AI researcher', description: 'multi-agent systems for structured data extraction. built the largest open-source database for plastic compatibilizers.', link: 'https://digitlab23.github.io/', date: 'Feb 2025 - Aug 2025' }
+  { name: 'Eden Robotics', role: 'founder & lead', description: 'humanoid robots with cognitive architectures. 15-person team. RL policies in Isaac Sim.', link: 'https://eden-robotics.github.io/Eden/', date: 'May 2025 - Present', tags: [{ label: 'shipping', type: 'live' }, { label: 'robotics' }, { label: '15 eng' }] },
+  { name: 'ART Lab, Texas A&M', role: 'ML & robotics researcher', description: 'deep RL for autonomous agricultural robot swarms. decentralized GNNs for cooperative behaviors.', link: 'https://art.engr.tamu.edu/', date: 'Apr 2025 - Present', tags: [{ label: 'deep RL' }, { label: 'GNN' }] },
+  { name: 'DIGIT Lab, Texas A&M', role: 'AI researcher', description: 'multi-agent systems for structured data extraction. built the largest open-source database for plastic compatibilizers.', link: 'https://digitlab23.github.io/', date: 'Feb 2025 - Aug 2025', tags: [{ label: 'multi-agent' }, { label: 'oss db' }] }
 ]
+
+const MARQUEE_TERMS = [
+  'cognition', '◆', 'fern', '◆', 'eden robotics', '◆', 'recreach', '◆',
+  'isaac sim', '◆', 'reinforcement learning', '◆', 'humanoids', '◆',
+  'multi-agent systems', '◆', 'adaptive learning', '◆', 'texas a&m', '◆'
+]
+
+const ASCII_SIG = ` ┌─────────────┐
+ │  v · s      │
+ │  vedant     │
+ └─────────────┘`
 
 const BLOG_POSTS = [
   { date: 'mar 2026', title: 'the robot arm finally stopped punching the table', body: 'after 3 weeks of tuning PID controllers and questioning my life choices, eden\'s arm can now pick up a cup without launching it across the lab. small wins.' },
@@ -160,8 +171,47 @@ function ExperienceContent({ item }) {
         <span className="experience-role">{item.role || item.category}</span>
       </div>
       {item.date && <time className="experience-date" dateTime={item.date}>{item.date}</time>}
+      {item.tags && item.tags.length > 0 && (
+        <div className="experience-tags" aria-label="tags">
+          {item.tags.map((t, i) => (
+            <span key={i} className={`tag${t.type ? ` ${t.type}` : ''}`}>{t.label}</span>
+          ))}
+        </div>
+      )}
       {item.description && <p className="experience-description">{item.description}</p>}
     </>
+  )
+}
+
+function AsciiDivider() {
+  return (
+    <div className="ascii-divider" aria-hidden="true">
+      <span>~</span>·<span>~</span>·<span>~</span>·<span>~</span>·<span>~</span>·<span>~</span>·<span>~</span>
+    </div>
+  )
+}
+
+function CornerMarks() {
+  return (
+    <>
+      <span className="corner-mark tl" aria-hidden="true">+</span>
+      <span className="corner-mark tr" aria-hidden="true">+</span>
+      <span className="corner-mark bl" aria-hidden="true">+</span>
+      <span className="corner-mark br" aria-hidden="true">+</span>
+    </>
+  )
+}
+
+function Marquee() {
+  const loop = [...MARQUEE_TERMS, ...MARQUEE_TERMS]
+  return (
+    <div className="marquee-strip" aria-hidden="true">
+      <div className="marquee-track">
+        {loop.map((t, i) => (
+          <span key={i} className={t === '◆' ? 'mark' : ''}>{t}</span>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -229,6 +279,9 @@ function HomePage() {
       <SEOHead />
       <div className="home-scroll-container" ref={scrollRef}>
         <ScrollGrainient scrollRef={scrollRef} />
+
+        <pre className="ascii-sig" aria-hidden="true">{ASCII_SIG}</pre>
+
         <div className="social-links">
           {SOCIAL_LINKS.map((social, index) => (
             <a
@@ -245,11 +298,25 @@ function HomePage() {
 
         {/* Hero */}
         <ScrollSection className="hero-section" id="hero">
+          <CornerMarks />
           <div className="hero-split">
             <div className="hero-left">
+              <div className="status-pill">
+                <span className="dot" aria-hidden="true" />
+                <span>now</span>
+                <span className="sep">/</span>
+                <span>shipping cognition</span>
+              </div>
               <h1 className="hero-title">Vedant Soni</h1>
               <p className="hero-subtitle">i build things that learn.</p>
-              <div className="scroll-hint">scroll</div>
+              <div className="hero-meta">
+                <span className="bracket">[</span>
+                <span>college station · tx</span>
+                <span className="bracket">/</span>
+                <span>texas a&amp;m '28</span>
+                <span className="bracket">]</span>
+              </div>
+              <div className="scroll-hint">↓ scroll</div>
             </div>
             <div className="hero-right">
               <ProjectShowcase />
@@ -257,17 +324,25 @@ function HomePage() {
           </div>
         </ScrollSection>
 
+        <AsciiDivider />
+
         {/* Work */}
         <ScrollSection className="work-section" id="work">
+          <CornerMarks />
           <h2 className="section-label">ventures</h2>
           <ExperienceList items={VENTURES} />
 
           <h2 className="section-label" style={{ marginTop: '3rem' }}>research</h2>
           <ExperienceList items={RESEARCH} />
+
+          <Marquee />
         </ScrollSection>
+
+        <AsciiDivider />
 
         {/* Blog */}
         <ScrollSection className="blog-section-home" id="blog">
+          <CornerMarks />
           <h2 className="section-label">lately</h2>
           <div className="blog-posts-home">
             {BLOG_POSTS.map((post, index) => (
@@ -281,8 +356,11 @@ function HomePage() {
           <Link to="/blog" className="see-more-link">all posts</Link>
         </ScrollSection>
 
+        <AsciiDivider />
+
         {/* About */}
         <ScrollSection className="about-section" id="about">
+          <CornerMarks />
           <h2 className="section-label">about</h2>
 
           <div className="bold-statements">
