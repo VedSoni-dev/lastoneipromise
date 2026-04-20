@@ -6,7 +6,6 @@ import Blackjack from './components/Blackjack'
 import SEOHead from './components/SEOHead'
 import ProjectShowcase from './components/ProjectShowcase'
 import EmailCapture from './components/EmailCapture'
-import CopyLink from './components/CopyLink'
 import Resume from './pages/Resume'
 import Isha from './pages/Isha'
 import './App.css'
@@ -106,8 +105,6 @@ function SubPageLayout() {
           zoom={0.9}
         />
       </div>
-
-      <CopyLink />
 
       <div className="social-links">
         {SOCIAL_LINKS.map((social, index) => (
@@ -232,7 +229,6 @@ function HomePage() {
       <SEOHead />
       <div className="home-scroll-container" ref={scrollRef}>
         <ScrollGrainient scrollRef={scrollRef} />
-        <CopyLink />
         <div className="social-links">
           {SOCIAL_LINKS.map((social, index) => (
             <a
