@@ -481,6 +481,45 @@ a.experience-link:hover .experience-name {
 }
 
 /* ===== About Section ===== */
+.about-intro {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.8;
+  font-weight: 400;
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 0 0 2rem 0;
+  max-width: 600px;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+}
+
+.fun-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0 0 2.5rem 0;
+}
+
+.fun-fact-tag {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  text-transform: lowercase;
+}
+
+.fun-fact-tag:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
 .bold-statements {
   display: flex;
   flex-direction: column;

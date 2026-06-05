@@ -5,22 +5,22 @@ import './ProjectShowcase.css'
 
 const PROJECTS = [
   {
-    name: 'Cognition',
-    link: 'https://cognitionus.com',
-    image: '/cognition-preview.png',
-    description: 'adaptive AI learning. 35,000+ users.',
-  },
-  {
     name: 'Fern',
     link: 'https://fern-chi.vercel.app/',
     image: '/fern-preview.png',
-    description: 'AI for nonverbal kids. 10,000+ users.',
+    description: 'AI tools for nonverbal kids. 10,000+ users. nonprofit.',
+  },
+  {
+    name: 'Cognition',
+    link: 'https://cognitionus.com',
+    image: '/cognition-preview.png',
+    description: 'AI learning platform. validated by YC. 8 clients.',
   },
   {
     name: 'Eden Robotics',
     link: 'https://eden-robotics.github.io/Eden/',
     image: '/eden-preview.png',
-    description: 'humanoid robots that learn.',
+    description: 'humanoid robots that learn. RL + cognitive architectures.',
   },
 ]
 

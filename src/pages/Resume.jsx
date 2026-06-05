@@ -64,7 +64,7 @@ function Resume() {
         <div className="resume-header">
           <h1 className="resume-title">Vedant Soni</h1>
           <div className="resume-contact">
-            <p>(346) 627-5696 | ved.06.soni@gmail.com | <a href="https://www.linkedin.com/in/vedantsonimech" target="_blank" rel="noopener noreferrer">linkedin.com/in/vedantsonimech</a> | <a href="https://github.com/VedSoni-dev" target="_blank" rel="noopener noreferrer">github.com/VedSoni-dev</a> | <a href="https://vedantsoni.com/" target="_blank" rel="noopener noreferrer">vedantsoni.com</a></p>
+            <p>ved.soni@tamu.edu | <a href="https://www.linkedin.com/in/vedantsonimech" target="_blank" rel="noopener noreferrer">linkedin.com/in/vedantsonimech</a> | <a href="https://github.com/VedSoni-dev" target="_blank" rel="noopener noreferrer">github.com/VedSoni-dev</a> | <a href="https://vedantsoni.com/" target="_blank" rel="noopener noreferrer">vedantsoni.com</a></p>
           </div>
           <a 
             href={resumePdfPath} 
@@ -103,7 +103,7 @@ function Resume() {
                 </span>
                 <span className="resume-item-date">August 2025 – Present</span>
               </div>
-              <p className="resume-item-company">Co-Founder & COO | San Francisco, CA</p>
+              <p className="resume-item-company">Co-Founder & CTO | San Francisco, CA</p>
               <p className="resume-item-description">
                 • Co-founded Cognition, an AI learning companion that adapts to how you learn best, backed by NVIDIA, Google DeepMind, and CMU LearnLab; managing unit economics, operational scalability, and strategic partnerships.<br />
                 • Built proprietary hardware and software algorithms that enable real-time personalized learning interventions, leveraging multi-modal perception and reinforcement learning to boost retention by 40%<br />

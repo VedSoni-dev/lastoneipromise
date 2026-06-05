@@ -7,7 +7,6 @@ import SEOHead from './components/SEOHead'
 import ProjectShowcase from './components/ProjectShowcase'
 import EmailCapture from './components/EmailCapture'
 import Resume from './pages/Resume'
-import Isha from './pages/Isha'
 import './App.css'
 
 // --- Data ---
@@ -15,34 +14,14 @@ const SOCIAL_LINKS = [
   { name: 'linkedin', url: 'https://www.linkedin.com/in/vedantsonimech' },
   { name: 'x', url: 'https://x.com/VedantRobot' },
   { name: 'github', url: 'https://github.com/VedSoni-dev' },
-  { name: 'email', url: 'mailto:ved.06.soni@gmail.com' }
-]
-
-const COOL_THINGS = [
-  {
-    name: 'Cognition',
-    link: 'https://cognitionus.com',
-    previewImage: '/cognition-preview.png',
-    previewText: 'adaptive AI learning platform. 35,000+ users. backed by NVIDIA and Google DeepMind.'
-  },
-  {
-    name: 'Fern',
-    link: 'https://fern-chi.vercel.app/',
-    previewImage: '/fern-preview.png',
-    previewText: 'AI communication tools for nonverbal kids. 10,000+ active users. nonprofit.'
-  },
-  {
-    name: 'Eden Robotics',
-    link: 'https://eden-robotics.github.io/Eden/',
-    previewImage: '/eden-preview.png',
-    previewText: 'humanoid robots that learn. reinforcement learning + cognitive architectures. built at texas a&m.'
-  }
+  { name: 'email', url: 'mailto:ved.soni@tamu.edu' }
 ]
 
 const VENTURES = [
-  { name: 'Cognition', role: 'co-founder', description: 'AI learning platform that adapts to how you think. 35,000+ users. backed by NVIDIA, Google DeepMind, CMU LearnLab.', link: 'https://cognitionus.com', date: 'Jul 2025 - Present' },
-  { name: 'Fern', role: 'founder', description: 'built an AI AAC system for nonverbal children with autism. 10,000+ users across texas. nonprofit.', link: 'https://fern-chi.vercel.app/', date: 'Apr 2025 - Present' },
-  { name: 'RecReach', role: 'co-founder', description: 'pickup sports coordination platform. supported by Google for Startups.', link: 'https://recreach.com', date: 'Mar 2025 - Present' }
+  { name: 'Fern', role: 'founder', description: 'AI tools for children with disabilities. 10,000+ users. nonprofit. rebooted may 2026. back full-time.', link: 'https://fern-chi.vercel.app/', date: 'Apr 2025 - Present' },
+  { name: 'Cognition', role: 'cofounder & cto', description: 'AI learning platform validated by YC partners. signed 8 clients including a YC company. backed by NVIDIA & Google DeepMind.', link: 'https://cognitionus.com', date: 'Sep 2025 - May 2026' },
+  { name: 'Pillar AI', role: 'founder', description: 'local AI automations for real estate. 15+ clients.', link: null, date: 'Jul 2025 - Jan 2026' },
+  { name: 'RecReach', role: 'cofounder', description: 'pickup sports coordination platform. backed by Google for Startups.', link: 'https://recreach.com', date: 'Mar 2025 - Mar 2026' }
 ]
 
 const RESEARCH = [
@@ -52,28 +31,39 @@ const RESEARCH = [
 ]
 
 const BLOG_POSTS = [
+  { date: 'may 2026', title: 'cognition got a YC interview. we didn\'t get in (yet).', body: 'but our first iteration got validated by YC partners. signed 8 clients in a week — one YC company. met 10 YC founders. been in SF for 2 days. cognition will be a staple in AI native teams by the end of this summer.' },
+  { date: 'may 2026', title: 'fern reboot', body: 'rebooted fern from scratch. the original codebase was held together by duct tape and prayer. new architecture, same mission — AI tools for kids who can\'t speak. 10k users didn\'t come easy and they deserve better infrastructure.' },
   { date: 'mar 2026', title: 'the robot arm finally stopped punching the table', body: 'after 3 weeks of tuning PID controllers and questioning my life choices, eden\'s arm can now pick up a cup without launching it across the lab. small wins.' },
-  { date: 'feb 2026', title: 'why i mass-dropped every AI wrapper startup pitch', body: 'got 14 linkedin messages this month asking me to join "the uber of AI." if your startup is a wrapper around an API call, it\'s not a startup. it\'s a weekend project with a landing page.' },
-  { date: 'jan 2026', title: 'fern hit 10k users and i almost missed it', body: 'was debugging a memory leak at 2am when the analytics email came in. 10,000 people using something i built to help people communicate. cried a little. kept debugging.' },
 ]
 
 const BLOG_POSTS_ALL = [
   ...BLOG_POSTS,
+  { date: 'feb 2026', title: 'why i mass-dropped every AI wrapper startup pitch', body: 'got 14 linkedin messages this month asking me to join "the uber of AI." if your startup is a wrapper around an API call, it\'s not a startup. it\'s a weekend project with a landing page.' },
+  { date: 'jan 2026', title: 'fern hit 10k users and i almost missed it', body: 'was debugging a memory leak at 2am when the analytics email came in. 10,000 people using something i built to help people communicate. cried a little. kept debugging.' },
   { date: 'dec 2025', title: 'used cognition for my midterm and got a 98', body: 'within 2 days of learning half the sem\'s work. if i can\'t trust my own product then what am i even doing.' },
   { date: 'nov 2025', title: 'the nvidia call that changed everything', body: 'got a cold email i almost marked as spam. turned out to be a deepmind researcher who\'d been using cognition. two weeks later we had backing. always read your emails.' },
   { date: 'oct 2025', title: 'i wrote 10,000 lines of code this week and mass deleted 8,000', body: 'the best code is the code you don\'t ship. refactored the entire cognition backend and it\'s 3x faster with half the complexity. less is more.' }
 ]
 
 const BOLD_STATEMENTS = [
-  'co-founded cognition — backed by NVIDIA & Google DeepMind',
-  'leading AI research & robotics at texas a&m',
-  'founded fern (nonprofit) — 10,000+ active users'
+  'building fern — AI tools for kids with disabilities. 10,000+ users.',
+  'previously cofounder & cto at cognition — validated by Y Combinator',
+  'building humanoid robots at texas a&m',
+  'former grandmaster in league of legends'
+]
+
+const FUN_FACTS = [
+  'i love AI and making robots',
+  'former GM in league of legends',
+  'SAT: 1570',
+  'Y Combinator Startup School',
+  '2,300+ linkedin followers',
 ]
 
 const EDUCATION = {
   name: 'Texas A&M University',
   degree: 'b.s. computer science',
-  description: 'AI research & enterprise software. 3.7 GPA.'
+  description: 'AI research & enterprise software. 3.7 GPA. McFerrin Startup Fast Pass Winner. Ideas Challenge Finalist (top 1% of 4,500+ applicants).'
 }
 
 // --- Blackjack Context ---
@@ -285,9 +275,21 @@ function HomePage() {
         <ScrollSection className="about-section" id="about">
           <h2 className="section-label">about</h2>
 
+          <p className="about-intro">
+            i love AI and making robots. back full-time on fern — building AI tools
+            for kids who can't speak. when i'm not shipping code, i'm probably
+            theory-crafting league strats or reading research papers at 2am.
+          </p>
+
           <div className="bold-statements">
             {BOLD_STATEMENTS.map((statement, index) => (
               <div key={index} className="bold-statement">{statement}</div>
+            ))}
+          </div>
+
+          <div className="fun-facts">
+            {FUN_FACTS.map((fact, index) => (
+              <span key={index} className="fun-fact-tag">{fact}</span>
             ))}
           </div>
 
@@ -375,7 +377,6 @@ function App() {
   return (
     <BlackjackContext.Provider value={{ showBlackjack: () => setBlackjackVisible(true) }}>
       <Routes>
-        <Route path="/isha" element={<Isha />} />
         <Route path="/" element={<HomePage />} />
 
         {/* Sub-pages with static gradient */}
