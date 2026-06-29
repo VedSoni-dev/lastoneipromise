@@ -358,25 +358,26 @@ export default function ConsultPage() {
         {/* Hero */}
         <section className="consult-section consult-hero" id="hero-consult">
           <div className="consult-section-inner">
-            <p className="consult-eyebrow">vedant soni</p>
+            <p className="consult-eyebrow">vedant soni · age 20</p>
             <h1 className="consult-hero-title">
-              forward deployed<br />AI engineer.
+              i build AI companies.<br />now i'm building yours.
             </h1>
             <p className="consult-hero-tagline">
-              i'll use my skills and your experience to build you an AI-native company.
+              most teams spend months figuring out where AI fits.
+              i'll have an answer — and something working — inside a week.
             </p>
             <div className="consult-receipts">
               <span>6 startups built</span>
-              <span>10,000+ users</span>
+              <span>10,000+ users shipped to</span>
               <span>backed by nvidia & deepmind</span>
-              <span>$250K+ offers declined</span>
+              <span>$250K+ offers turned down</span>
             </div>
             <div className="consult-hero-actions">
               <button className="consult-cta-primary" onClick={skipToForm}>
-                work with me →
+                let's build →
               </button>
               <button className="consult-cta-ghost" onClick={skipToForm}>
-                skip my story
+                read my story
               </button>
             </div>
           </div>
