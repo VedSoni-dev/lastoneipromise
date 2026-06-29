@@ -36,7 +36,7 @@ export default async function handler(req, res) {
     // Notify Vedant
     await resend.emails.send({
       from: 'vedantsoni.com <notifications@vedantsoni.com>',
-      to: 'nilayrsoni@gmail.com',
+      to: 'ved.06.soni@gmail.com',
       subject: `new inquiry from ${email}`,
       html: `
         <div style="font-family: monospace; max-width: 600px; padding: 32px; background: #0d1117; color: #e6edf3; border-radius: 8px;">
