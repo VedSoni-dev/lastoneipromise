@@ -374,26 +374,34 @@ export default function ConsultPage() {
             <p className="consult-section-label">why i do this</p>
             <div className="consult-story-body">
               <p>
-                AI fluency is the real problem. and it's not just a startup problem.
+                every startup i built showed me the same thing from a different angle.
               </p>
               <p>
-                fortune 500s, regional businesses, hospitals, law firms — they all know they need AI.
-                none of them know what that actually means in practice.
-                they're getting sold dashboards when they need workflows.
-                paying for chatbots when they need agents.
+                with fern, i watched parents spend hours searching for tools to help their kids communicate —
+                tools that already existed, or could be built in a week with AI.
+                with cognition, i watched students grind through material the hard way
+                when better learning was one prompt away.
               </p>
               <p>
-                i embed directly with your team, figure out where AI creates real leverage,
-                and build it with you. not a deck. not a strategy doc. actual working software.
-                and i'll teach you everything along the way so you're not dependent on me forever.
+                the problem wasn't the technology. the problem was that nobody knew how to use it.
+              </p>
+              <p>
+                AI fluency is the unlock. and most people — most teams, most companies —
+                don't have it yet. not because they're behind, but because nobody's shown them.
+              </p>
+              <p>
+                so here's what i actually do when i work with you:
               </p>
             </div>
             <ul className="consult-services">
-              <li>AI fluency coaching for teams & leaders</li>
-              <li>forward deployed engineering (i build with you)</li>
-              <li>workflow automation & agent development</li>
-              <li>architecture reviews & stack decisions</li>
+              <li>i come into your company and understand how it actually runs</li>
+              <li>i build an AI foundation — automating the processes that are slowing you down</li>
+              <li>i make your team AI fluent on top of that foundation, so they own it</li>
+              <li>i introduce you to my software to keep your team current on frontier AI tools</li>
             </ul>
+            <p className="consult-honest-note">
+              the goal is that you don't need me again. that's how i know it worked.
+            </p>
             <button className="consult-skip-link" onClick={skipToForm}>
               let's talk →
             </button>
