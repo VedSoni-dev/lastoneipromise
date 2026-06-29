@@ -8,9 +8,11 @@ const STORIES = [
     key: 'fern',
     name: 'fern',
     tag: 'AI for kids who can\'t speak',
-    body: `fern started because i watched a nonverbal kid try to communicate using a clunky AAC device from 2009. i thought — there has to be a better way.
+    body: `fern started because of my brother.
 
-so i built one. AI-powered communication tools designed specifically for children with disabilities. no VC pressure, no growth hacking. just something that needed to exist.
+watching someone you love struggle to communicate — and knowing the tools that exist to help are decades behind where they should be — changes you. i understood the problem from the inside. not as a builder looking for a market. as a family member who lived it.
+
+so i built fern. AI-powered communication tools designed specifically for children with disabilities. no VC pressure, no growth hacking. just something that needed to exist.
 
 it hit 10,000 users. the emails i get from parents are the reason i keep building. rebooted it from scratch in may 2026 — new architecture, same mission.`,
     link: 'https://fern-chi.vercel.app/',
@@ -330,8 +332,7 @@ export default function ConsultPage() {
               forward deployed<br />AI engineer.
             </h1>
             <p className="consult-hero-tagline">
-              i embed with your team, figure out exactly where AI fits,
-              and build it with you. startups and legacy businesses alike.
+              i'll use my skills and your experience to build you an AI-native company.
             </p>
             <div className="consult-hero-actions">
               <button className="consult-cta-primary" onClick={skipToForm}>
@@ -388,6 +389,15 @@ export default function ConsultPage() {
               <p>
                 AI fluency is the unlock. and most people — most teams, most companies —
                 don't have it yet. not because they're behind, but because nobody's shown them.
+              </p>
+              <p>
+                i've been offered salaries over $250K to drop out and work as a forward deployed
+                engineer at some of the biggest companies in the world. i turned them down.
+              </p>
+              <p>
+                i'm 20. there is no better time in my life to take risk than right now.
+                i'd rather use my skills and your experience to build something real together
+                than collect a paycheck building someone else's vision.
               </p>
               <p>
                 so here's what i actually do when i work with you:
