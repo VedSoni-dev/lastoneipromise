@@ -140,6 +140,27 @@ function getColors(scrollProgress) {
   }
 }
 
+function StickyMobileCTA({ onClick }) {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const hero = document.getElementById('hero-consult')
+    if (!hero) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(!entry.isIntersecting),
+      { threshold: 0 }
+    )
+    observer.observe(hero)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div className={`sticky-mobile-cta${visible ? ' visible' : ''}`}>
+      <button onClick={onClick}>let's build →</button>
+    </div>
+  )
+}
+
 function BgOrbs() {
   return (
     <div className="bg-orbs" aria-hidden="true">
@@ -350,6 +371,7 @@ export default function ConsultPage() {
         description="Forward deployed AI engineer. 6 startups, led teams, handpicked by Texas A&M's VP of IT. I embed with your team and make AI actually work."
         url="https://vedantsoni.com"
       />
+      <StickyMobileCTA onClick={skipToForm} />
       <div className="consult-scroll-container" ref={scrollRef}>
         <ScrollProgress scrollRef={scrollRef} />
         <CalmGrainient scrollRef={scrollRef} />
@@ -458,6 +480,59 @@ export default function ConsultPage() {
             </p>
             <button className="consult-skip-link" onClick={skipToForm}>
               let's talk →
+            </button>
+          </div>
+        </section>
+
+        {/* Case Study */}
+        <section className="consult-section" id="casestudy-consult">
+          <div className="consult-section-inner">
+            <p className="consult-section-label">case study</p>
+            <div className="case-study-card">
+              <div className="case-study-header">
+                <div>
+                  <h2 className="case-study-name">pillar AI</h2>
+                  <p className="case-study-meta">real estate automation · 15 clients · 2025</p>
+                </div>
+                <div className="case-study-stats">
+                  <div className="case-stat">
+                    <span className="case-stat-value">15+</span>
+                    <span className="case-stat-label">clients</span>
+                  </div>
+                  <div className="case-stat">
+                    <span className="case-stat-value">&lt;2min</span>
+                    <span className="case-stat-label">lead response</span>
+                  </div>
+                  <div className="case-stat">
+                    <span className="case-stat-value">10hrs</span>
+                    <span className="case-stat-label">saved / week</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="case-study-body">
+                <div className="case-block">
+                  <p className="case-block-label">the problem</p>
+                  <p className="case-block-text">
+                    real estate agents were losing leads because follow-up was happening hours — sometimes days — after the initial inquiry. documents were processed by hand. writing a listing description took 45 minutes each. the agents knew they needed to move faster. they just didn't know how.
+                  </p>
+                </div>
+                <div className="case-block">
+                  <p className="case-block-label">what i built</p>
+                  <p className="case-block-text">
+                    an AI agent pipeline that triggered within 2 minutes of any new lead — personalized outreach, property recommendations, and follow-up sequences, fully automated. document extraction for contracts and disclosures. a listing description generator trained on high-converting copy.
+                  </p>
+                </div>
+                <div className="case-block">
+                  <p className="case-block-label">the result</p>
+                  <p className="case-block-text">
+                    15+ clients onboarded. lead response time dropped from hours to under 2 minutes. each agent saved 8–10 hours a week on admin. one client closed 3 deals in the first month they would have missed before.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <button className="consult-skip-link" style={{ marginTop: '2rem' }} onClick={skipToForm}>
+              want this for your company? →
             </button>
           </div>
         </section>
