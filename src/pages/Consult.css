@@ -1,26 +1,108 @@
+/* ===== Scroll Progress Bar ===== */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.scroll-progress-fill {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.35);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+}
+
+/* ===== Background Orbs ===== */
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform;
+}
+
+.bg-orb-1 {
+  width: min(700px, 120vw);
+  height: min(700px, 120vw);
+  background: radial-gradient(circle, rgba(80, 120, 220, 0.07) 0%, transparent 70%);
+  top: -20%;
+  right: -15%;
+  animation: orb-drift-1 28s ease-in-out infinite;
+}
+
+.bg-orb-2 {
+  width: min(500px, 100vw);
+  height: min(500px, 100vw);
+  background: radial-gradient(circle, rgba(40, 180, 160, 0.055) 0%, transparent 70%);
+  bottom: 5%;
+  left: -10%;
+  animation: orb-drift-2 35s ease-in-out infinite;
+  animation-delay: -12s;
+}
+
+.bg-orb-3 {
+  width: min(400px, 90vw);
+  height: min(400px, 90vw);
+  background: radial-gradient(circle, rgba(120, 80, 200, 0.045) 0%, transparent 70%);
+  top: 40%;
+  left: 55%;
+  animation: orb-drift-3 22s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+@keyframes orb-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%       { transform: translate(-40px, 30px) scale(1.06); }
+  70%       { transform: translate(25px, -35px) scale(0.94); }
+}
+
+@keyframes orb-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  35%       { transform: translate(35px, -25px) scale(1.04); }
+  65%       { transform: translate(-20px, 40px) scale(0.96); }
+}
+
+@keyframes orb-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(-30px, -30px) scale(1.08); }
+}
+
 /* ===== Scroll Container ===== */
 .consult-scroll-container {
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   overflow-y: auto;
   overflow-x: hidden;
   scroll-behavior: smooth;
   position: relative;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ===== Sections ===== */
 .consult-section {
   position: relative;
   z-index: 1;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 5rem 2rem;
+  padding: 6rem 2rem 5rem;
 }
 
 .consult-section-inner {
-  max-width: 680px;
+  max-width: 660px;
   margin: 0 auto;
   width: 100%;
 }
@@ -28,101 +110,111 @@
 /* ===== Hero ===== */
 .consult-hero {
   padding-top: 0;
+  min-height: 100dvh;
 }
 
 .consult-eyebrow {
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.38);
+  margin-bottom: 1.75rem;
   font-weight: 400;
 }
 
 .consult-hero-title {
-  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-size: clamp(2.6rem, 9vw, 5.5rem);
   font-weight: 300;
   line-height: 1.05;
-  margin-bottom: 1.75rem;
-  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.025em;
 }
 
 .consult-hero-tagline {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.65);
-  line-height: 1.65;
-  max-width: 500px;
-  margin-bottom: 2.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 2rem;
   font-weight: 300;
 }
 
+/* ===== Receipts Strip ===== */
+.consult-receipts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.25rem;
+}
+
+.consult-receipts span {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 0.3rem 0.75rem;
+  white-space: nowrap;
+}
+
+/* ===== CTAs ===== */
 .consult-hero-actions {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
   flex-wrap: wrap;
 }
 
 .consult-cta-primary {
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   color: #fff;
-  padding: 0.75rem 1.75rem;
-  font-size: 0.95rem;
+  padding: 0.8rem 1.75rem;
+  font-size: 0.9rem;
   font-family: inherit;
   font-weight: 400;
-  letter-spacing: 0.02em;
-  border-radius: 4px;
+  letter-spacing: 0.03em;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s, border-color 0.2s;
+  min-height: 44px;
 }
 
 .consult-cta-primary:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-.consult-receipts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.75rem;
-  margin-bottom: 2.25rem;
-}
-
-.consult-receipts span {
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.32);
-  font-weight: 400;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.38);
 }
 
 .consult-cta-ghost {
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.35);
   font-size: 0.85rem;
   font-family: inherit;
   font-weight: 400;
   cursor: pointer;
-  padding: 0;
+  padding: 0.5rem 0;
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: color 0.2s;
+  min-height: 44px;
 }
 
 .consult-cta-ghost:hover {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.65);
   background: none;
   border: none;
 }
 
 /* ===== Story Sections ===== */
 .consult-section-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.3);
   margin-bottom: 2rem;
   font-weight: 500;
 }
@@ -130,14 +222,14 @@
 .consult-story-body {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.25rem;
   margin-bottom: 2rem;
 }
 
 .consult-story-body p {
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.75);
   font-weight: 300;
 }
 
@@ -152,46 +244,51 @@
   margin: 0 0 2rem 0;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.7rem;
 }
 
 .consult-services li {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.65);
-  padding-left: 1.2rem;
+  color: rgba(255, 255, 255, 0.6);
+  padding-left: 1.4rem;
   position: relative;
   font-weight: 300;
+  line-height: 1.5;
 }
 
 .consult-services li::before {
   content: '—';
   position: absolute;
   left: 0;
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .consult-honest-note {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.38);
   font-style: italic;
   margin-bottom: 2.5rem;
   font-weight: 300;
+  line-height: 1.6;
 }
 
 .consult-skip-link {
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.35);
-  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.8rem;
   font-family: inherit;
   cursor: pointer;
-  padding: 0;
+  padding: 0.5rem 0;
   letter-spacing: 0.05em;
   transition: color 0.2s;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .consult-skip-link:hover {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.6);
   background: none;
   border: none;
 }
@@ -200,8 +297,7 @@
 .story-cards {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  margin-top: 1.5rem;
+  margin-top: 1.75rem;
   border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
@@ -214,58 +310,61 @@
   background: none;
   border: none;
   border-radius: 0;
-  padding: 1.1rem 0;
+  padding: 1.15rem 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
   cursor: pointer;
   text-align: left;
   transition: opacity 0.15s;
+  min-height: 56px;
 }
 
 .story-card-header:hover {
-  opacity: 0.75;
+  opacity: 0.7;
   background: none;
   border: none;
 }
 
 .story-card-header:focus-visible {
-  outline: 1px solid rgba(255, 255, 255, 0.3);
+  outline: 1px solid rgba(255, 255, 255, 0.25);
   outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .story-card-left {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.25rem;
 }
 
 .story-card-name {
   font-size: 0.95rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.88);
   letter-spacing: 0.01em;
 }
 
 .story-card-tag {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.73rem;
+  color: rgba(255, 255, 255, 0.32);
   font-weight: 300;
 }
 
 .story-card-arrow {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.3);
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.25);
   flex-shrink: 0;
-  margin-top: 1px;
   font-weight: 300;
   line-height: 1;
-  transition: color 0.15s;
+  transition: color 0.15s, transform 0.2s;
+  width: 24px;
+  text-align: center;
 }
 
 .story-card.open .story-card-arrow {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .story-card-body {
@@ -273,51 +372,66 @@
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
-  animation: fadeSlideUp 0.25s ease-out;
+  animation: fadeSlideUp 0.22s ease-out;
 }
 
 .story-card-body p {
   font-size: 0.9rem;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.55);
   font-weight: 300;
 }
 
 .story-card-link {
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.32);
   text-decoration: underline;
   text-underline-offset: 3px;
   font-weight: 400;
   transition: color 0.15s;
   align-self: flex-start;
+  padding: 0.25rem 0;
 }
 
 .story-card-link:hover {
   color: rgba(255, 255, 255, 0.65);
 }
 
+/* ===== Animations ===== */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ===== Form Section ===== */
 .consult-form-section {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
 }
 
 .consult-form-title {
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-size: clamp(1.7rem, 5vw, 2.5rem);
   font-weight: 300;
-  margin-bottom: 0.6rem;
-  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
 }
 
 .consult-form-subtitle {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.38);
   margin-bottom: 2.5rem;
   font-weight: 300;
+  line-height: 1.5;
 }
 
 /* ===== Form Steps ===== */
@@ -331,18 +445,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  animation: fadeSlideUp 0.3s ease-out;
-}
-
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  animation: fadeSlideUp 0.28s ease-out;
 }
 
 .consult-label {
@@ -354,185 +457,190 @@
 
 .consult-sublabel {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.38);
   font-weight: 300;
-  margin-top: -0.5rem;
+  margin-top: -0.4rem;
 }
 
 .consult-textarea {
   width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
   color: #fff;
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 1rem; /* 16px — prevents iOS zoom */
   font-weight: 300;
-  line-height: 1.6;
-  padding: 1rem 1.2rem;
+  line-height: 1.65;
+  padding: 1rem 1.15rem;
   resize: vertical;
   min-height: 130px;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background 0.2s;
   outline: none;
+  -webkit-appearance: none;
 }
 
 .consult-textarea::placeholder {
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.22);
 }
 
 .consult-textarea:focus {
-  border-color: rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .consult-input {
   width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
   color: #fff;
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 1rem; /* 16px — prevents iOS zoom */
   font-weight: 300;
-  padding: 0.85rem 1.2rem;
-  transition: border-color 0.2s;
+  padding: 0.9rem 1.15rem;
+  transition: border-color 0.2s, background 0.2s;
   outline: none;
+  min-height: 48px;
+  -webkit-appearance: none;
 }
 
 .consult-input::placeholder {
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.22);
 }
 
 .consult-input:focus {
-  border-color: rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .consult-btn {
   align-self: flex-start;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
-  padding: 0.7rem 1.5rem;
+  padding: 0.8rem 1.6rem;
   font-size: 0.9rem;
   font-family: inherit;
   font-weight: 400;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s;
-  letter-spacing: 0.02em;
+  transition: background 0.2s, border-color 0.2s;
+  letter-spacing: 0.03em;
+  min-height: 44px;
 }
 
 .consult-btn:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.17);
-  border-color: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
 .consult-btn:disabled {
-  opacity: 0.35;
+  opacity: 0.3;
   cursor: not-allowed;
 }
 
 .consult-form-actions {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1.25rem;
 }
 
 .consult-back {
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.32);
   font-size: 0.85rem;
   font-family: inherit;
   cursor: pointer;
-  padding: 0;
+  padding: 0.5rem 0;
   transition: color 0.2s;
+  min-height: 44px;
 }
 
 .consult-back:hover {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.6);
   background: none;
   border: none;
 }
 
 .consult-error {
   font-size: 0.82rem;
-  color: rgba(255, 120, 120, 0.8);
+  color: rgba(255, 110, 110, 0.8);
   font-weight: 300;
 }
 
 .consult-step-indicator {
   display: flex;
   gap: 6px;
-  padding-top: 0.25rem;
+  padding-top: 0.5rem;
 }
 
 .dot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.18);
   transition: background 0.25s;
 }
 
 .dot.active {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.65);
 }
 
 /* ===== Done State ===== */
 .consult-done {
-  animation: fadeSlideUp 0.4s ease-out;
+  animation: fadeSlideUp 0.35s ease-out;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.8rem;
 }
 
 .consult-done-check {
-  font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .consult-done-title {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-weight: 300;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 .consult-done-body {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.65);
-  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
   font-weight: 300;
-  max-width: 440px;
+  max-width: 420px;
 }
 
 .consult-done-sub {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.83rem;
+  color: rgba(255, 255, 255, 0.3);
   font-weight: 300;
   margin-top: 0.25rem;
 }
 
 .consult-done-sub a {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.45);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 .consult-done-sub a:hover {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* ===== Footer ===== */
 .consult-footer {
-  padding: 3rem 2rem 1.5rem;
-  max-width: 680px;
+  padding: 3rem 2rem 2rem;
+  max-width: 660px;
   margin: 0 auto;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .consult-footer-links {
@@ -542,38 +650,87 @@
 }
 
 .consult-footer-link {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.27);
   text-decoration: none;
   font-weight: 400;
   letter-spacing: 0.04em;
   transition: color 0.2s;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .consult-footer-link:hover {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .consult-footer-copy {
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.18);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.15);
   font-weight: 300;
 }
 
 /* ===== Mobile ===== */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .consult-section {
-    padding: 4rem 1.5rem;
+    padding: 5rem 1.5rem 4rem;
+  }
+
+  .consult-form-section {
+    padding-bottom: 1.5rem;
+  }
+
+  .consult-footer {
+    padding: 2.5rem 1.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .consult-section {
+    padding: 4.5rem 1.25rem 3.5rem;
   }
 
   .consult-hero-actions {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 0;
+  }
+
+  .consult-receipts {
+    gap: 0.4rem;
+  }
+
+  .consult-receipts span {
+    font-size: 0.62rem;
+    padding: 0.25rem 0.6rem;
   }
 
   .consult-form-actions {
     flex-direction: column-reverse;
     align-items: flex-start;
+    gap: 0;
   }
+
+  .consult-footer {
+    padding: 2rem 1.25rem 1.25rem;
+  }
+
+  .consult-footer-links {
+    gap: 1rem;
+  }
+
+  /* Reduce orb size on small screens for perf */
+  .bg-orb-1 { filter: blur(60px); }
+  .bg-orb-2 { filter: blur(50px); }
+  .bg-orb-3 { filter: blur(45px); }
+}
+
+/* Respect motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .bg-orb { animation: none; }
+  .scroll-progress-fill { transition: none; }
+  .consult-step,
+  .story-card-body,
+  .consult-done { animation: none; }
 }

@@ -140,6 +140,35 @@ function getColors(scrollProgress) {
   }
 }
 
+function BgOrbs() {
+  return (
+    <div className="bg-orbs" aria-hidden="true">
+      <div className="bg-orb bg-orb-1" />
+      <div className="bg-orb bg-orb-2" />
+      <div className="bg-orb bg-orb-3" />
+    </div>
+  )
+}
+
+function ScrollProgress({ scrollRef }) {
+  const [pct, setPct] = useState(0)
+  useEffect(() => {
+    const el = scrollRef?.current
+    if (!el) return
+    const update = () => {
+      const max = el.scrollHeight - el.clientHeight
+      setPct(max > 0 ? Math.min(el.scrollTop / max, 1) : 0)
+    }
+    el.addEventListener('scroll', update, { passive: true })
+    return () => el.removeEventListener('scroll', update)
+  }, [scrollRef])
+  return (
+    <div className="scroll-progress-bar" aria-hidden="true">
+      <div className="scroll-progress-fill" style={{ transform: `scaleX(${pct})` }} />
+    </div>
+  )
+}
+
 function CalmGrainient({ scrollRef }) {
   const [colors, setColors] = useState(CALM_COLOR_STOPS[0])
 
@@ -322,7 +351,9 @@ export default function ConsultPage() {
         url="https://vedantsoni.com"
       />
       <div className="consult-scroll-container" ref={scrollRef}>
+        <ScrollProgress scrollRef={scrollRef} />
         <CalmGrainient scrollRef={scrollRef} />
+        <BgOrbs />
 
         {/* Hero */}
         <section className="consult-section consult-hero" id="hero-consult">
