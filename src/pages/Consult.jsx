@@ -360,9 +360,10 @@ export default function ConsultPage() {
           <div className="consult-section-inner">
             <p className="consult-eyebrow">vedant soni · age 20</p>
             <h1 className="consult-hero-title">
-              i build AI companies.<br />now i'm building yours.
+              hire an elon musk<br />for your company.
             </h1>
             <p className="consult-hero-tagline">
+              i build AI companies. now i'm building yours.<br />
               most teams spend months figuring out where AI fits.
               i'll have an answer — and something working — inside a week.
             </p>
