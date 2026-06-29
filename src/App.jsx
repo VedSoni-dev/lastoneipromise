@@ -7,6 +7,7 @@ import SEOHead from './components/SEOHead'
 import ProjectShowcase from './components/ProjectShowcase'
 import EmailCapture from './components/EmailCapture'
 import Resume from './pages/Resume'
+import ConsultPage from './pages/Consult'
 import './App.css'
 
 // --- Data ---
@@ -377,10 +378,11 @@ function App() {
   return (
     <BlackjackContext.Provider value={{ showBlackjack: () => setBlackjackVisible(true) }}>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<ConsultPage />} />
 
         {/* Sub-pages with static gradient */}
         <Route element={<SubPageLayout />}>
+          <Route path="/portfolio" element={<HomePage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/resume" element={<ResumePage />} />
           <Route path="*" element={<NotFoundPage />} />
