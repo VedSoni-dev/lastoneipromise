@@ -360,7 +360,7 @@ export default function ConsultPage() {
           <div className="consult-section-inner">
             <p className="consult-eyebrow">vedant soni · age 20</p>
             <h1 className="consult-hero-title">
-              hire an elon musk<br />for your company.
+              i will be the next musk.<br />or jensen. or whoever<br />your favorite entrepreneur is.
             </h1>
             <p className="consult-hero-tagline">
               i build AI companies. now i'm building yours.<br />
