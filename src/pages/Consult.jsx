@@ -1,7 +1,106 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback, useId } from 'react'
 import Grainient from '../components/Grainient'
 import SEOHead from '../components/SEOHead'
 import './Consult.css'
+
+const STORIES = [
+  {
+    key: 'fern',
+    name: 'fern',
+    tag: 'AI for kids who can\'t speak',
+    body: `fern started because i watched a nonverbal kid try to communicate using a clunky AAC device from 2009. i thought — there has to be a better way.
+
+so i built one. AI-powered communication tools designed specifically for children with disabilities. no VC pressure, no growth hacking. just something that needed to exist.
+
+it hit 10,000 users. the emails i get from parents are the reason i keep building. rebooted it from scratch in may 2026 — new architecture, same mission.`,
+    link: 'https://fern-chi.vercel.app/',
+  },
+  {
+    key: 'cognition',
+    name: 'cognition',
+    tag: 'YC-validated AI learning platform',
+    body: `cognition was an AI-native learning platform — think personalized tutoring that actually adapts to how you think, not just what you got wrong.
+
+within a week of launching we signed 8 clients, including a YC company. NVIDIA and Google DeepMind backed us. YC partners validated the approach.
+
+i was cofounder & CTO. i built the entire technical architecture — from the adaptive learning engine to the inference pipeline. we got a YC interview. we didn't get in. we're going back.`,
+    link: 'https://cognitionus.com',
+  },
+  {
+    key: 'eden',
+    name: 'eden robotics',
+    tag: 'humanoid robots with cognitive architectures',
+    body: `eden is a 15-person research team i founded and lead. we're building humanoid robots that don't just move — they reason.
+
+we train reinforcement learning policies in NVIDIA Isaac Sim and design cognitive architectures that let robots adapt to unstructured environments in real time.
+
+most robotics research optimizes for demos. we're optimizing for the real world.`,
+    link: 'https://eden-robotics.github.io/Eden/',
+  },
+  {
+    key: 'pillar',
+    name: 'pillar AI',
+    tag: 'AI automations for real estate',
+    body: `real estate is one of the most process-heavy industries alive — and almost none of those processes have been touched by AI yet.
+
+pillar AI changed that for 15+ clients. we automated lead follow-up, document processing, listing workflows, and client communication. agents that actually worked in production, not just in a pitch deck.
+
+i built it, sold it, and ran it. then moved on.`,
+    link: null,
+  },
+  {
+    key: 'tamu',
+    name: 'texas a&m — VP of IT',
+    tag: 'only student SWE, handpicked out of 70k',
+    body: `out of 70,000 students at texas a&m, i was the only one brought in as a software engineer directly by the VP of IT.
+
+i build systems the university actually runs on — not student projects, not sandbox environments. production infrastructure used by faculty, staff, and students every day.
+
+it taught me how to work inside large, complex orgs and actually ship. something most engineers never learn until way too late.`,
+    link: null,
+  },
+]
+
+function StoryCard({ story }) {
+  const [open, setOpen] = useState(false)
+  const id = useId()
+
+  return (
+    <div className={`story-card ${open ? 'open' : ''}`}>
+      <button
+        className="story-card-header"
+        onClick={() => setOpen(o => !o)}
+        aria-expanded={open}
+        aria-controls={id}
+      >
+        <div className="story-card-left">
+          <span className="story-card-name">{story.name}</span>
+          <span className="story-card-tag">{story.tag}</span>
+        </div>
+        <span className="story-card-arrow" aria-hidden="true">
+          {open ? '−' : '+'}
+        </span>
+      </button>
+      {open && (
+        <div className="story-card-body" id={id}>
+          {story.body.split('\n\n').map((para, i) => (
+            <p key={i}>{para}</p>
+          ))}
+          {story.link && (
+            <a
+              href={story.link}
+              className="story-card-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              see it →
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
 
 const CALM_COLOR_STOPS = [
   { color1: '#1B2A4A', color2: '#0F1A2E', color3: '#1E3050' }, // hero: deep navy
@@ -245,53 +344,47 @@ export default function ConsultPage() {
           </div>
         </section>
 
-        {/* Story 1 */}
+        {/* Story 1 — who i am */}
         <section className="consult-section" id="story1-consult">
           <div className="consult-section-inner">
             <p className="consult-section-label">who i am</p>
             <div className="consult-story-body">
               <p>
                 i've built 6 startups. led engineering teams. made real money doing it.
+                i'm also the only student software engineer at texas a&m —
+                handpicked by the VP of IT out of 70,000 students.
               </p>
               <p>
-                <strong>fern</strong> hit 10,000 users — AI tools for kids who can't communicate.
-                <strong> cognition</strong> got backed by nvidia and google deepmind, validated by YC partners.
-                <strong> pillar AI</strong> automated workflows for 15+ real estate clients.
-                <strong> recreach</strong> got backed by google for startups.
-              </p>
-              <p>
-                i'm also the only student software engineer at texas a&m — handpicked by the VP of IT
-                out of 70,000 students. i build production systems that the university actually runs on.
-              </p>
-              <p>
-                i know what it takes to ship real AI products, not demo-ware.
+                i know what it takes to ship real AI products. not demo-ware.
+                if you want the longer version, it's all below.
               </p>
             </div>
-            <button className="consult-skip-link" onClick={skipToForm}>
+            <div className="story-cards">
+              {STORIES.map(s => <StoryCard key={s.key} story={s} />)}
+            </div>
+            <button className="consult-skip-link" style={{ marginTop: '2rem' }} onClick={skipToForm}>
               skip to the form →
             </button>
           </div>
         </section>
 
-        {/* Story 2 */}
+        {/* Story 2 — why i do this */}
         <section className="consult-section" id="story2-consult">
           <div className="consult-section-inner">
             <p className="consult-section-label">why i do this</p>
             <div className="consult-story-body">
               <p>
-                AI fluency is the problem. and it's not just a startup problem.
+                AI fluency is the real problem. and it's not just a startup problem.
               </p>
               <p>
                 fortune 500s, regional businesses, hospitals, law firms — they all know they need AI.
                 none of them know what that actually means in practice.
                 they're getting sold dashboards when they need workflows.
-                they're paying for chatbots when they need agents.
+                paying for chatbots when they need agents.
               </p>
               <p>
-                i embed directly with teams — startup or legacy — figure out where AI creates real leverage,
-                and build it. hands-on. not a deck. not a strategy doc. actual working software.
-              </p>
-              <p>
+                i embed directly with your team, figure out where AI creates real leverage,
+                and build it with you. not a deck. not a strategy doc. actual working software.
                 and i'll teach you everything along the way so you're not dependent on me forever.
               </p>
             </div>
