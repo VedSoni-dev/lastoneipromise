@@ -102,7 +102,7 @@
 }
 
 .consult-section-inner {
-  max-width: 660px;
+  max-width: 860px;
   margin: 0 auto;
   width: 100%;
 }
@@ -123,9 +123,9 @@
 }
 
 .consult-hero-title {
-  font-size: clamp(2.6rem, 9vw, 5.5rem);
+  font-size: clamp(2rem, 4.5vw, 4rem);
   font-weight: 300;
-  line-height: 1.05;
+  line-height: 1.08;
   margin-bottom: 1.5rem;
   letter-spacing: -0.025em;
 }
@@ -635,7 +635,7 @@
 /* ===== Footer ===== */
 .consult-footer {
   padding: 3rem 2rem 2rem;
-  max-width: 660px;
+  max-width: 860px;
   margin: 0 auto;
   width: 100%;
   display: flex;
@@ -691,6 +691,14 @@
     padding: 4.5rem 1.25rem 3.5rem;
   }
 
+  .consult-hero-title {
+    font-size: clamp(1.75rem, 8.5vw, 2.4rem);
+  }
+
+  .consult-hero-tagline {
+    font-size: 0.9rem;
+  }
+
   .consult-hero-actions {
     flex-direction: column;
     align-items: flex-start;
@@ -702,8 +710,16 @@
   }
 
   .consult-receipts span {
-    font-size: 0.62rem;
-    padding: 0.25rem 0.6rem;
+    font-size: 0.6rem;
+    padding: 0.22rem 0.55rem;
+  }
+
+  .consult-story-body p {
+    font-size: 0.92rem;
+  }
+
+  .consult-form-title {
+    font-size: 1.5rem;
   }
 
   .consult-form-actions {
