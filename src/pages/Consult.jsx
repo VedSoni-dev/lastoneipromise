@@ -334,6 +334,12 @@ export default function ConsultPage() {
             <p className="consult-hero-tagline">
               i'll use my skills and your experience to build you an AI-native company.
             </p>
+            <div className="consult-receipts">
+              <span>6 startups built</span>
+              <span>10,000+ users</span>
+              <span>backed by nvidia & deepmind</span>
+              <span>$250K+ offers declined</span>
+            </div>
             <div className="consult-hero-actions">
               <button className="consult-cta-primary" onClick={skipToForm}>
                 work with me →
@@ -351,13 +357,18 @@ export default function ConsultPage() {
             <p className="consult-section-label">who i am</p>
             <div className="consult-story-body">
               <p>
-                i've built 6 startups. led engineering teams. made real money doing it.
-                i'm also the only student software engineer at texas a&m —
-                handpicked by the VP of IT out of 70,000 students.
+                i know how this looks. a 20-year-old calling himself a forward deployed AI engineer.
+                so i'm not going to ask you to take my word for it.
               </p>
               <p>
-                i know what it takes to ship real AI products. not demo-ware.
-                if you want the longer version, it's all below.
+                i've built 6 startups from scratch. led engineering teams. shipped products to real users.
+                made real money. i'm also the only student software engineer at texas a&m —
+                handpicked by the VP of IT out of 70,000 students to build systems the university actually runs on.
+              </p>
+              <p>
+                i'm not a consultant with a deck. i'm a builder who's been in the trenches —
+                debugging at 2am, closing clients, rebuilding from zero when it didn't work.
+                the receipts are below. click anything.
               </p>
             </div>
             <div className="story-cards">

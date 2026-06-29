@@ -82,6 +82,21 @@
   border-color: rgba(255, 255, 255, 0.4);
 }
 
+.consult-receipts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  margin-bottom: 2.25rem;
+}
+
+.consult-receipts span {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.32);
+  font-weight: 400;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
 .consult-cta-ghost {
   background: none;
   border: none;
