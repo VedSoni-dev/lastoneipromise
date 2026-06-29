@@ -216,8 +216,8 @@ export default function ConsultPage() {
   return (
     <>
       <SEOHead
-        title="AI Consulting & Coaching — Vedant Soni"
-        description="I help founders and teams build with AI that actually works. Strategy, architecture, hands-on builds. Let's talk."
+        title="AI Engineering & Coaching — Vedant Soni"
+        description="Forward deployed AI engineer. 6 startups, led teams, handpicked by Texas A&M's VP of IT. I embed with your team and make AI actually work."
         url="https://vedantsoni.com"
       />
       <div className="consult-scroll-container" ref={scrollRef}>
@@ -228,11 +228,11 @@ export default function ConsultPage() {
           <div className="consult-section-inner">
             <p className="consult-eyebrow">vedant soni</p>
             <h1 className="consult-hero-title">
-              ai consulting<br />& coaching.
+              forward deployed<br />AI engineer.
             </h1>
             <p className="consult-hero-tagline">
-              i help founders and teams cut through the noise
-              and build AI that actually does something.
+              i embed with your team, figure out exactly where AI fits,
+              and build it with you. startups and legacy businesses alike.
             </p>
             <div className="consult-hero-actions">
               <button className="consult-cta-primary" onClick={skipToForm}>
@@ -248,24 +248,23 @@ export default function ConsultPage() {
         {/* Story 1 */}
         <section className="consult-section" id="story1-consult">
           <div className="consult-section-inner">
-            <p className="consult-section-label">how i got here</p>
+            <p className="consult-section-label">who i am</p>
             <div className="consult-story-body">
               <p>
-                i didn't set out to be a consultant.
+                i've built 6 startups. led engineering teams. made real money doing it.
               </p>
               <p>
-                i was building <strong>fern</strong> — AI tools for kids who can't communicate. it hit 10,000 users.
-                then i cofounded <strong>cognition</strong>, got backed by nvidia and google deepmind,
-                and got validated by YC partners. before that, <strong>pillar AI</strong> was automating
-                real estate workflows for 15+ clients.
+                <strong>fern</strong> hit 10,000 users — AI tools for kids who can't communicate.
+                <strong> cognition</strong> got backed by nvidia and google deepmind, validated by YC partners.
+                <strong> pillar AI</strong> automated workflows for 15+ real estate clients.
+                <strong> recreach</strong> got backed by google for startups.
               </p>
               <p>
-                along the way, i kept seeing the same mistakes over and over:
-                teams over-engineering prompts. founders chasing AI features nobody asked for.
-                startups building wrappers around API calls and calling it a product.
+                i'm also the only student software engineer at texas a&m — handpicked by the VP of IT
+                out of 70,000 students. i build production systems that the university actually runs on.
               </p>
               <p>
-                i got tired of watching people waste 6 months on the wrong thing.
+                i know what it takes to ship real AI products, not demo-ware.
               </p>
             </div>
             <button className="consult-skip-link" onClick={skipToForm}>
@@ -277,27 +276,31 @@ export default function ConsultPage() {
         {/* Story 2 */}
         <section className="consult-section" id="story2-consult">
           <div className="consult-section-inner">
-            <p className="consult-section-label">what i actually do</p>
+            <p className="consult-section-label">why i do this</p>
             <div className="consult-story-body">
               <p>
-                i get on a call. i listen. i tell you what i'd do if it were my company — bluntly.
+                AI fluency is the problem. and it's not just a startup problem.
               </p>
               <p>
-                it doesn't matter if you're pre-product trying to figure out where AI fits,
-                or post-launch wondering why your agent keeps hallucinating.
-                i've been in both places.
+                fortune 500s, regional businesses, hospitals, law firms — they all know they need AI.
+                none of them know what that actually means in practice.
+                they're getting sold dashboards when they need workflows.
+                they're paying for chatbots when they need agents.
+              </p>
+              <p>
+                i embed directly with teams — startup or legacy — figure out where AI creates real leverage,
+                and build it. hands-on. not a deck. not a strategy doc. actual working software.
+              </p>
+              <p>
+                and i'll teach you everything along the way so you're not dependent on me forever.
               </p>
             </div>
             <ul className="consult-services">
-              <li>AI strategy & roadmap</li>
-              <li>architecture & stack decisions</li>
-              <li>hands-on builds & prototyping</li>
-              <li>ongoing coaching & accountability</li>
+              <li>AI fluency coaching for teams & leaders</li>
+              <li>forward deployed engineering (i build with you)</li>
+              <li>workflow automation & agent development</li>
+              <li>architecture reviews & stack decisions</li>
             </ul>
-            <p className="consult-honest-note">
-              if you're building an AI wrapper with no moat, i'll tell you.
-              that's the job.
-            </p>
             <button className="consult-skip-link" onClick={skipToForm}>
               let's talk →
             </button>
@@ -310,7 +313,7 @@ export default function ConsultPage() {
             <p className="consult-section-label">let's work together</p>
             <h2 className="consult-form-title">tell me what you're dealing with.</h2>
             <p className="consult-form-subtitle">
-              i read every request personally.
+              startup or 100-year-old company — doesn't matter. i read every request personally.
             </p>
             <ConsultForm />
           </div>
