@@ -1,0 +1,10 @@
+{
+  "date": "2026-07-01",
+  "framework": "Vite 5 with React 18 and React Router",
+  "fontStack": ["Instrument Serif", "Space Grotesk", "Playfair Display", "JetBrains Mono"],
+  "palette": "dark navy gradients with white type",
+  "motion": "GSAP and Motion installed",
+  "spacing": "mixed rem values, no prior token system",
+  "preserved": ["Instrument Serif", "Space Grotesk", "React route ownership"],
+  "introduced": ["shared tokens", "editorial macrostructures", "content-first article routes"]
+}

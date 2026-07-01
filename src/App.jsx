@@ -8,6 +8,7 @@ import ProjectShowcase from './components/ProjectShowcase'
 import EmailCapture from './components/EmailCapture'
 import Resume from './pages/Resume'
 import ConsultPage from './pages/Consult'
+import { ArticlesIndex, ArticlePage } from './pages/Articles'
 import './App.css'
 
 // --- Data ---
@@ -379,11 +380,12 @@ function App() {
     <BlackjackContext.Provider value={{ showBlackjack: () => setBlackjackVisible(true) }}>
       <Routes>
         <Route path="/" element={<ConsultPage />} />
+        <Route path="/blog" element={<ArticlesIndex />} />
+        <Route path="/articles/:slug" element={<ArticlePage />} />
 
         {/* Sub-pages with static gradient */}
         <Route element={<SubPageLayout />}>
           <Route path="/portfolio" element={<HomePage />} />
-          <Route path="/blog" element={<BlogPage />} />
           <Route path="/resume" element={<ResumePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
