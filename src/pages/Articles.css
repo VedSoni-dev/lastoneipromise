@@ -27,22 +27,10 @@
   letter-spacing: -0.03em;
 }
 
-.article-site-nav {
-  display: flex;
-  align-items: center;
-  gap: 1.75rem;
-}
-
-.article-site-nav a,
 .article-back {
   font-size: var(--text-base);
   font-weight: 400;
   color: var(--color-ink);
-  text-decoration: none;
-}
-
-.article-site-nav a.active,
-.article-back {
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, createContext, useContext } from 'react'
-import { Routes, Route, Outlet, Link } from 'react-router-dom'
+import { Routes, Route, Outlet, Link, Navigate } from 'react-router-dom'
 import ScrollGrainient from './components/ScrollGrainient'
 import Grainient from './components/Grainient'
 import Blackjack from './components/Blackjack'
@@ -380,12 +380,12 @@ function App() {
     <BlackjackContext.Provider value={{ showBlackjack: () => setBlackjackVisible(true) }}>
       <Routes>
         <Route path="/" element={<ConsultPage />} />
+        <Route path="/portfolio" element={<Navigate to="/" replace />} />
         <Route path="/blog" element={<ArticlesIndex />} />
         <Route path="/articles/:slug" element={<ArticlePage />} />
 
         {/* Sub-pages with static gradient */}
         <Route element={<SubPageLayout />}>
-          <Route path="/portfolio" element={<HomePage />} />
           <Route path="/resume" element={<ResumePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

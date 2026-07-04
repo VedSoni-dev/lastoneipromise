@@ -42,6 +42,10 @@ function makeDocument(route) {
   html = setMeta(html, 'name="twitter:url"', canonical)
   html = setMeta(html, 'name="twitter:title"', page.title)
   html = setMeta(html, 'name="twitter:description"', page.description)
+  if (page.image) {
+    html = setMeta(html, 'property="og:image"', page.image)
+    html = setMeta(html, 'name="twitter:image"', page.image)
+  }
   html = html.replace(/<link rel="canonical" href="[^"]*"\s*\/>/i, `<link rel="canonical" href="${canonical}" />`)
 
   const schema = JSON.stringify(page.schema).replaceAll('<', '\\u003c')

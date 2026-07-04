@@ -1,0 +1,23 @@
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.site-nav a {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: #000;
+  text-decoration: none;
+}
+
+.site-nav a:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .site-nav a:hover {
+    opacity: 0.55;
+  }
+}

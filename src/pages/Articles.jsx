@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
-import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
+import SiteNav from '../components/SiteNav'
 import './Articles.css'
 
 export const ARTICLES = [
@@ -244,16 +245,10 @@ export const ARTICLES = [
 ]
 
 function SiteHeader() {
-  const { pathname } = useLocation()
-
   return (
     <header className="article-site-header">
       <Link to="/" className="article-site-name">Vedant Soni</Link>
-      <nav className="article-site-nav" aria-label="Primary navigation">
-        <Link to="/" className={pathname === '/' ? 'active' : undefined}>Home</Link>
-        <a href="https://github.com/VedSoni-dev" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/vedantsonimech" target="_blank" rel="noreferrer">LinkedIn</a>
-      </nav>
+      <SiteNav />
     </header>
   )
 }

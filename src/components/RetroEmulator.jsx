@@ -163,7 +163,7 @@ export default function RetroEmulator() {
       ctx.fillStyle = PALETTE.head
       ctx.font = '600 11px "Press Start 2P", monospace'
       ctx.textAlign = 'center'
-      ctx.fillText('SNAKE', w / 2, h / 2 - 14)
+      ctx.fillText('WICK.OS', w / 2, h / 2 - 14)
       ctx.font = '400 8px "Press Start 2P", monospace'
       ctx.fillText('SPACE TO PLAY', w / 2, h / 2 + 10)
     }
@@ -198,11 +198,11 @@ export default function RetroEmulator() {
   }
 
   return (
-    <div className="retro-emulator" aria-label="Snake game emulator">
+    <div className="retro-emulator" aria-label="Wick OS game emulator">
       <div className="retro-shell">
         <div className="retro-bezel">
           <div className="retro-screen-header">
-            <span className="retro-label">SNAKE.EXE</span>
+            <span className="retro-label">WICK.OS</span>
             <span className="retro-score">SCORE {String(score).padStart(3, '0')}</span>
           </div>
           <canvas

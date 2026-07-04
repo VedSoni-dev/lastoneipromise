@@ -24,9 +24,10 @@ export function getPageData(url) {
   if (url === '/') {
     return {
       title: 'Vedant Soni',
-      description: 'Vedant Soni is building Wick, an AI that turns legacy companies AI native and self-driving. Previously built Fern. Researches robotics at Texas A&M.',
+      description: 'Vedant Soni is building Wick, an AI that maps how companies run and rebuilds workflows so AI can operate them end to end. Previously built Fern.',
       keywords: 'Vedant Soni, Wick, AI, robotics, Texas A&M',
       type: 'profile',
+      image: 'https://vedantsoni.com/og.svg',
       schema: [
         {
           '@context': 'https://schema.org',
@@ -37,7 +38,7 @@ export function getPageData(url) {
             name: 'Vedant Soni',
             url: 'https://vedantsoni.com',
             email: 'mailto:ved.soni@tamu.edu',
-            jobTitle: 'AI Builder and Researcher',
+            jobTitle: 'Founder, Wick',
             alumniOf: {
               '@type': 'CollegeOrUniversity',
               name: 'Texas A&M University',
@@ -47,7 +48,7 @@ export function getPageData(url) {
               'https://x.com/VedantRobot',
               'https://github.com/VedSoni-dev',
             ],
-            knowsAbout: ['Artificial intelligence', 'Machine learning', 'Robotics', 'AI education'],
+            knowsAbout: ['Artificial intelligence', 'Enterprise software', 'Robotics', 'Workflow automation'],
           },
         },
       ],

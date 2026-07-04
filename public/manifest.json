@@ -1,15 +1,15 @@
 {
-  "name": "Vedant Soni - Portfolio",
+  "name": "Vedant Soni",
   "short_name": "Vedant Soni",
-  "description": "Portfolio of Vedant Soni - AI developer, entrepreneur, and researcher",
+  "description": "Vedant Soni is building Wick, an AI for legacy companies.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "theme_color": "#ffffff",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/ace-spades.svg",
+      "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
@@ -19,5 +19,3 @@
   "lang": "en-US",
   "dir": "ltr"
 }
-
-
