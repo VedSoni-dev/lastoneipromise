@@ -23,10 +23,10 @@
 }
 
 .aura-name {
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 700;
   color: #000;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.03em;
 }
 
 .aura-nav {

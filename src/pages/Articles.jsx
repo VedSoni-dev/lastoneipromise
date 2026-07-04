@@ -245,14 +245,13 @@ export const ARTICLES = [
 
 function SiteHeader() {
   const { pathname } = useLocation()
-  const onBlog = pathname.startsWith('/blog') || pathname.startsWith('/articles')
 
   return (
     <header className="article-site-header">
       <Link to="/" className="article-site-name">Vedant Soni</Link>
       <nav className="article-site-nav" aria-label="Primary navigation">
         <Link to="/" className={pathname === '/' ? 'active' : undefined}>Home</Link>
-        <Link to="/blog" className={onBlog ? 'active' : undefined}>Blog</Link>
+        <a href="https://github.com/VedSoni-dev" target="_blank" rel="noreferrer">GitHub</a>
         <a href="https://www.linkedin.com/in/vedantsonimech" target="_blank" rel="noreferrer">LinkedIn</a>
       </nav>
     </header>

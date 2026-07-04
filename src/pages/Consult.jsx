@@ -1,23 +1,21 @@
 import { Link, useLocation } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
-import AbstractGraphic from '../components/AbstractGraphic'
+import RetroEmulator from '../components/RetroEmulator'
 import './Consult.css'
 
 const FOOTER_LINKS = [
   { label: 'fern', href: 'https://fern-chi.vercel.app/' },
   { label: 'eden-robotics', href: 'https://eden-robotics.github.io/Eden/' },
   { label: 'cognition', href: 'https://cognitionus.com' },
-  { label: 'recreach', href: 'https://recreach.com' },
 ]
 
 function AuraNav() {
   const { pathname } = useLocation()
-  const onBlog = pathname.startsWith('/blog') || pathname.startsWith('/articles')
 
   return (
     <nav className="aura-nav" aria-label="Primary navigation">
       <Link to="/" className={pathname === '/' ? 'active' : undefined}>Home</Link>
-      <Link to="/blog" className={onBlog ? 'active' : undefined}>Blog</Link>
+      <a href="https://github.com/VedSoni-dev" target="_blank" rel="noreferrer">GitHub</a>
       <a href="https://www.linkedin.com/in/vedantsonimech" target="_blank" rel="noreferrer">LinkedIn</a>
     </nav>
   )
@@ -44,7 +42,7 @@ export default function ConsultPage() {
             <p>
               I'm 20, building{' '}
               <a href="https://fern-chi.vercel.app/" target="_blank" rel="noreferrer">Fern</a>
-              {' '}— AI tools for children with disabilities, 10,000+ users — and researching
+              , AI tools for children with disabilities with 10,000+ users, and researching
               humanoid robots at{' '}
               <a href="https://www.tamu.edu/" target="_blank" rel="noreferrer">Texas A&amp;M</a>
               , backed by{' '}
@@ -67,7 +65,7 @@ export default function ConsultPage() {
             </footer>
           </div>
 
-          <AbstractGraphic />
+          <RetroEmulator />
         </div>
       </main>
     </div>
