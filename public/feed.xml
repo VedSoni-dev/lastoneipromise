@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>AI Guides for Normal People by Vedant Soni</title>
+    <link>https://vedantsoni.com/blog</link>
+    <description>Plain-English guides about what AI is, how to use it, and where it actually helps.</description>
+    <language>en-us</language>
+    <item>
+      <title>How to teach your parents to use AI without making it weird</title>
+      <link>https://vedantsoni.com/articles/teach-your-parents-ai</link>
+      <guid isPermaLink="true">https://vedantsoni.com/articles/teach-your-parents-ai</guid>
+      <description>Skip the lecture about models. Start with one annoying task and let the usefulness speak for itself.</description>
+      <pubDate>Wed, 01 Jul 2026 12:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

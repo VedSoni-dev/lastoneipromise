@@ -4,7 +4,7 @@ function SEOHead({
   title = "Vedant Soni - Portfolio | AI Developer & Entrepreneur",
   description = "Portfolio of Vedant Soni - AI developer, entrepreneur, and researcher. Building the future with AI-powered projects including Cognition, TalkR, Hive, and robotics. 35k+ users, backed by NVIDIA & Google DeepMind.",
   keywords = "Vedant Soni, portfolio, developer, AI developer, machine learning, entrepreneur, Texas A&M, computer science, React developer, full stack developer, AI researcher, robotics, TalkR, Hive, Cognition, Recreach, reinforcement learning",
-  image = "https://vedantsoni.com/og-image.jpg",
+  image = null,
   url = "https://vedantsoni.com",
   type = "website"
 }) {
@@ -24,6 +24,11 @@ function SEOHead({
       meta.setAttribute('content', content)
     }
 
+    const removeMetaTag = (name, isProperty = false) => {
+      const attribute = isProperty ? 'property' : 'name'
+      document.querySelector(`meta[${attribute}="${name}"]`)?.remove()
+    }
+
     // Primary meta tags
     updateMetaTag('description', description)
     updateMetaTag('keywords', keywords)
@@ -38,20 +43,32 @@ function SEOHead({
     updateMetaTag('og:url', url, true)
     updateMetaTag('og:title', title, true)
     updateMetaTag('og:description', description, true)
-    updateMetaTag('og:image', image, true)
-    updateMetaTag('og:image:width', '1200', true)
-    updateMetaTag('og:image:height', '630', true)
-    updateMetaTag('og:image:alt', title, true)
+    if (image) {
+      updateMetaTag('og:image', image, true)
+      updateMetaTag('og:image:width', '1200', true)
+      updateMetaTag('og:image:height', '630', true)
+      updateMetaTag('og:image:alt', title, true)
+    } else {
+      removeMetaTag('og:image', true)
+      removeMetaTag('og:image:width', true)
+      removeMetaTag('og:image:height', true)
+      removeMetaTag('og:image:alt', true)
+    }
     updateMetaTag('og:site_name', 'Vedant Soni Portfolio', true)
     updateMetaTag('og:locale', 'en_US', true)
 
     // Twitter Card tags
-    updateMetaTag('twitter:card', 'summary_large_image')
+    updateMetaTag('twitter:card', image ? 'summary_large_image' : 'summary')
     updateMetaTag('twitter:url', url)
     updateMetaTag('twitter:title', title)
     updateMetaTag('twitter:description', description)
-    updateMetaTag('twitter:image', image)
-    updateMetaTag('twitter:image:alt', title)
+    if (image) {
+      updateMetaTag('twitter:image', image)
+      updateMetaTag('twitter:image:alt', title)
+    } else {
+      removeMetaTag('twitter:image')
+      removeMetaTag('twitter:image:alt')
+    }
     updateMetaTag('twitter:creator', '@VedantRobot')
     updateMetaTag('twitter:site', '@VedantRobot')
 

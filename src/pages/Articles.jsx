@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
 import './Articles.css'
 
@@ -48,6 +48,10 @@ export const ARTICLES = [
           'You do not need to understand neural networks to use AI well. You need to know what outcome you want, give useful context, and check important work. That is most of the game.',
         ],
       },
+    ],
+    sources: [
+      ['NIST AI research', 'https://www.nist.gov/ai-research'],
+      ['NIST AI terminology and trustworthy AI resources', 'https://www.nist.gov/artificial-intelligence'],
     ],
     faqs: [
       ['Is AI the same thing as ChatGPT?', 'No. AI is the whole field. ChatGPT is one product built with a type of AI called a large language model.'],
@@ -99,6 +103,10 @@ export const ARTICLES = [
         ],
       },
     ],
+    sources: [
+      ['OpenAI prompt engineering best practices', 'https://help.openai.com/en/articles/10032626-prompt-ingineering-best-practices-for-chatgpt'],
+      ['OpenAI guide to writing a good prompt', 'https://help.openai.com/en/articles/4936848-how-do-i-create-a-good-prompt-for-an-ai-model-like-gpt4'],
+    ],
     faqs: [
       ['Do I need to learn prompt engineering?', 'No. Clear context, a clear goal, and a quick review will cover most everyday uses.'],
       ['Can I ask follow-up questions?', 'Yes. Follow-ups are one of the most useful parts. Tell it what worked, what did not, and what you want changed.'],
@@ -147,25 +155,128 @@ export const ARTICLES = [
         ],
       },
     ],
+    sources: [
+      ['NIST AI research and risk resources', 'https://www.nist.gov/ai-research'],
+      ['FTC action on deceptive AI claims', 'https://www.ftc.gov/news-events/news/press-releases/2024/09/ftc-announces-crackdown-deceptive-ai-claims-schemes'],
+    ],
     faqs: [
       ['Can AI search the internet for me?', 'Some AI tools can browse the web. Check the linked sources because a summary can still misread or omit important context.'],
       ['Should I use AI for medical or legal questions?', 'Use it to learn vocabulary and prepare questions, not to replace a qualified professional who understands your situation.'],
       ['How do I check an AI answer?', 'Look for primary sources, confirm important facts in more than one reliable place, and ask a knowledgeable person when the stakes are high.'],
     ],
   },
+  {
+    slug: 'teach-your-parents-ai',
+    title: 'How to teach your parents to use AI without making it weird',
+    description: 'Skip the lecture about models. Start with one annoying task and let the usefulness speak for itself.',
+    category: 'Family guide',
+    readingTime: '8 min read',
+    updated: 'July 2026',
+    dek: 'The goal is not to turn your parents into AI people. It is to help them solve one real problem without feeling behind or talked down to.',
+    sections: [
+      {
+        heading: 'Do not begin by explaining artificial intelligence',
+        paragraphs: [
+          'If someone asks you how to use a microwave, you do not begin with electromagnetic radiation. AI should be the same. Start with the thing they want to do, not the machinery underneath it.',
+          'Ask a plain question: “What is one annoying thing you had to do this week?” Maybe it was writing a careful email, comparing two confusing documents, planning meals, or understanding a letter full of jargon. Pick one small task where a wrong answer is easy to notice and fix.',
+        ],
+      },
+      {
+        heading: 'Use their problem on their device',
+        paragraphs: [
+          'A canned demonstration feels like a commercial. Their own problem feels useful. Sit next to them, open the tool on the phone or computer they already use, and let them describe the situation in their own words.',
+          'Do not grab the keyboard and perform. If you type everything, they learn that you are good at AI. If they type it, they learn that they can use AI.',
+        ],
+      },
+      {
+        heading: 'Give them one sentence to remember',
+        paragraphs: [
+          'Most beginners do not need a prompt framework. They need permission to explain themselves normally. The sentence I would put on a sticky note is: “Tell it what is happening, what you need, and what a good answer looks like.”',
+        ],
+        example: 'My neighbor invited us to dinner, but we cannot make it. Write a warm text saying thank you and asking if next Saturday works. Keep it under four sentences.',
+      },
+      {
+        heading: 'Show the follow-up before the fancy stuff',
+        paragraphs: [
+          'The first answer is rarely the lesson. The useful moment is when you say, “That sounds too formal. Make it sound more like me.” Suddenly the tool stops feeling like a search box and starts feeling like a conversation.',
+          'Teach three follow-ups: make it shorter, explain that more simply, and give me three options. Those cover an astonishing amount of everyday use.',
+        ],
+      },
+      {
+        heading: 'Pick safe first wins',
+        paragraphs: [
+          'Early wins should be helpful without asking for blind trust. Avoid starting with medical diagnoses, investments, legal decisions, or anything involving sensitive personal information.',
+        ],
+        list: [
+          'Rewrite a text or email without changing the meaning',
+          'Explain unfamiliar language in a bill or letter',
+          'Turn a messy list into a simple plan',
+          'Suggest questions to ask at an appointment',
+          'Compare two options using criteria they choose',
+        ],
+      },
+      {
+        heading: 'Teach doubt at the same time as possibility',
+        paragraphs: [
+          'The worst lesson is “AI knows everything.” A better lesson is “AI is useful and needs checking.” Show one answer that is helpful, then ask the chatbot what it might be uncertain about. Verify an important detail together.',
+          'This is not meant to make people afraid of the tool. It gives them a simple mental model: use AI for help, not permission.',
+        ],
+      },
+      {
+        heading: 'Leave them with a tiny routine',
+        paragraphs: [
+          'One useful habit beats a folder full of prompt templates. Help them save one conversation, bookmark the tool, and use it again for the same kind of task later that week.',
+          'When they come back with a better question on their own, the teaching worked. They do not need to understand every feature. They just need one honest reason to open it again.',
+        ],
+      },
+    ],
+    sources: [
+      ['OpenAI guide to writing a good prompt', 'https://help.openai.com/en/articles/4936848-how-do-i-create-a-good-prompt-for-an-ai-model-like-gpt4'],
+      ['NIST resources for trustworthy AI', 'https://www.nist.gov/ai-research'],
+    ],
+    faqs: [
+      ['What is the easiest AI task to teach first?', 'Start with rewriting a message or explaining confusing text. The result is easy to review, and the value is obvious.'],
+      ['Should I teach prompt engineering?', 'Not at first. Teach context, a clear goal, and follow-up questions. Formal prompting techniques can wait until there is a real need.'],
+      ['What should parents never paste into an AI chatbot?', 'Avoid passwords, financial account numbers, private medical records, confidential work files, and anything they would not want stored or reviewed.'],
+      ['How do I stop the lesson from feeling patronizing?', 'Use their real problem, let them control the device, and learn alongside them. Treat the session as trying a tool together, not fixing a knowledge gap.'],
+    ],
+  },
 ]
 
 function SiteHeader() {
+  const { pathname } = useLocation()
+  const onBlog = pathname.startsWith('/blog') || pathname.startsWith('/articles')
+
   return (
     <header className="article-site-header">
       <Link to="/" className="article-site-name">Vedant Soni</Link>
-      <Link to="/blog" className="article-site-index">All guides</Link>
+      <nav className="article-site-nav" aria-label="Primary navigation">
+        <Link to="/" className={pathname === '/' ? 'active' : undefined}>Home</Link>
+        <Link to="/blog" className={onBlog ? 'active' : undefined}>Blog</Link>
+        <a href="https://www.linkedin.com/in/vedantsonimech" target="_blank" rel="noreferrer">LinkedIn</a>
+      </nav>
     </header>
   )
 }
 
 function ArticleStructuredData({ article }) {
   useEffect(() => {
+    const expectedUrl = `https://vedantsoni.com/articles/${article.slug}`
+    const generated = document.getElementById('page-structured-data')
+    if (generated) {
+      try {
+        const values = JSON.parse(generated.textContent)
+        const hasCurrentArticle = values.some((value) => value.mainEntityOfPage === expectedUrl)
+        if (hasCurrentArticle) return undefined
+        generated.remove()
+      } catch {
+        generated.remove()
+      }
+    }
+
+    const existing = document.getElementById('article-structured-data')
+    if (existing) existing.remove()
+
     const script = document.createElement('script')
     script.id = 'article-structured-data'
     script.type = 'application/ld+json'
@@ -187,6 +298,7 @@ function ArticleStructuredData({ article }) {
           '@type': 'Person',
           name: 'Vedant Soni',
         },
+        citation: article.sources.map(([, url]) => url),
       },
       {
         '@context': 'https://schema.org',
@@ -300,6 +412,15 @@ export function ArticlePage() {
                 </div>
               ))}
             </section>
+
+            <section className="article-sources" aria-labelledby="sources-title">
+              <h2 id="sources-title">Sources and further reading</h2>
+              <ul>
+                {article.sources.map(([label, url]) => (
+                  <li key={url}><a href={url} target="_blank" rel="noreferrer">{label}</a></li>
+                ))}
+              </ul>
+            </section>
           </div>
 
           <aside className="article-author">
@@ -311,6 +432,15 @@ export function ArticlePage() {
             </p>
             <Link to="/">More about me</Link>
           </aside>
+
+          <nav className="article-related" aria-labelledby="related-title">
+            <h2 id="related-title">Keep going</h2>
+            <div>
+              {ARTICLES.filter((item) => item.slug !== article.slug).slice(0, 3).map((item) => (
+                <Link key={item.slug} to={`/articles/${item.slug}`}>{item.title}</Link>
+              ))}
+            </div>
+          </nav>
         </article>
       </main>
       <footer className="article-footer">
