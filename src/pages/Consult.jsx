@@ -3,10 +3,11 @@ import SEOHead from '../components/SEOHead'
 import RetroEmulator from '../components/RetroEmulator'
 import './Consult.css'
 
-const FOOTER_LINKS = [
-  { label: 'fern', href: 'https://fern-chi.vercel.app/' },
+const FOOTER_ITEMS = [
+  { label: 'fern', href: 'https://trytalkr.com' },
   { label: 'eden-robotics', href: 'https://eden-robotics.github.io/Eden/' },
   { label: 'cognition', href: 'https://cognitionus.com' },
+  { label: 'recreach' },
 ]
 
 function AuraNav() {
@@ -26,8 +27,8 @@ export default function ConsultPage() {
     <div className="aura-page">
       <SEOHead
         title="Vedant Soni"
-        description="Vedant Soni builds AI products and researches robotics at Texas A&M."
-        keywords="Vedant Soni, AI, robotics, Fern, Texas A&M"
+        description="Vedant Soni is building Wick, an AI that turns legacy companies AI native and self-driving. Previously built Fern. Researches robotics at Texas A&M."
+        keywords="Vedant Soni, Wick, AI, robotics, Texas A&M"
         url="https://vedantsoni.com"
       />
 
@@ -40,9 +41,10 @@ export default function ConsultPage() {
         <div className="aura-grid">
           <div className="aura-copy">
             <p>
-              I'm 20, building{' '}
-              <a href="https://fern-chi.vercel.app/" target="_blank" rel="noreferrer">Fern</a>
-              , AI tools for children with disabilities with 10,000+ users, and researching
+              I'm 20, building Wick, an AI that turns legacy companies AI native and self-driving.
+              I previously built{' '}
+              <a href="https://trytalkr.com" target="_blank" rel="noreferrer">Fern</a>
+              , AI tools for children with disabilities that reached 10,000+ users, and I'm researching
               humanoid robots at{' '}
               <a href="https://www.tamu.edu/" target="_blank" rel="noreferrer">Texas A&amp;M</a>
               , backed by{' '}
@@ -51,15 +53,19 @@ export default function ConsultPage() {
               <a href="https://deepmind.google/" target="_blank" rel="noreferrer">Google DeepMind</a>.
             </p>
             <p>
-              I've always believed AI should be useful to normal people, not just researchers.
-              That's what I build.
+              I've always believed legacy companies should become AI native, not just talk about it.
+              That's what Wick is for.
             </p>
 
             <footer className="aura-footer">
-              {FOOTER_LINKS.map((link, i) => (
-                <span key={link.label} className="aura-footer-item">
+              {FOOTER_ITEMS.map((item, i) => (
+                <span key={item.label} className="aura-footer-item">
                   {i > 0 && <span className="aura-sep" aria-hidden="true">|</span>}
-                  <a href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
+                  {item.href ? (
+                    <a href={item.href} target="_blank" rel="noreferrer">{item.label}</a>
+                  ) : (
+                    <span className="aura-footer-label">{item.label}</span>
+                  )}
                 </span>
               ))}
             </footer>

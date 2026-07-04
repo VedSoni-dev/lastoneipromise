@@ -23,9 +23,9 @@ export function render(url) {
 export function getPageData(url) {
   if (url === '/') {
     return {
-      title: 'Vedant Soni | I build AI and explain it simply',
-      description: 'Vedant Soni builds AI products, researches robotics, and writes plain-English guides to help normal people understand and use AI.',
-      keywords: 'Vedant Soni, AI explained simply, how to use AI, what is AI, AI guides for beginners, AI researcher, robotics, Fern',
+      title: 'Vedant Soni',
+      description: 'Vedant Soni is building Wick, an AI that turns legacy companies AI native and self-driving. Previously built Fern. Researches robotics at Texas A&M.',
+      keywords: 'Vedant Soni, Wick, AI, robotics, Texas A&M',
       type: 'profile',
       schema: [
         {

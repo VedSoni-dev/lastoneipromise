@@ -101,6 +101,10 @@
   text-underline-offset: 0.15em;
 }
 
+.aura-footer-label {
+  color: #000;
+}
+
 .aura-sep {
   margin: 0 0.6rem;
   color: #000;
