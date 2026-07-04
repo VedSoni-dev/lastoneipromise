@@ -92,8 +92,7 @@
   color: #666;
 }
 
-.aura-footer a,
-.aura-footer-resume {
+.aura-footer a {
   color: #666;
   text-decoration: underline;
   text-underline-offset: 0.15em;

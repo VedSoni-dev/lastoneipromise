@@ -53,8 +53,6 @@ export default function ConsultPage() {
                   )}
                 </span>
               ))}
-              <span className="aura-sep" aria-hidden="true">|</span>
-              <Link to="/resume" className="aura-footer-resume">resume</Link>
             </footer>
           </div>
 

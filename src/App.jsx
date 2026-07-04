@@ -6,7 +6,6 @@ import Blackjack from './components/Blackjack'
 import SEOHead from './components/SEOHead'
 import ProjectShowcase from './components/ProjectShowcase'
 import EmailCapture from './components/EmailCapture'
-import Resume from './pages/Resume'
 import ConsultPage from './pages/Consult'
 import { ArticlesIndex, ArticlePage } from './pages/Articles'
 import './App.css'
@@ -302,7 +301,6 @@ function HomePage() {
           </div>
 
           <div className="home-nav-links">
-            <Link to="/resume" className="nav-link">resume</Link>
             <button className="nav-link" onClick={showBlackjack}>blackjack</button>
           </div>
 
@@ -341,20 +339,6 @@ function BlogPage() {
   )
 }
 
-// --- Resume Page ---
-function ResumePage() {
-  return (
-    <>
-      <SEOHead
-        title="Resume - Vedant Soni | AI Developer & Entrepreneur"
-        description="Resume of Vedant Soni - Co-Founder at Cognition, AI researcher, and entrepreneur."
-        url="https://vedantsoni.com/resume"
-      />
-      <Resume />
-    </>
-  )
-}
-
 // --- 404 Page ---
 function NotFoundPage() {
   return (
@@ -386,7 +370,6 @@ function App() {
 
         {/* Sub-pages with static gradient */}
         <Route element={<SubPageLayout />}>
-          <Route path="/resume" element={<ResumePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
