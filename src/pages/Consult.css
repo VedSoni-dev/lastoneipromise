@@ -19,7 +19,7 @@
   justify-content: space-between;
   width: min(100%, 72rem);
   margin-inline: auto;
-  padding: 2.5rem clamp(1.5rem, 5vw, 3.5rem) 0;
+  padding: 1.75rem clamp(1.5rem, 5vw, 3.5rem) 0;
 }
 
 .aura-name {
