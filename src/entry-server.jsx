@@ -2,15 +2,8 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import App from './App.jsx'
-import { ARTICLES } from './pages/Articles.jsx'
 
-export { ARTICLES }
-
-export const PUBLIC_ROUTES = [
-  '/',
-  '/blog',
-  ...ARTICLES.map((article) => `/articles/${article.slug}`),
-]
+export const PUBLIC_ROUTES = ['/']
 
 export function render(url) {
   return renderToString(
@@ -20,14 +13,16 @@ export function render(url) {
   )
 }
 
+const OG_IMAGE = 'https://vedantsoni.com/og.png'
+
 export function getPageData(url) {
   if (url === '/') {
     return {
       title: 'Vedant Soni',
       description: 'Vedant Soni is building Wick, an AI that maps how companies run and rebuilds workflows so AI can operate them end to end. Previously built Fern, Cognition, and Eden.',
-      keywords: 'Vedant Soni, Wick, AI, robotics, Texas A&M',
+      keywords: 'Vedant Soni, Wick, AI, enterprise software, robotics, Texas A&M',
       type: 'profile',
-      image: 'https://vedantsoni.com/og.svg',
+      image: OG_IMAGE,
       schema: [
         {
           '@context': 'https://schema.org',
@@ -55,77 +50,5 @@ export function getPageData(url) {
     }
   }
 
-  if (url === '/blog') {
-    return {
-      title: 'AI Guides for Normal People | Vedant Soni',
-      description: 'Plain-English guides about what AI is, how to use it, and where it actually helps. Written by Vedant Soni.',
-      keywords: 'AI guides for beginners, what is AI, how to use ChatGPT, AI explained simply, practical AI tips',
-      type: 'website',
-      schema: [
-        {
-          '@context': 'https://schema.org',
-          '@type': 'CollectionPage',
-          name: 'AI Guides for Normal People',
-          url: 'https://vedantsoni.com/blog',
-          author: { '@id': 'https://vedantsoni.com/#vedant' },
-          hasPart: ARTICLES.map((article) => ({
-            '@type': 'Article',
-            headline: article.title,
-            url: `https://vedantsoni.com/articles/${article.slug}`,
-          })),
-        },
-      ],
-    }
-  }
-
-  const slug = url.split('/').filter(Boolean).at(-1)
-  const article = ARTICLES.find((item) => item.slug === slug)
-
-  if (!article) return null
-
-  return {
-    title: `${article.title} | Vedant Soni`,
-    description: article.description,
-    keywords: `${article.title}, AI for beginners, AI explained simply, Vedant Soni`,
-    type: 'article',
-    schema: [
-      {
-        '@context': 'https://schema.org',
-        '@type': 'Article',
-        headline: article.title,
-        description: article.description,
-        datePublished: '2026-07-01',
-        dateModified: '2026-07-01',
-        mainEntityOfPage: `https://vedantsoni.com/articles/${article.slug}`,
-        author: {
-          '@type': 'Person',
-          '@id': 'https://vedantsoni.com/#vedant',
-          name: 'Vedant Soni',
-          url: 'https://vedantsoni.com',
-        },
-        citation: article.sources.map(([, sourceUrl]) => sourceUrl),
-      },
-      {
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vedantsoni.com' },
-          { '@type': 'ListItem', position: 2, name: 'AI guides', item: 'https://vedantsoni.com/blog' },
-          { '@type': 'ListItem', position: 3, name: article.title, item: `https://vedantsoni.com/articles/${article.slug}` },
-        ],
-      },
-      {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: article.faqs.map(([question, answer]) => ({
-          '@type': 'Question',
-          name: question,
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: answer,
-          },
-        })),
-      },
-    ],
-  }
+  return null
 }

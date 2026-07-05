@@ -30,7 +30,6 @@
 }
 
 .aura-game-hint {
-  display: none;
   margin: 0 0 0.75rem;
   color: #666;
   font-size: 0.8125rem;
@@ -131,10 +130,6 @@
 
   .aura-copy {
     max-width: none;
-  }
-
-  .aura-game-hint {
-    display: block;
   }
 }
 

@@ -1,6 +1,7 @@
 import './SiteNav.css'
 
 const LINKS = [
+  { label: 'X', href: 'https://x.com/VedantRobot', external: true },
   { label: 'GitHub', href: 'https://github.com/VedSoni-dev', external: true },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/vedantsonimech', external: true },
   { label: 'Email', href: 'mailto:ved.soni@tamu.edu' },

@@ -6,7 +6,6 @@
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
-  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "/favicon.svg",
@@ -15,7 +14,5 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["portfolio", "developer", "technology"],
-  "lang": "en-US",
-  "dir": "ltr"
+  "lang": "en-US"
 }

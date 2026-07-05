@@ -3,6 +3,7 @@ import { createRoot, hydrateRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
 import { Analytics } from '@vercel/analytics/react'
+import './fonts.css'
 import './index.css'
 
 const root = document.getElementById('root')

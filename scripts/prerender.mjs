@@ -1,7 +1,7 @@
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { ARTICLES, PUBLIC_ROUTES, getPageData, render } from '../dist-ssr/entry-server.js'
+import { PUBLIC_ROUTES, getPageData, render } from '../dist-ssr/entry-server.js'
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = path.join(rootDir, 'dist')
@@ -15,10 +15,6 @@ function escapeHtml(value) {
     .replaceAll('"', '&quot;')
 }
 
-function escapeXml(value) {
-  return escapeHtml(value).replaceAll("'", '&apos;')
-}
-
 function setMeta(html, selector, value) {
   const escaped = escapeHtml(value)
   const pattern = new RegExp(`<meta (${selector}) content="[^"]*"\\s*/?>`, 'i')
@@ -28,7 +24,7 @@ function setMeta(html, selector, value) {
 
 function makeDocument(route) {
   const page = getPageData(route)
-  const canonical = `https://vedantsoni.com${route === '/' ? '' : route}`
+  const canonical = 'https://vedantsoni.com/'
   let html = template.replace('<div id="root"></div>', `<div id="root">${render(route)}</div>`)
 
   html = html.replace(/<title>.*?<\/title>/is, `<title>${escapeHtml(page.title)}</title>`)
@@ -39,13 +35,11 @@ function makeDocument(route) {
   html = setMeta(html, 'property="og:url"', canonical)
   html = setMeta(html, 'property="og:title"', page.title)
   html = setMeta(html, 'property="og:description"', page.description)
+  html = setMeta(html, 'property="og:image"', page.image)
   html = setMeta(html, 'name="twitter:url"', canonical)
   html = setMeta(html, 'name="twitter:title"', page.title)
   html = setMeta(html, 'name="twitter:description"', page.description)
-  if (page.image) {
-    html = setMeta(html, 'property="og:image"', page.image)
-    html = setMeta(html, 'name="twitter:image"', page.image)
-  }
+  html = setMeta(html, 'name="twitter:image"', page.image)
   html = html.replace(/<link rel="canonical" href="[^"]*"\s*\/>/i, `<link rel="canonical" href="${canonical}" />`)
 
   const schema = JSON.stringify(page.schema).replaceAll('<', '\\u003c')
@@ -59,38 +53,19 @@ for (const route of PUBLIC_ROUTES) {
   await writeFile(path.join(directory, 'index.html'), makeDocument(route))
 }
 
-const sitemapEntries = PUBLIC_ROUTES.map((route) => {
-  const url = `https://vedantsoni.com${route === '/' ? '/' : route}`
-  const priority = route === '/' ? '1.0' : route === '/blog' ? '0.9' : '0.8'
-  return `  <url>\n    <loc>${url}</loc>\n    <lastmod>2026-07-01</lastmod>\n    <changefreq>${route === '/blog' ? 'weekly' : 'monthly'}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
-}).join('\n')
-
 await writeFile(
   path.join(distDir, 'sitemap.xml'),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries}\n</urlset>\n`,
-)
-
-const rssItems = ARTICLES.map((article) => `    <item>
-      <title>${escapeXml(article.title)}</title>
-      <link>https://vedantsoni.com/articles/${article.slug}</link>
-      <guid isPermaLink="true">https://vedantsoni.com/articles/${article.slug}</guid>
-      <description>${escapeXml(article.description)}</description>
-      <pubDate>Wed, 01 Jul 2026 12:00:00 GMT</pubDate>
-    </item>`).join('\n')
-
-await writeFile(
-  path.join(distDir, 'feed.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
-  <channel>
-    <title>AI Guides for Normal People by Vedant Soni</title>
-    <link>https://vedantsoni.com/blog</link>
-    <description>Plain-English guides about what AI is, how to use it, and where it actually helps.</description>
-    <language>en-us</language>
-${rssItems}
-  </channel>
-</rss>\n`,
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://vedantsoni.com/</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
+`,
 )
 
 await rm(path.join(rootDir, 'dist-ssr'), { recursive: true, force: true })
-console.log(`Pre-rendered ${PUBLIC_ROUTES.length} public routes.`)
+console.log(`Pre-rendered ${PUBLIC_ROUTES.length} public route.`)
