@@ -19,7 +19,7 @@ export function getPageData(url) {
   if (url === '/') {
     return {
       title: 'Vedant Soni',
-      description: 'Vedant Soni is building Wick, an AI that maps how companies run and rebuilds workflows so AI can operate them end to end. Previously built Fern, Cognition, and Eden.',
+      description: 'Vedant Soni is building Wick, an AI that maps how companies run and rebuilds workflows so AI can operate them end to end. Previously built Fern, Cognition (35,000+ users, Google DeepMind), and Eden.',
       keywords: 'Vedant Soni, Wick, AI, enterprise software, robotics, Texas A&M',
       type: 'profile',
       image: OG_IMAGE,

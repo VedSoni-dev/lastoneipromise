@@ -16,7 +16,7 @@ export default function ConsultPage() {
     <div className="aura-page">
       <SEOHead
         title="Vedant Soni"
-        description="Vedant Soni is building Wick, an AI that maps how companies run and rebuilds workflows so AI can operate them end to end. Previously built Fern, Cognition, and Eden."
+        description="Vedant Soni is building Wick, an AI that maps how companies run and rebuilds workflows so AI can operate them end to end. Previously built Fern, Cognition (35,000+ users, Google DeepMind), and Eden."
         keywords="Vedant Soni, Wick, AI, robotics, Texas A&M"
         url="https://vedantsoni.com"
       />
@@ -38,7 +38,7 @@ export default function ConsultPage() {
               <a href="https://trytalkr.com" target="_blank" rel="noreferrer">Fern</a>
               ,{' '}
               <a href="https://cognitionus.com" target="_blank" rel="noreferrer">Cognition</a>
-              , and{' '}
+              , which reached 35,000+ users and was backed by Google DeepMind, and{' '}
               <a href="https://eden-robotics.github.io/Eden/" target="_blank" rel="noreferrer">Eden</a>
               , a Texas A&amp;M lab putting emotions and memory inside robots.
               I think legacy companies should become AI native, not just talk about it.
