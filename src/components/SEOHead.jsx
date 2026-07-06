@@ -1,14 +1,13 @@
 import { useEffect } from 'react'
-
-const OG_IMAGE = 'https://vedantsoni.com/og.png'
+import { SEO, PERSON } from '../seo'
 
 function SEOHead({
-  title = 'Vedant Soni',
-  description = 'Vedant Soni is building Wick, an AI that maps how companies run and rebuilds workflows so AI can operate them end to end. Previously built Fern, Cognition (35,000+ users, Google DeepMind), and Eden.',
-  keywords = 'Vedant Soni, Wick, AI, enterprise software, robotics, Texas A&M',
-  image = OG_IMAGE,
-  url = 'https://vedantsoni.com',
-  type = 'website',
+  title = SEO.title,
+  description = SEO.description,
+  keywords = SEO.keywords,
+  image = SEO.image,
+  url = SEO.url,
+  type = SEO.type,
 }) {
   useEffect(() => {
     document.title = title
@@ -24,9 +23,10 @@ function SEOHead({
       meta.setAttribute('content', content)
     }
 
+    updateMetaTag('title', title)
     updateMetaTag('description', description)
     updateMetaTag('keywords', keywords)
-    updateMetaTag('author', 'Vedant Soni')
+    updateMetaTag('author', PERSON.name)
     updateMetaTag('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')
     updateMetaTag('googlebot', 'index, follow')
 
@@ -37,16 +37,19 @@ function SEOHead({
     updateMetaTag('og:image', image, true)
     updateMetaTag('og:image:width', '1200', true)
     updateMetaTag('og:image:height', '630', true)
-    updateMetaTag('og:image:alt', title, true)
-    updateMetaTag('og:site_name', 'Vedant Soni', true)
+    updateMetaTag('og:image:alt', `${PERSON.name} — Founder of Wick`, true)
+    updateMetaTag('og:site_name', PERSON.name, true)
     updateMetaTag('og:locale', 'en_US', true)
+    updateMetaTag('profile:first_name', PERSON.givenName, true)
+    updateMetaTag('profile:last_name', PERSON.familyName, true)
+    updateMetaTag('profile:username', 'VedantRobot', true)
 
     updateMetaTag('twitter:card', 'summary_large_image')
     updateMetaTag('twitter:url', url)
     updateMetaTag('twitter:title', title)
     updateMetaTag('twitter:description', description)
     updateMetaTag('twitter:image', image)
-    updateMetaTag('twitter:image:alt', title)
+    updateMetaTag('twitter:image:alt', `${PERSON.name} — Founder of Wick`)
     updateMetaTag('twitter:creator', '@VedantRobot')
     updateMetaTag('twitter:site', '@VedantRobot')
 

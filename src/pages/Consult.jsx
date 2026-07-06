@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
 import RetroEmulator from '../components/RetroEmulator'
 import SiteNav from '../components/SiteNav'
+import { PERSON } from '../seo'
 import './Consult.css'
 
 const PAST_PROJECTS = [
@@ -13,23 +14,26 @@ const PAST_PROJECTS = [
 
 export default function ConsultPage() {
   return (
-    <div className="aura-page">
-      <SEOHead
-        title="Vedant Soni"
-        description="Vedant Soni is building Wick, an AI that maps how companies run and rebuilds workflows so AI can operate them end to end. Previously built Fern, Cognition (35,000+ users, Google DeepMind), and Eden."
-        keywords="Vedant Soni, Wick, AI, robotics, Texas A&M"
-        url="https://vedantsoni.com"
-      />
+    <div className="aura-page" itemScope itemType="https://schema.org/ProfilePage">
+      <SEOHead />
 
       <header className="aura-header">
-        <Link to="/" className="aura-name">Vedant Soni</Link>
+        <h1 className="aura-name" itemProp="name">
+          <Link to="/" itemProp="url">{PERSON.name}</Link>
+        </h1>
         <SiteNav />
       </header>
 
-      <main className="aura-main">
+      <main className="aura-main" itemProp="mainEntity" itemScope itemType="https://schema.org/Person">
+        <meta itemProp="givenName" content={PERSON.givenName} />
+        <meta itemProp="familyName" content={PERSON.familyName} />
+        <meta itemProp="jobTitle" content={`${PERSON.jobTitle}, Wick`} />
+        <meta itemProp="image" content={PERSON.image} />
+        <link itemProp="url" href={PERSON.url} />
+
         <div className="aura-grid">
-          <div className="aura-copy">
-            <p>
+          <article className="aura-copy">
+            <p itemProp="description">
               I'm 20, building Wick. It maps how a company actually runs, then rebuilds
               workflows so AI can operate them end to end.
             </p>
@@ -57,7 +61,7 @@ export default function ConsultPage() {
                 </span>
               ))}
             </footer>
-          </div>
+          </article>
 
           <div className="aura-game">
             <p className="aura-game-hint">play while you're here</p>

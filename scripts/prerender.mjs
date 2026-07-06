@@ -40,6 +40,8 @@ function makeDocument(route) {
   html = setMeta(html, 'name="twitter:title"', page.title)
   html = setMeta(html, 'name="twitter:description"', page.description)
   html = setMeta(html, 'name="twitter:image"', page.image)
+  html = setMeta(html, 'property="profile:first_name"', 'Vedant')
+  html = setMeta(html, 'property="profile:last_name"', 'Soni')
   html = html.replace(/<link rel="canonical" href="[^"]*"\s*\/>/i, `<link rel="canonical" href="${canonical}" />`)
 
   const schema = JSON.stringify(page.schema).replaceAll('<', '\\u003c')
@@ -56,12 +58,18 @@ for (const route of PUBLIC_ROUTES) {
 await writeFile(
   path.join(distDir, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://vedantsoni.com/</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://vedantsoni.com/og.png</image:loc>
+      <image:title>Vedant Soni</image:title>
+      <image:caption>Vedant Soni — Founder of Wick</image:caption>
+    </image:image>
   </url>
 </urlset>
 `,

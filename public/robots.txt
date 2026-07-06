@@ -1,32 +1,12 @@
-# robots.txt for vedantsoni.com
+# Vedant Soni — https://vedantsoni.com
 
 User-agent: *
 Allow: /
 
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-# Sitemap location
-Sitemap: https://vedantsoni.com/sitemap.xml
-
-# Disallow admin or private areas (if any)
-# Disallow: /admin/
-# Disallow: /private/
-
-# Allow all search engines
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: Slurp
-Allow: /
-
-# Crawl-delay (optional, helps prevent server overload)
-Crawl-delay: 1
-
-
+Sitemap: https://vedantsoni.com/sitemap.xml
