@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
-import RetroEmulator from '../components/RetroEmulator'
+import AIWorkVisual from '../components/AIWorkVisual'
 import SiteNav from '../components/SiteNav'
 import { PERSON } from '../seo'
 import './Consult.css'
@@ -31,43 +31,38 @@ export default function ConsultPage() {
         <meta itemProp="image" content={PERSON.image} />
         <link itemProp="url" href={PERSON.url} />
 
-        <div className="aura-grid">
-          <article className="aura-copy">
-            <p itemProp="description">
-              I'm 20, building Wick. It maps how a company actually runs, then rebuilds
-              workflows so AI can operate them end to end.
-            </p>
-            <p>
-              I previously built{' '}
-              <a href="https://trytalkr.com" target="_blank" rel="noreferrer">Fern</a>
-              ,{' '}
-              <a href="https://cognitionus.com" target="_blank" rel="noreferrer">Cognition</a>
-              , which reached 35,000+ users and was backed by Google DeepMind, and{' '}
-              <a href="https://eden-robotics.github.io/Eden/" target="_blank" rel="noreferrer">Eden</a>
-              , a Texas A&amp;M lab putting emotions and memory inside robots.
-              I think legacy companies should become AI native, not just talk about it.
-            </p>
+        <article className="aura-intro">
+          <p className="aura-lede" itemProp="description">
+            I'm 20, building Wick. It maps how a company actually runs, then rebuilds
+            workflows so AI can operate them end to end.
+          </p>
+          <p>
+            I previously built{' '}
+            <a href="https://trytalkr.com" target="_blank" rel="noreferrer">Fern</a>
+            ,{' '}
+            <a href="https://cognitionus.com" target="_blank" rel="noreferrer">Cognition</a>
+            , which reached 35,000+ users and was backed by Google DeepMind, and{' '}
+            <a href="https://eden-robotics.github.io/Eden/" target="_blank" rel="noreferrer">Eden</a>
+            , a Texas A&amp;M lab putting emotions and memory inside robots.
+            I think legacy companies should become AI native, not just talk about it.
+          </p>
 
-            <footer className="aura-footer">
-              <span className="aura-footer-label">past</span>
-              {PAST_PROJECTS.map((item, i) => (
-                <span key={item.label} className="aura-footer-item">
-                  {i > 0 && <span className="aura-sep" aria-hidden="true">|</span>}
-                  {item.href ? (
-                    <a href={item.href} target="_blank" rel="noreferrer">{item.label}</a>
-                  ) : (
-                    <span>{item.label}</span>
-                  )}
-                </span>
-              ))}
-            </footer>
-          </article>
+          <footer className="aura-footer">
+            <span className="aura-footer-label">past</span>
+            {PAST_PROJECTS.map((item, i) => (
+              <span key={item.label} className="aura-footer-item">
+                {i > 0 && <span className="aura-sep" aria-hidden="true">|</span>}
+                {item.href ? (
+                  <a href={item.href} target="_blank" rel="noreferrer">{item.label}</a>
+                ) : (
+                  <span>{item.label}</span>
+                )}
+              </span>
+            ))}
+          </footer>
+        </article>
 
-          <div className="aura-game">
-            <p className="aura-game-hint">play while you're here</p>
-            <RetroEmulator />
-          </div>
-        </div>
+        <AIWorkVisual />
       </main>
     </div>
   )
