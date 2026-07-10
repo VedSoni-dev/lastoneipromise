@@ -20,13 +20,13 @@ function ConsumerCanvas() {
       canvas.height = rect.height * dpr
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-      const count = Math.floor((rect.width * rect.height) / 900)
+      const count = Math.floor((rect.width * rect.height) / 1200)
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * rect.width,
         y: Math.random() * rect.height,
-        r: 0.6 + Math.random() * 2.2,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
+        r: 0.6 + Math.random() * 2,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
         phase: Math.random() * Math.PI * 2,
       }))
     }
@@ -41,34 +41,19 @@ function ConsumerCanvas() {
       const t = prefersReduced ? 0 : frame * 0.008
 
       for (const p of particles) {
-        p.x += p.vx + Math.sin(t + p.phase) * 0.12
-        p.y += p.vy + Math.cos(t * 0.7 + p.phase) * 0.12
+        p.x += p.vx + Math.sin(t + p.phase) * 0.1
+        p.y += p.vy + Math.cos(t * 0.7 + p.phase) * 0.1
 
         if (p.x < -4) p.x = w + 4
         if (p.x > w + 4) p.x = -4
         if (p.y < -4) p.y = h + 4
         if (p.y > h + 4) p.y = -4
 
-        const pulse = 0.15 + (Math.sin(t * 1.4 + p.phase) + 1) * 0.22
+        const pulse = 0.15 + (Math.sin(t * 1.4 + p.phase) + 1) * 0.2
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
         ctx.fillStyle = `rgba(0,0,0,${pulse})`
         ctx.fill()
-      }
-
-      // density clusters — the "mass" of consumer scale
-      const clusters = [
-        { cx: w * 0.28, cy: h * 0.38, spread: w * 0.18 },
-        { cx: w * 0.62, cy: h * 0.55, spread: w * 0.22 },
-        { cx: w * 0.78, cy: h * 0.28, spread: w * 0.14 },
-      ]
-
-      for (const c of clusters) {
-        const grad = ctx.createRadialGradient(c.cx, c.cy, 0, c.cx, c.cy, c.spread)
-        grad.addColorStop(0, 'rgba(0,0,0,0.09)')
-        grad.addColorStop(1, 'rgba(0,0,0,0)')
-        ctx.fillStyle = grad
-        ctx.fillRect(c.cx - c.spread, c.cy - c.spread, c.spread * 2, c.spread * 2)
       }
 
       frame++
@@ -112,9 +97,8 @@ function BespokeCanvas() {
 
       const cx = w * 0.5
       const cy = h * 0.5
-      const scale = Math.min(w, h) * 0.34
+      const scale = Math.min(w, h) * 0.32
 
-      // outer ring — slow rotation
       ctx.save()
       ctx.translate(cx, cy)
       ctx.rotate(t * 0.06)
@@ -123,20 +107,19 @@ function BespokeCanvas() {
       ctx.lineWidth = 1
       for (let i = 0; i < 6; i++) {
         const angle = (i / 6) * Math.PI * 2
-        const r = scale * (0.85 + Math.sin(t + i) * 0.04)
+        const r = scale * 0.85
         ctx.beginPath()
         ctx.arc(0, 0, r, angle, angle + Math.PI / 3 - 0.08)
         ctx.stroke()
       }
 
-      // core structure — bespoke, one-of-one geometry
       ctx.strokeStyle = '#000'
-      ctx.lineWidth = 2.5
+      ctx.lineWidth = 2
       const nodes = 8
       const pts = []
       for (let i = 0; i < nodes; i++) {
         const a = (i / nodes) * Math.PI * 2 - Math.PI / 2
-        const wobble = Math.sin(t * 0.5 + i * 1.1) * scale * 0.06
+        const wobble = Math.sin(t * 0.5 + i * 1.1) * scale * 0.05
         pts.push({
           x: Math.cos(a) * (scale * 0.55 + wobble),
           y: Math.sin(a) * (scale * 0.55 + wobble),
@@ -149,7 +132,6 @@ function BespokeCanvas() {
       ctx.closePath()
       ctx.stroke()
 
-      // inner cross-hatch — precision lines
       ctx.lineWidth = 1
       ctx.strokeStyle = 'rgba(0,0,0,0.35)'
       for (let i = 0; i < nodes; i++) {
@@ -160,32 +142,17 @@ function BespokeCanvas() {
         ctx.stroke()
       }
 
-      // center node
       ctx.beginPath()
-      ctx.arc(0, 0, 6 + Math.sin(t) * 1.5, 0, Math.PI * 2)
+      ctx.arc(0, 0, 5, 0, Math.PI * 2)
       ctx.fillStyle = '#000'
       ctx.fill()
 
-      // annotation ticks
-      ctx.strokeStyle = 'rgba(0,0,0,0.2)'
-      ctx.lineWidth = 1
-      for (let i = 0; i < 24; i++) {
-        const a = (i / 24) * Math.PI * 2
-        const r1 = scale * 0.72
-        const r2 = scale * (i % 3 === 0 ? 0.82 : 0.76)
-        ctx.beginPath()
-        ctx.moveTo(Math.cos(a) * r1, Math.sin(a) * r1)
-        ctx.lineTo(Math.cos(a) * r2, Math.sin(a) * r2)
-        ctx.stroke()
-      }
-
       ctx.restore()
 
-      // corner brackets — blueprint framing
-      const pad = 28
-      const len = 48
+      const pad = 16
+      const len = 28
       ctx.strokeStyle = '#000'
-      ctx.lineWidth = 3
+      ctx.lineWidth = 2.5
       const corners = [
         [pad, pad + len, pad, pad, pad + len, pad],
         [w - pad, pad + len, w - pad, pad, w - pad - len, pad],
@@ -199,15 +166,6 @@ function BespokeCanvas() {
         ctx.lineTo(x3, y3)
         ctx.stroke()
       }
-
-      // scan line
-      const scanY = pad + ((Math.sin(t * 0.4) + 1) / 2) * (h - pad * 2)
-      ctx.strokeStyle = 'rgba(0,0,0,0.06)'
-      ctx.lineWidth = 1
-      ctx.beginPath()
-      ctx.moveTo(pad, scanY)
-      ctx.lineTo(w - pad, scanY)
-      ctx.stroke()
     }
 
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -236,7 +194,7 @@ const SECTIONS = [
     id: 'consumer',
     label: 'Consumer AI',
     title: 'I build consumer AI.',
-    body: 'Products that reach real people at scale — Fern for families, Cognition for 35,000+ learners backed by Google DeepMind. Mass adoption, not demos.',
+    body: 'Products at scale — Fern hit 12,500 users, Cognition reached 35,000+ backed by Google DeepMind.',
     bold: true,
     Visual: ConsumerCanvas,
     refs: [
@@ -248,10 +206,11 @@ const SECTIONS = [
     id: 'bespoke',
     label: 'Bespoke AI',
     title: 'I build bespoke AI.',
-    body: 'Custom systems mapped to how one company actually runs — Wick rebuilds workflows end to end. Eden put memory and emotion inside robots. Built for one context, not everyone.',
+    body: 'Custom systems for one context — Piller for real estate firms and realtors, Wick for enterprise workflows, Eden for robots with memory.',
     bold: false,
     Visual: BespokeCanvas,
     refs: [
+      { label: 'Piller' },
       { label: 'Wick', href: 'https://vedantsoni.com' },
       { label: 'Eden', href: 'https://eden-robotics.github.io/Eden/' },
     ],
@@ -261,7 +220,7 @@ const SECTIONS = [
 export default function AIWorkVisual() {
   return (
     <section className="ai-work" aria-label="What I build">
-      {SECTIONS.map((section, i) => (
+      {SECTIONS.map((section) => (
         <article
           key={section.id}
           className={`ai-work-block${section.bold ? ' ai-work-block--bold' : ''}`}
@@ -272,18 +231,19 @@ export default function AIWorkVisual() {
           </div>
 
           <div className="ai-work-copy">
-            <span className="ai-work-index" aria-hidden="true">
-              {String(i + 1).padStart(2, '0')}
-            </span>
             <h2 className="ai-work-title">{section.title}</h2>
             <p className="ai-work-body">{section.body}</p>
             <div className="ai-work-refs">
               {section.refs.map((ref, j) => (
                 <span key={ref.label} className="ai-work-ref">
                   {j > 0 && <span className="ai-work-ref-sep" aria-hidden="true">·</span>}
-                  <a href={ref.href} target="_blank" rel="noreferrer">
-                    {ref.label}
-                  </a>
+                  {ref.href ? (
+                    <a href={ref.href} target="_blank" rel="noreferrer">
+                      {ref.label}
+                    </a>
+                  ) : (
+                    <span>{ref.label}</span>
+                  )}
                 </span>
               ))}
             </div>
