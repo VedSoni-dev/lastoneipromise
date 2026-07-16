@@ -11,7 +11,7 @@ export const PERSON = {
   familyName: 'Soni',
   name: 'Vedant Soni',
   alternateName: ['Vedant Soni', 'Ved Soni'],
-  email: 'ved.soni@tamu.edu',
+  email: 'ved.06.soni@gmail.com',
   jobTitle: 'Founder',
   description:
     'Vedant Soni is a 20-year-old founder building Wick, an AI that turns legacy companies AI native. He previously built Fern, Cognition (35,000+ users, backed by Google DeepMind), and Eden Robotics at Texas A&M.',
