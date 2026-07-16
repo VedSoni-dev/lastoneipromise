@@ -4,6 +4,18 @@ import SiteNav from '../components/SiteNav'
 import { PERSON, SITE_URL } from '../seo'
 import './Coaching.css'
 
+const STATS = [
+  { value: '45,000+', label: 'combined users shipped' },
+  { value: 'DeepMind', label: 'backed Cognition' },
+  { value: 'Texas A&M', label: 'robotics lab built' },
+]
+
+const PROCESS = [
+  { step: '01', name: 'Discovery call', body: 'Free, 15 min. We talk through the workflow you want to automate or the system you want built.' },
+  { step: '02', name: 'Scope & propose', body: "I map how the process actually runs today and come back with a fixed scope, timeline, and price." },
+  { step: '03', name: 'Build & ship', body: 'I build the system end to end and get it running in your stack — not a demo, a working tool.' },
+]
+
 const BUILT = [
   { label: 'Piller', note: 'bespoke AI for real estate firms and realtors' },
   { label: 'Wick', href: 'https://vedantsoni.com', note: 'AI native workflows for legacy companies' },
@@ -24,6 +36,7 @@ export default function ConsultingPage() {
       <SEOHead
         title={`Consulting — ${PERSON.name}`}
         description="Bespoke AI for companies, built by Vedant Soni — founder of Wick, builder of Piller and Eden Robotics. I map how your company actually runs and build AI that operates it end to end."
+        keywords="AI consulting, bespoke AI development, custom AI for business, AI automation consultant, AI native workflows, Vedant Soni consulting"
         url={`${SITE_URL}/consulting`}
       />
 
@@ -64,6 +77,30 @@ export default function ConsultingPage() {
               the problem I want to solve with you.
             </p>
           </div>
+        </section>
+
+        <section className="coach-stats" aria-label="Track record">
+          {STATS.map((stat) => (
+            <div key={stat.label} className="coach-stat">
+              <span className="coach-stat-value">{stat.value}</span>
+              <span className="coach-stat-label">{stat.label}</span>
+            </div>
+          ))}
+        </section>
+
+        <section className="coach-section" aria-labelledby="coach-process-heading">
+          <h3 id="coach-process-heading" className="coach-section-title">How it works</h3>
+          <ol className="coach-process">
+            {PROCESS.map((item) => (
+              <li key={item.step} className="coach-process-item">
+                <span className="coach-process-step">{item.step}</span>
+                <div>
+                  <span className="coach-process-name">{item.name}</span>
+                  <p className="coach-process-body">{item.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section className="coach-section" aria-labelledby="coach-built-heading">

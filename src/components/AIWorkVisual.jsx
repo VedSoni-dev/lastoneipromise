@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import './AIWorkVisual.css'
 
 function ConsumerCanvas() {
@@ -214,6 +215,7 @@ const SECTIONS = [
       { label: 'Wick', href: 'https://vedantsoni.com' },
       { label: 'Eden', href: 'https://eden-robotics.github.io/Eden/' },
     ],
+    cta: { label: 'Building a company? Work with me →', to: '/consulting' },
   },
 ]
 
@@ -247,6 +249,11 @@ export default function AIWorkVisual() {
                 </span>
               ))}
             </div>
+            {section.cta && (
+              <Link to={section.cta.to} className="ai-work-cta">
+                {section.cta.label}
+              </Link>
+            )}
           </div>
         </article>
       ))}

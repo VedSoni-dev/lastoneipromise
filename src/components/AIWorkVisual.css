@@ -104,6 +104,16 @@
   color: var(--color-rule-2);
 }
 
+.ai-work-cta {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  width: fit-content;
+}
+
 @media (max-width: 56rem) {
   .ai-work {
     grid-template-columns: 1fr;
