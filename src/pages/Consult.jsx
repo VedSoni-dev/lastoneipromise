@@ -49,6 +49,9 @@ export default function ConsultPage() {
             , a Texas A&amp;M lab putting emotions and memory inside robots.
             I think legacy companies should become AI native, not just talk about it.
           </p>
+          <p>
+            I also <Link to="/coaching">coach founders</Link> bootstrapping their own software.
+          </p>
 
           <footer className="aura-footer">
             <span className="aura-footer-label">past</span>
