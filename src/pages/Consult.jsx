@@ -50,7 +50,8 @@ export default function ConsultPage() {
             I think legacy companies should become AI native, not just talk about it.
           </p>
           <p>
-            I also <Link to="/coaching">coach founders</Link> bootstrapping their own software.
+            I also <Link to="/coaching">coach founders</Link> bootstrapping their own software,
+            and <Link to="/consulting">consult for companies</Link> who want bespoke AI built.
           </p>
 
           <footer className="aura-footer">
