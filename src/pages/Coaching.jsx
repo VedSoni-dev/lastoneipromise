@@ -12,30 +12,9 @@ const BUILT = [
   { label: 'Wick', href: 'https://vedantsoni.com', note: 'AI native workflows for legacy companies' },
 ]
 
-const PLANS = [
-  {
-    name: 'Intro call',
-    price: 'Free',
-    time: '30 min',
-    body: "A no-pressure call to talk through what you're building and see if I can actually help.",
-  },
-  {
-    name: 'Coaching session',
-    price: '$150 / hr',
-    time: '60 min',
-    body: 'Flat rate per hour, split however many people you bring — solo is $150, bring a friend or co-founder and it\'s $75 each, bring three and it\'s $50 each.',
-  },
-  {
-    name: 'Bootcamp',
-    price: 'Ask',
-    time: 'multi-session',
-    body: 'Want something more structured for your team? I\'ll put together a custom program — just ask.',
-  },
-]
-
 const EMAIL_SUBJECT = encodeURIComponent('Coaching call')
 const EMAIL_BODY = encodeURIComponent(
-  "Hey Vedant — I'd like to book a coaching call.\n\nWhat I'm building:\nWhere I'm stuck:\nHow many people (just me, or bringing others):\nTimes that work for me:\n"
+  "Hey Vedant — I'd like to grab a coaching call.\n\nWhat I'm building:\nWhere I'm stuck:\nHow many people (just me, or bringing others):\n"
 )
 const BOOK_HREF = `mailto:${PERSON.email}?subject=${EMAIL_SUBJECT}&body=${EMAIL_BODY}`
 
@@ -103,28 +82,22 @@ export default function CoachingPage() {
           </ul>
         </section>
 
-        <section className="coach-section" aria-labelledby="coach-plans-heading">
-          <h3 id="coach-plans-heading" className="coach-section-title">How it works</h3>
-          <div className="coach-plans">
-            {PLANS.map((plan) => (
-              <div key={plan.name} className="coach-plan">
-                <div className="coach-plan-top">
-                  <span className="coach-plan-name">{plan.name}</span>
-                  <span className="coach-plan-time">{plan.time}</span>
-                </div>
-                <span className="coach-plan-price">{plan.price}</span>
-                <p className="coach-plan-body">{plan.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
         <section className="coach-cta" aria-labelledby="coach-cta-heading">
-          <h3 id="coach-cta-heading" className="coach-cta-heading">Book a call</h3>
-          <p className="coach-cta-body">
-            Email me what you're working on and a few times that work for you — I'll reply to
-            lock in the intro call.
-          </p>
+          <div className="coach-plan coach-plan--solo">
+            <div className="coach-plan-top">
+              <span className="coach-plan-name">Intro call</span>
+              <span className="coach-plan-time">15 min</span>
+            </div>
+            <span className="coach-plan-price">Free</span>
+            <p className="coach-plan-body">
+              No pitch, no pressure — just tell me what you're building and where you're
+              stuck. Solo or bring your co-founders. If it makes sense to keep working
+              together after that, including a longer bootcamp-style program, we'll figure
+              out the format and rate then.
+            </p>
+          </div>
+
+          <h3 id="coach-cta-heading" className="coach-cta-heading">Interested? Email me.</h3>
           <a className="coach-cta-button" href={BOOK_HREF}>
             Email {PERSON.email}
           </a>
