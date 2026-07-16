@@ -7,7 +7,7 @@ import './Coaching.css'
 const STATS = [
   { value: '45,000+', label: 'combined users shipped' },
   { value: 'DeepMind', label: 'backed Cognition' },
-  { value: 'Texas A&M', label: 'robotics lab built' },
+  { value: 'Real estate, HVAC', label: 'verticals I build for' },
 ]
 
 const PROCESS = [
@@ -19,7 +19,7 @@ const PROCESS = [
 const BUILT = [
   { label: 'Piller', note: 'bespoke AI for real estate firms and realtors' },
   { label: 'Wick', href: 'https://vedantsoni.com', note: 'AI native workflows for legacy companies' },
-  { label: 'Eden', href: 'https://eden-robotics.github.io/Eden/', note: 'Texas A&M robotics lab, memory + emotion systems' },
+  { label: 'Eden', href: 'https://eden-robotics.github.io/Eden/', note: 'bespoke robotics — memory + emotion systems' },
   { label: 'Fern', href: 'https://trytalkr.com', note: '12,500 users' },
   { label: 'Cognition', href: 'https://cognitionus.com', note: '35,000+ users, backed by Google DeepMind' },
 ]
@@ -66,9 +66,10 @@ export default function ConsultingPage() {
             <h2 className="coach-headline">I build bespoke AI for companies.</h2>
             <p>
               I'm 20, building Wick — I map how a company actually runs, then build AI that
-              operates the workflow end to end, not a generic tool bolted on top. I've done
-              this for a real estate platform (Piller) and a robotics lab at Texas A&amp;M
-              (Eden), on top of two consumer products with 45,000+ combined users.
+              operates the workflow end to end, not a generic tool bolted on top. I've built
+              bespoke systems for real estate (Piller) and I'm building the same for HVAC and
+              other legacy industries through Wick, on top of two consumer products with
+              45,000+ combined users.
             </p>
             <p>
               Most "AI for your business" work is a chatbot wrapper. I build the actual
