@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
 import SiteNav from '../components/SiteNav'
+import LandingAnimation from '../components/LandingAnimation'
 import { PERSON } from '../seo'
 import './Consult.css'
 
@@ -68,6 +69,7 @@ export default function ConsultPage() {
           </footer>
         </article>
 
+        <LandingAnimation />
       </main>
     </div>
   )
