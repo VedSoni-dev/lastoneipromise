@@ -18,7 +18,7 @@ const PROCESS = [
 
 const BUILT = [
   { label: 'Piller', note: 'bespoke AI for real estate firms and realtors' },
-  { label: 'Wick', href: 'https://vedantsoni.com', note: 'AI native workflows for legacy companies' },
+  { label: 'Teachy', href: 'https://vedantsoni.com', note: 'for enterprises — building bespoke AI' },
   { label: 'Eden', href: 'https://eden-robotics.github.io/Eden/', note: 'bespoke robotics — memory + emotion systems' },
   { label: 'Fern', href: 'https://trytalkr.com', note: '12,500 users' },
   { label: 'Cognition', href: 'https://cognitionus.com', note: '35,000+ users, backed by Google DeepMind' },
@@ -35,7 +35,7 @@ export default function ConsultingPage() {
     <div className="coach-page">
       <SEOHead
         title={`Consulting — ${PERSON.name}`}
-        description="Bespoke AI for companies, built by Vedant Soni — founder of Wick, builder of Piller and Eden Robotics. I map how your company actually runs and build AI that operates it end to end."
+        description="Bespoke AI for companies, built by Vedant Soni — founder of Teachy, builder of Piller and Eden Robotics. I build bespoke AI that operates your workflow end to end."
         keywords="AI consulting, bespoke AI development, custom AI for business, AI automation consultant, AI native workflows, Vedant Soni consulting"
         url={`${SITE_URL}/consulting`}
       />
@@ -65,11 +65,10 @@ export default function ConsultingPage() {
             <p className="coach-eyebrow">Consulting</p>
             <h2 className="coach-headline">I build bespoke AI for companies.</h2>
             <p>
-              I'm 20, building Wick — I map how a company actually runs, then build AI that
-              operates the workflow end to end, not a generic tool bolted on top. I've built
-              bespoke systems for real estate (Piller) and I'm building the same for HVAC and
-              other legacy industries through Wick, on top of two consumer products with
-              45,000+ combined users.
+              I'm 20, building Teachy for enterprises — building bespoke AI that operates your
+              workflow end to end, not a generic tool bolted on top. I've built bespoke systems
+              for real estate (Piller) and I'm building the same across industries through Teachy,
+              on top of two consumer products with 45,000+ combined users.
             </p>
             <p>
               Most "AI for your business" work is a chatbot wrapper. I build the actual

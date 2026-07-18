@@ -9,7 +9,7 @@ const BUILT = [
   { label: 'Cognition', href: 'https://cognitionus.com', note: '35,000+ users, backed by Google DeepMind' },
   { label: 'Piller', note: 'bespoke AI for real estate firms' },
   { label: 'Eden', href: 'https://eden-robotics.github.io/Eden/', note: 'Texas A&M robotics lab' },
-  { label: 'Wick', href: 'https://vedantsoni.com', note: 'AI native workflows for legacy companies' },
+  { label: 'Teachy', href: 'https://vedantsoni.com', note: 'the simplest interface in the world to learn AI or build software' },
 ]
 
 const EMAIL_SUBJECT = encodeURIComponent('Coaching call')
@@ -23,7 +23,7 @@ export default function CoachingPage() {
     <div className="coach-page">
       <SEOHead
         title={`Coaching — ${PERSON.name}`}
-        description="1:1 startup and AI coaching from Vedant Soni — founder of Wick, builder of Fern and Cognition (35,000+ users). Book a call to get unstuck on your bootstrapped build."
+        description="1:1 startup and AI coaching from Vedant Soni — founder of Teachy, builder of Fern and Cognition (35,000+ users). Book a call to get unstuck on your bootstrapped build."
         url={`${SITE_URL}/coaching`}
       />
 

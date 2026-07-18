@@ -37,7 +37,7 @@ function SEOHead({
     updateMetaTag('og:image', image, true)
     updateMetaTag('og:image:width', '1200', true)
     updateMetaTag('og:image:height', '630', true)
-    updateMetaTag('og:image:alt', `${PERSON.name} — Founder of Wick`, true)
+    updateMetaTag('og:image:alt', `${PERSON.name} — Founder of Teachy`, true)
     updateMetaTag('og:site_name', PERSON.name, true)
     updateMetaTag('og:locale', 'en_US', true)
     updateMetaTag('profile:first_name', PERSON.givenName, true)
@@ -49,7 +49,7 @@ function SEOHead({
     updateMetaTag('twitter:title', title)
     updateMetaTag('twitter:description', description)
     updateMetaTag('twitter:image', image)
-    updateMetaTag('twitter:image:alt', `${PERSON.name} — Founder of Wick`)
+    updateMetaTag('twitter:image:alt', `${PERSON.name} — Founder of Teachy`)
     updateMetaTag('twitter:creator', '@VedantRobot')
     updateMetaTag('twitter:site', '@VedantRobot')
 

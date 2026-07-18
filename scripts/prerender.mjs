@@ -68,7 +68,7 @@ await writeFile(
     <image:image>
       <image:loc>https://vedantsoni.com/og.png</image:loc>
       <image:title>Vedant Soni</image:title>
-      <image:caption>Vedant Soni — Founder of Wick</image:caption>
+      <image:caption>Vedant Soni — Founder of Teachy</image:caption>
     </image:image>
   </url>
 </urlset>

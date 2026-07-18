@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
-import AIWorkVisual from '../components/AIWorkVisual'
 import SiteNav from '../components/SiteNav'
 import { PERSON } from '../seo'
 import './Consult.css'
@@ -28,14 +27,14 @@ export default function ConsultPage() {
       <main className="aura-main" itemProp="mainEntity" itemScope itemType="https://schema.org/Person">
         <meta itemProp="givenName" content={PERSON.givenName} />
         <meta itemProp="familyName" content={PERSON.familyName} />
-        <meta itemProp="jobTitle" content={`${PERSON.jobTitle}, Wick`} />
+        <meta itemProp="jobTitle" content={`${PERSON.jobTitle}, Teachy`} />
         <meta itemProp="image" content={PERSON.image} />
         <link itemProp="url" href={PERSON.url} />
 
         <article className="aura-intro">
           <p className="aura-lede" itemProp="description">
-            I'm 20, building Wick. It maps how a company actually runs, then rebuilds
-            workflows so AI can operate them end to end.
+            I'm 20, building Teachy. The simplest interface in the world to learn AI,
+            build software, or anything.
           </p>
           <p>
             I previously built{' '}
@@ -69,7 +68,6 @@ export default function ConsultPage() {
           </footer>
         </article>
 
-        <AIWorkVisual />
       </main>
     </div>
   )
