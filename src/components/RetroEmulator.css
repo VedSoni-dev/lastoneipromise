@@ -2,20 +2,26 @@
 
 .retro-emulator {
   width: 100%;
-  max-width: 20rem;
-  margin-left: auto;
+  max-width: 21rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .retro-shell {
   border: 2px solid #000;
-  padding: 0.85rem;
-  background: #f4f4f4;
+  padding: 0.9rem;
+  background: #f8f8f8;
+  box-shadow: 5px 5px 0px #000;
+  border-radius: 6px;
 }
 
 .retro-bezel {
   border: 2px solid #000;
-  padding: 0.6rem;
-  background: #1a1a1a;
+  padding: 0.65rem;
+  background: #141414;
+  border-radius: 4px;
 }
 
 .retro-screen-header,
