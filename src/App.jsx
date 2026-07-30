@@ -1,15 +1,13 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import ConsultPage from './pages/Consult'
-import CoachingPage from './pages/Coaching'
-import ConsultingPage from './pages/Consulting'
 import NotFoundPage from './pages/NotFound'
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<ConsultPage />} />
-      <Route path="/coaching" element={<CoachingPage />} />
-      <Route path="/consulting" element={<ConsultingPage />} />
+      <Route path="/coaching" element={<Navigate to="/" replace />} />
+      <Route path="/consulting" element={<Navigate to="/" replace />} />
       <Route path="/portfolio" element={<Navigate to="/" replace />} />
       <Route path="/blog" element={<Navigate to="/" replace />} />
       <Route path="/articles/*" element={<Navigate to="/" replace />} />

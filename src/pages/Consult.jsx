@@ -33,6 +33,7 @@ export default function ConsultPage() {
         <link itemProp="url" href={PERSON.url} />
 
         <article className="aura-intro">
+          <p className="aura-eyebrow" aria-hidden="true">about</p>
           <p className="aura-lede" itemProp="description">
             I'm 20, building Teachy. The simplest interface in the world to learn AI,
             build software, or anything.
@@ -47,11 +48,10 @@ export default function ConsultPage() {
             {' '}(bespoke AI for real estate firms and realtors), and{' '}
             <a href="https://eden-robotics.github.io/Eden/" target="_blank" rel="noreferrer">Eden</a>
             , a Texas A&amp;M lab putting emotions and memory inside robots.
-            I think legacy companies should become AI native, not just talk about it.
           </p>
           <p>
-            I also <Link to="/coaching">coach founders</Link> bootstrapping their own software,
-            and <Link to="/consulting">consult for companies</Link> who want bespoke AI built.
+            Before this I built six startups and worked on applied AI for robotics
+            at the ART Lab at Texas A&amp;M.
           </p>
 
           <footer className="aura-footer">
@@ -69,7 +69,10 @@ export default function ConsultPage() {
           </footer>
         </article>
 
-        <RetroEmulator />
+        <div className="aura-console">
+          <p className="aura-eyebrow" aria-hidden="true">snake</p>
+          <RetroEmulator />
+        </div>
       </main>
     </div>
   )
