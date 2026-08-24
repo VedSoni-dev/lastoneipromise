@@ -15,7 +15,7 @@ export const PERSON = {
   email: 'ved.06.soni@gmail.com',
   jobTitle: 'Founder',
   description:
-    'Vedant Soni is a 20-year-old founder building Teachy, the simplest interface in the world to learn AI, build software, or anything. He previously built Fern, Cognition (35,000+ users, backed by Google DeepMind), and Eden Robotics at Texas A&M.',
+    'Vedant Soni is a 20-year-old founder building Teachy, the simplest interface in the world to learn AI, build software, or anything. He previously built Fern, Stealth (35,000+ users, backed by Google DeepMind), and Eden Robotics at Texas A&M.',
   image: OG_IMAGE,
   url: SITE_URL,
   sameAs: [
@@ -41,9 +41,9 @@ export const PERSON = {
 export const SEO = {
   title: 'Vedant Soni — Founder of Teachy | AI Builder & Roboticist',
   description:
-    'Vedant Soni is building Teachy, the simplest interface in the world to learn AI, build software, or anything. Previously built Fern, Cognition (35,000+ users, Google DeepMind), and Eden Robotics at Texas A&M.',
+    'Vedant Soni is building Teachy, the simplest interface in the world to learn AI, build software, or anything. Previously built Fern, Stealth (35,000+ users, Google DeepMind), and Eden Robotics at Texas A&M.',
   keywords:
-    'Vedant Soni, Vedant Soni Teachy, Vedant Soni AI, Vedant Soni Texas A&M, Teachy AI, Fern, Cognition, Eden Robotics, AI founder, robotics researcher',
+    'Vedant Soni, Vedant Soni Teachy, Vedant Soni AI, Vedant Soni Texas A&M, Teachy AI, Fern, Stealth, Eden Robotics, AI founder, robotics researcher',
   url: SITE_URL,
   image: OG_IMAGE,
   type: 'profile',
@@ -91,8 +91,7 @@ export function buildStructuredData() {
       },
       {
         '@type': 'Organization',
-        name: 'Cognition',
-        url: 'https://cognitionus.com',
+        name: 'Stealth',
         description: 'AI learning platform with 35,000+ users, backed by Google DeepMind.',
       },
       {
