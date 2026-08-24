@@ -11,8 +11,7 @@ const PROJECTS = [
     description: 'AI tools for nonverbal kids. 10,000+ users. nonprofit.',
   },
   {
-    name: 'Cognition',
-    link: 'https://cognitionus.com',
+    name: 'Stealth',
     image: '/cognition-preview.png',
     description: 'AI learning platform. validated by YC. 8 clients.',
   },
@@ -27,6 +26,7 @@ const PROJECTS = [
 export default function ProjectShowcase() {
   const [activeIndex, setActiveIndex] = useState(0)
   const active = PROJECTS[activeIndex]
+  const Card = active.link ? motion.a : motion.div
 
   return (
     <div className="project-showcase">
@@ -44,11 +44,13 @@ export default function ProjectShowcase() {
       </div>
 
       <AnimatePresence mode="wait">
-        <motion.a
+        <Card
           key={active.name}
-          href={active.link}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...(active.link ? {
+            href: active.link,
+            target: '_blank',
+            rel: 'noopener noreferrer',
+          } : {})}
           className="showcase-card"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -64,7 +66,7 @@ export default function ProjectShowcase() {
             />
           </div>
           <p className="showcase-description">{active.description}</p>
-        </motion.a>
+        </Card>
       </AnimatePresence>
     </div>
   )
