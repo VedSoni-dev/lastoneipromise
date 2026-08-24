@@ -9,7 +9,7 @@ const PAST_PROJECTS = [
   { label: 'fern', href: 'https://trytalkr.com' },
   { label: 'piller' },
   { label: 'eden-robotics', href: 'https://eden-robotics.github.io/Eden/' },
-  { label: 'cognition', href: 'https://cognitionus.com' },
+  { label: 'stealth' },
   { label: 'recreach' },
 ]
 
@@ -42,7 +42,7 @@ export default function ConsultPage() {
             I previously built{' '}
             <a href="https://trytalkr.com" target="_blank" rel="noreferrer">Fern</a>
             {' '}(12,500 users),{' '}
-            <a href="https://cognitionus.com" target="_blank" rel="noreferrer">Cognition</a>
+            <span>Stealth</span>
             {' '}(35,000+ users, backed by Google DeepMind),{' '}
             <span>Piller</span>
             {' '}(bespoke AI for real estate firms and realtors), and{' '}
