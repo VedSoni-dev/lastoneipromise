@@ -12,7 +12,6 @@ const PROJECTS = [
   },
   {
     name: 'Stealth',
-    image: '/cognition-preview.png',
     description: 'AI learning platform. validated by YC. 8 clients.',
   },
   {
@@ -57,14 +56,16 @@ export default function ProjectShowcase() {
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="showcase-image-wrapper">
-            <img
-              src={active.image}
-              alt={active.name}
-              className="showcase-image"
-              onError={(e) => { e.target.style.display = 'none' }}
-            />
-          </div>
+          {active.image && (
+            <div className="showcase-image-wrapper">
+              <img
+                src={active.image}
+                alt={active.name}
+                className="showcase-image"
+                onError={(e) => { e.target.style.display = 'none' }}
+              />
+            </div>
+          )}
           <p className="showcase-description">{active.description}</p>
         </Card>
       </AnimatePresence>
