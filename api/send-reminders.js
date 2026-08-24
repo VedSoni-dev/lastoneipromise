@@ -32,7 +32,7 @@ function getEmailContent(subscriber, emailIndex) {
           ? "you didn't scroll very far. there's a lot more down there — robots, research, a blackjack game. just saying."
           : "you made it pretty deep. but memory is funny — right about now, you're losing about half of what you saw.",
         closing: sections.includes('blog')
-          ? "you read some of my blog. here's what i didn't write yet: the cognition team just hit a milestone that changes everything. more soon."
+          ? "you read some of my blog. here's what i didn't write yet: the stealth team just hit a milestone that changes everything. more soon."
           : "i write about building robots, startups, and the things nobody tells you about founding a company. might be worth a look.",
         cta: { text: "come back", url: "https://vedantsoni.com" },
       })
@@ -44,9 +44,9 @@ function getEmailContent(subscriber, emailIndex) {
       html: buildEmail({
         opening: "fun fact: you've now forgotten about 70% of what you saw on my site.",
         body: sections.includes('work')
-          ? "you saw my work — cognition, fern, eden. but did you know fern started because i met a kid who couldn't speak, and i thought 'i can fix that'? 10,000 users later, turns out i was right."
-          : "you might remember my name. maybe not what i do. i build AI that adapts to how people learn (cognition), communication tools for nonverbal kids (fern), and humanoid robots that learn from experience (eden).",
-        closing: "this email exists because i built the same spaced repetition system that powers cognition — except this time it's about remembering me.",
+          ? "you saw my work — stealth, fern, eden. but did you know fern started because i met a kid who couldn't speak, and i thought 'i can fix that'? 10,000 users later, turns out i was right."
+          : "you might remember my name. maybe not what i do. i build AI that adapts to how people learn (stealth), communication tools for nonverbal kids (fern), and humanoid robots that learn from experience (eden).",
+        closing: "this email exists because i built the same spaced repetition system that powers stealth — except this time it's about remembering me.",
         cta: { text: "refresh your memory", url: "https://vedantsoni.com" },
       })
     },
@@ -56,7 +56,7 @@ function getEmailContent(subscriber, emailIndex) {
       subject: "one week later",
       html: buildEmail({
         opening: "it's been a week since you found my site.",
-        body: `by now, without reinforcement, you'd remember less than 20% of what you saw. that's not a guess — it's the ebbinghaus forgetting curve, and it's the exact problem i'm solving at cognition.`,
+        body: `by now, without reinforcement, you'd remember less than 20% of what you saw. that's not a guess — it's the ebbinghaus forgetting curve, and it's the exact problem i'm solving at stealth.`,
         closing: timeOnPage > 60
           ? `you spent over a minute on my site. that means something caught your attention. whatever it was — it's still there, and it's gotten better since you last looked.`
           : `most people spend a few seconds on a portfolio and move on. you're getting this email because you didn't. something made you stay.`,
@@ -69,7 +69,7 @@ function getEmailContent(subscriber, emailIndex) {
       subject: "last one, i promise",
       html: buildEmail({
         opening: "this is the last email you'll get from me.",
-        body: "four emails, spaced across two weeks, timed to the exact moments your brain would otherwise let go. this is literally what cognition does — except with everything you need to learn, not just one website.",
+        body: "four emails, spaced across two weeks, timed to the exact moments your brain would otherwise let go. this is literally what stealth does — except with everything you need to learn, not just one website.",
         closing: "if any of this was interesting — building with me, working together, or just talking about AI and robotics — reply to this email. it goes straight to my inbox.",
         cta: { text: "vedantsoni.com", url: "https://vedantsoni.com" },
       })
