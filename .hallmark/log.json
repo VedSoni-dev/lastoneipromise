@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-09-16",
+    "scope": "homepage",
+    "macrostructure": "Paired image-and-text document",
+    "theme": "studied-DNA",
+    "nav": "Inline contact links",
+    "footer": "Contact and copyright",
+    "enrichment": "Existing portrait and project screenshots",
+    "brief": "Remake personal homepage using user-supplied reference"
+  },
+  {
     "date": "2026-07-01",
     "scope": "app",
     "macrostructure": "Letter + Long Document",

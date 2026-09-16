@@ -2,8 +2,6 @@ export const SITE_URL = 'https://vedantsoni.com'
 export const SITE_NAME = 'Vedant Soni'
 export const PERSON_ID = `${SITE_URL}/#vedant`
 export const WEBSITE_ID = `${SITE_URL}/#website`
-export const ORG_TEACHY_ID = `${SITE_URL}/#teachy`
-export const ORG_WICK_ID = ORG_TEACHY_ID
 
 export const OG_IMAGE = `${SITE_URL}/og.png`
 
@@ -13,9 +11,9 @@ export const PERSON = {
   name: 'Vedant Soni',
   alternateName: ['Vedant Soni', 'Ved Soni'],
   email: 'ved.06.soni@gmail.com',
-  jobTitle: 'Founder',
+  jobTitle: 'Founder and AI Engineer',
   description:
-    'Vedant Soni is a 20-year-old founder building Teachy, the simplest interface in the world to learn AI, build software, or anything. He previously built Fern, Stealth (35,000+ users, backed by Google DeepMind), and Eden Robotics at Texas A&M.',
+    'Vedant Soni builds intuitive consumer software and works on AI at Texas A&M. Creator of the Texas A&M Harness and founder of Fern and Eden.',
   image: OG_IMAGE,
   url: SITE_URL,
   sameAs: [
@@ -39,14 +37,22 @@ export const PERSON = {
 }
 
 export const SEO = {
-  title: 'Vedant Soni — Founder of Teachy | AI Builder & Roboticist',
+  title: 'Vedant Soni — Builder',
   description:
-    'Vedant Soni is building Teachy, the simplest interface in the world to learn AI, build software, or anything. Previously built Fern, Stealth (35,000+ users, Google DeepMind), and Eden Robotics at Texas A&M.',
+    'Vedant Soni builds intuitive consumer software and works on AI at Texas A&M. Creator of the Texas A&M Harness and founder of Fern and Eden.',
   keywords:
-    'Vedant Soni, Vedant Soni Teachy, Vedant Soni AI, Vedant Soni Texas A&M, Teachy AI, Fern, Stealth, Eden Robotics, AI founder, robotics researcher',
+    'Vedant Soni, Vedant Soni AI, Vedant Soni Texas A&M, Fern, Eden Robotics, AI founder, robotics researcher',
   url: SITE_URL,
   image: OG_IMAGE,
   type: 'profile',
+}
+
+export const COOL_STUFF_SEO = {
+  ...SEO,
+  title: "Cool stuff I've made — Vedant Soni",
+  description: 'Projects by Vedant Soni, including Fern, Merchant Agent, Teachy, OmniWork, and Eden. Explore apps, AI agents, learning tools, and robotics.',
+  url: `${SITE_URL}/cool-stuff`,
+  type: 'website',
 }
 
 export function buildStructuredData() {
@@ -67,22 +73,10 @@ export function buildStructuredData() {
     email: `mailto:${PERSON.email}`,
     jobTitle: PERSON.jobTitle,
     description: PERSON.description,
-    worksFor: {
-      '@type': 'Organization',
-      '@id': ORG_TEACHY_ID,
-      name: 'Teachy',
-      description: 'The simplest interface in the world to learn AI, build software, or anything.',
-      founder: { '@id': PERSON_ID },
-    },
     alumniOf: PERSON.alumniOf,
     knowsAbout: PERSON.knowsAbout,
     sameAs: PERSON.sameAs,
     founder: [
-      {
-        '@type': 'Organization',
-        name: 'Teachy',
-        '@id': ORG_TEACHY_ID,
-      },
       {
         '@type': 'Organization',
         name: 'Fern',
@@ -91,14 +85,9 @@ export function buildStructuredData() {
       },
       {
         '@type': 'Organization',
-        name: 'Stealth',
-        description: 'AI learning platform with 35,000+ users, backed by Google DeepMind.',
-      },
-      {
-        '@type': 'Organization',
         name: 'Eden Robotics',
         url: 'https://eden-robotics.github.io/Eden/',
-        description: 'Texas A&M research lab putting emotions and memory inside humanoid robots.',
+        description: 'University-backed undergraduate lab founded by Vedant Soni, exploring emotions and decision-making in robots.',
       },
     ],
   }

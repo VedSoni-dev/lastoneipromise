@@ -1,290 +1,98 @@
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V4
+ * Macrostructure: portrait and personal document · theme: studied-DNA
+ * User reference: native serif, white paper, blue links, small inline logos
+ */
 @import '../../tokens.css';
 
-.aura-page {
-  /* one restrained accent, sampled from the console phosphor */
-  --phosphor: #5f7d0c;
-  --phosphor-bright: #8bac0f;
-
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  color: #000;
-  background: #fff;
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  font-weight: 400;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
+.personal-page {
+  min-height: 100vh;
+  padding: var(--personal-gutter);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-personal);
+  font-size: var(--text-md);
+  line-height: 1.3;
+  -webkit-font-smoothing: auto;
 }
-
-.aura-page ::selection {
-  background: var(--phosphor-bright);
-  color: #0a1a0a;
+.personal-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--personal-gap);
+  align-items: start;
+  width: min(100%, var(--personal-width));
 }
-
-.aura-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-  width: min(100%, 72rem);
-  margin-inline: auto;
-  padding: 1.5rem clamp(1.5rem, 5vw, 3.5rem) 1.25rem;
-}
-
-.aura-name {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0;
-  font-size: clamp(1.375rem, 3vw, 1.75rem);
+.personal-portrait { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
+.personal-copy { min-width: 0; }
+.personal-section { position: relative; margin-bottom: var(--space-lg); scroll-margin-top: var(--personal-gutter); }
+.personal-intro h1 {
+  margin: 0 0 var(--space-lg);
+  font-size: var(--text-personal-title);
+  line-height: 1.1;
   font-weight: 700;
-  color: #000;
-  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+}
+.personal-section h2 { margin: 0 0 var(--space-md); font-size: inherit; font-weight: 700; }
+.personal-section > p { margin: 0 0 var(--space-md); }
+.personal-section > ul, .personal-section > ol { margin: 0 0 var(--space-md); padding-left: var(--space-sm); }
+.personal-section li + li { margin-top: var(--space-2xs); }
+.personal-section li > p { margin: var(--space-xs) 0 var(--space-md); }
+.personal-yc-story { position: relative; }
+.personal-yc-photo {
+  position: absolute;
+  top: 0;
+  right: calc(100% + var(--personal-gap) + var(--space-sm));
+  width: calc(100% + var(--space-sm));
+  margin: 0;
+}
+.personal-yc-photo img { display: block; width: 100%; height: auto; }
+.personal-section li:has(.project-mention), .personal-section > p:has(.project-mention) { position: relative; }
+.personal-copy a, .project-name {
+  color: var(--color-personal-link);
+  text-decoration: underline;
+  text-underline-offset: 1px;
   white-space: nowrap;
 }
-
-/* phosphor prompt caret — ties the name to the console */
-.aura-name::before {
-  content: '';
-  width: 0.5rem;
-  height: 1.05em;
-  background: var(--phosphor-bright);
-  flex-shrink: 0;
+.personal-copy a:visited { color: var(--color-personal-visited); }
+.personal-copy a:hover, .project-name:hover { text-decoration-thickness: 2px; }
+.personal-page a:focus-visible, .personal-page button:focus-visible {
+  outline: 2px solid var(--color-personal-link);
+  outline-offset: 3px;
 }
-
-.aura-name a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.aura-main {
-  flex: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: clamp(1.75rem, 4vw, 3.5rem);
-  align-items: start;
-  width: min(100%, 72rem);
-  margin-inline: auto;
-  padding: clamp(1.5rem, 6vh, 4rem) clamp(1.5rem, 5vw, 3.5rem) clamp(1.25rem, 2.5vh, 1.75rem);
-  min-height: 0;
-}
-
-/* Shared baseline: both columns open with a labelled rule on the same
-   row, so the copy and the console hang from one line. */
-.aura-eyebrow {
-  padding-bottom: 0.55rem;
-  border-bottom: 1px solid #000;
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #000;
-}
-
-.aura-intro {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-.aura-console {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-/* top-align the console with the copy block (override its auto centering)
-   and let it grow — it is the only textured element on the page */
-.aura-console .retro-emulator {
-  margin: 0 auto;
-  justify-content: flex-start;
-  max-width: min(100%, 27rem);
-}
-
-.aura-intro p {
-  margin: 0;
-}
-
-.aura-intro p + p {
-  margin-top: 0.875rem;
-}
-
-.aura-intro .aura-eyebrow + p,
-.aura-console .aura-eyebrow + * {
-  margin-top: 1.5rem;
-}
-
-.aura-lede {
-  font-size: clamp(1rem, 1.6vw, 1.125rem);
-  font-weight: 500;
-}
-
-.aura-intro a {
-  color: #000;
-  text-decoration: underline;
-  text-decoration-color: var(--phosphor);
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 0.15em;
-  transition: text-decoration-color 0.18s ease, text-decoration-thickness 0.18s ease;
-}
-
-.aura-footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 0;
-  margin-top: 1.75rem;
-  color: #666;
-  font-size: 0.75rem;
-}
-
-.aura-footer > .aura-footer-label {
-  margin-right: 0.5rem;
-  padding-left: 0.55rem;
-  border-left: 2px solid var(--phosphor-bright);
-  color: var(--phosphor);
-  text-transform: lowercase;
-  letter-spacing: 0.06em;
-  font-weight: 600;
-}
-
-.aura-footer-item span {
-  color: #666;
-}
-
-.aura-footer a {
-  color: #666;
-  text-decoration: underline;
-  text-decoration-color: #ccc;
-  text-underline-offset: 0.15em;
-  transition: color 0.18s ease, text-decoration-color 0.18s ease;
-}
-
-.aura-sep {
-  margin: 0 0.5rem;
-  color: #ccc;
-  user-select: none;
-}
-
-.aura-footer-item {
-  display: inline-flex;
-  align-items: center;
-}
-
-.aura-page a:focus-visible {
-  outline: 2px solid var(--phosphor);
-  outline-offset: 2px;
-}
-
-/* nav underline slides in from the left instead of fading the whole link */
-.aura-page .site-nav a {
-  position: relative;
-}
-
-.aura-page .site-nav a::after {
-  content: '';
+.personal-logo { display: inline-block; width: 16px; height: 16px; object-fit: contain; vertical-align: -3px; margin-right: var(--space-3xs); }
+.project-mention { white-space: nowrap; }
+.project-name { padding: 0; border: 0; font: inherit; background: none; }
+.project-preview {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -3px;
-  height: 1px;
-  background: #000;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
+  z-index: 5;
+  top: 0;
+  right: calc(100% + var(--personal-gap));
+  width: 100%;
+  padding: var(--space-2xs);
+  border: var(--rule-hair) solid var(--color-rule-2);
+  background: var(--color-paper);
+  white-space: normal;
 }
+/* The transparent bridge keeps the preview reachable across the column gap. */
+.project-preview::after { content: ''; position: absolute; top: 0; left: 100%; width: var(--personal-gap); height: 100%; }
+.project-preview img { display: block; width: 100%; height: auto; max-height: 24rem; object-fit: contain; }
+.project-preview-caption { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2xs); padding-top: var(--space-2xs); font-size: var(--text-sm); }
+.project-preview-caption button { border: 0; padding: 0 var(--space-2xs); background: none; color: var(--color-ink); font: inherit; font-size: var(--text-lg); }
+.project-preview-toggle { display: none; }
+.personal-footer { padding: var(--space-md) 0 var(--space-lg); }
 
-@media (hover: hover) {
-  .aura-intro a:hover {
-    text-decoration-color: var(--phosphor-bright);
-    text-decoration-thickness: 2px;
-  }
-
-  .aura-footer a:hover {
-    color: #000;
-    text-decoration-color: var(--phosphor);
-  }
-
-  .aura-page .site-nav a:hover {
-    opacity: 1;
-  }
-
-  .aura-page .site-nav a:hover::after {
-    transform: scaleX(1);
-  }
+@media (min-width: 1100px) {
+  .personal-main { width: min(var(--personal-width), calc(56vw + var(--personal-gap))); }
 }
-
-/* one-shot arrival stagger */
-@keyframes aura-rise {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@media (hover: none), (max-width: 640px) {
+  .project-preview-toggle { display: inline; margin-left: var(--space-3xs); padding: 0; border: 0; background: none; color: var(--color-muted); font: inherit; font-size: var(--text-sm); text-decoration: underline; }
 }
-
-.aura-page .aura-name,
-.aura-page .site-nav a,
-.aura-page .aura-eyebrow,
-.aura-page .aura-intro > p,
-.aura-page .aura-footer,
-.aura-page .retro-emulator {
-  opacity: 0;
-  animation: aura-rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-.aura-page .aura-name { animation-delay: 0.04s; }
-.aura-page .site-nav a:nth-child(1) { animation-delay: 0.12s; }
-.aura-page .site-nav a:nth-child(2) { animation-delay: 0.17s; }
-.aura-page .site-nav a:nth-child(3) { animation-delay: 0.22s; }
-.aura-page .site-nav a:nth-child(4) { animation-delay: 0.27s; }
-.aura-page .aura-eyebrow { animation-delay: 0.14s; }
-.aura-page .aura-intro > p:nth-of-type(2) { animation-delay: 0.22s; }
-.aura-page .aura-intro > p:nth-of-type(3) { animation-delay: 0.3s; }
-.aura-page .aura-intro > p:nth-of-type(4) { animation-delay: 0.38s; }
-.aura-page .aura-footer { animation-delay: 0.48s; }
-.aura-page .retro-emulator { animation-delay: 0.32s; }
-
-@media (max-width: 56rem) {
-  .aura-page {
-    height: auto;
-    min-height: 100dvh;
-    overflow: auto;
-  }
-
-  .aura-main {
-    grid-template-columns: 1fr;
-    gap: clamp(2rem, 8vw, 3rem);
-  }
-}
-
-/* stop the name from wrapping under a crowded nav on phones */
-@media (max-width: 34rem) {
-  .aura-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.875rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .aura-page a,
-  .aura-page .site-nav a::after {
-    transition: none;
-  }
-
-  .aura-page .aura-name,
-  .aura-page .site-nav a,
-  .aura-page .aura-eyebrow,
-  .aura-page .aura-intro > p,
-  .aura-page .aura-footer,
-  .aura-page .retro-emulator {
-    animation: none;
-    opacity: 1;
-  }
+@media (max-width: 640px) {
+  .personal-page { padding: var(--space-sm); line-height: 1.4; }
+  .personal-main { grid-template-columns: minmax(0, 1fr); gap: var(--space-md); }
+  .personal-intro h1 { margin-bottom: var(--space-md); }
+  .personal-yc-photo { position: static; width: 100%; margin: var(--space-md) 0; }
+  .project-preview { position: fixed; top: auto; bottom: var(--space-sm); left: var(--space-sm); right: var(--space-sm); width: auto; }
+  .project-preview img { max-height: 45vh; }
+  .project-preview::after { display: none; }
+  .personal-footer { padding-bottom: 0; }
 }

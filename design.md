@@ -109,3 +109,15 @@ The source CSS is `/tokens.css` at the project root.
   --radius: 0;
 }
 ```
+
+## Homepage reference update — 2026-09-16
+
+The user's supplied screenshot supersedes the earlier homepage styling. The homepage now uses a paired image-and-text document: four top-aligned rows, square image areas on the left, concise paragraphs on the right, and ample unused space to the right of the document. It uses white paper, black Times New Roman text, standard blue underlined links, a 32px bold name, and 16px body copy. No entrance animation, header bar, cards, or decorative controls.
+
+Use the existing portrait and project screenshots; do not substitute another person's photos or biography. At 640px and below, each image precedes its text in a single column. Social links live in the final contact row, with the copyright at the bottom. The existing game stays available in an expandable details element in the research row. Existing routes, metadata, and game behavior are preserved.
+
+Homepage tokens are the `--font-personal`, `--text-personal-title`, `--color-personal-*`, and `--personal-*` entries in `tokens.css`. They intentionally override the earlier typography-only homepage allowance. Other components retain their existing tokens.
+
+## Homepage refinement — 2026-09-16
+
+Supersedes the four-row layout above: keep only the portrait visible by default, beside one continuous column of personal copy. Lead with “I love consumer products. I build intuitive software.” Emphasize the second sentence. Small official TalkR, Texas A&M, and GitHub marks appear inline with relevant names. Project screenshots appear beside their section on hover or keyboard focus, with explicit preview buttons on touch layouts and Escape/close-button dismissal. Remove the adventure entry from the homepage. The game source files remain unused. Homepage and social description copy emphasize intuitive consumer software.

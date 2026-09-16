@@ -24,7 +24,7 @@ function setMeta(html, selector, value) {
 
 function makeDocument(route) {
   const page = getPageData(route)
-  const canonical = 'https://vedantsoni.com/'
+  const canonical = route === '/' ? 'https://vedantsoni.com/' : page.url
   let html = template.replace('<div id="root"></div>', `<div id="root">${render(route)}</div>`)
 
   html = html.replace(/<title>.*?<\/title>/is, `<title>${escapeHtml(page.title)}</title>`)
@@ -62,13 +62,13 @@ await writeFile(
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://vedantsoni.com/</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://vedantsoni.com/og.png</image:loc>
       <image:title>Vedant Soni</image:title>
-      <image:caption>Vedant Soni — Founder of Teachy</image:caption>
+      <image:caption>Vedant Soni — Builder</image:caption>
     </image:image>
   </url>
 </urlset>

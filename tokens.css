@@ -10,8 +10,8 @@
   --color-accent: #000000;
   --color-accent-ink: #ffffff;
   --color-focus: #000000;
-  --font-display: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
-  --font-body: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'SF Pro Display', 'SF Pro', -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', sans-serif;
+  --font-body: 'SF Pro Text', 'SF Pro', -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', sans-serif;
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 0.9375rem;
@@ -47,4 +47,47 @@
   --radius-card: 0;
   --radius-pill: 0;
   --radius-input: 0;
+  --color-message-blue: #007aff;
+  --color-message-action: #0066db;
+  --color-message-gray: #e9e9eb;
+  --color-message-ink: #171719;
+  --color-message-muted: #6c6c70;
+  --color-message-avatar: #dedee3;
+  --font-message: var(--font-body);
+  --radius-message: 1.125rem;
+  --color-message-avatar-bottom: #9898a0;
+  --color-message-edge: rgba(255, 255, 255, 0.7);
+  --color-message-shadow: rgba(0, 0, 0, 0.24);
+  --color-message-soft-shadow: rgba(0, 0, 0, 0.1);
+  --color-message-backdrop: rgba(20, 22, 30, 0.32);
+  --color-message-focus: rgba(0, 122, 255, 0.12);
+}
+
+:root {
+  --color-game-ink: oklch(32% .04 155);
+  --color-game-paper: oklch(95% .03 90);
+  --color-game-light: oklch(98% .015 90);
+  --color-game-rule: oklch(79% .035 100);
+  --color-game-muted: oklch(48% .025 145);
+  --color-game-green: oklch(47% .065 150);
+  --color-game-grass: oklch(81% .075 125);
+  --color-game-gold: oklch(76% .13 80);
+  --color-game-clay: oklch(60% .115 40);
+  --color-game-sky: oklch(89% .04 125);
+  --color-game-overlay: oklch(95% .03 90 / .96);
+  --color-game-shadow: oklch(20% .015 145 / .24);
+  --font-game: 'Courier New', ui-monospace, monospace;
+}
+
+:root {
+  --font-personal: 'Times New Roman', Times, serif;
+  --text-personal-title: 2rem;
+  --color-personal-link: #0000ee;
+  --color-personal-visited: #551a8b;
+  --color-personal-fern: #f8f9f7;
+  --color-personal-eden: #050505;
+  --color-personal-recreach: #060b0e;
+  --personal-width: 68rem;
+  --personal-gutter: clamp(1rem, 1.667vw, 2rem);
+  --personal-gap: clamp(1.5rem, 1.667vw, 2rem);
 }
