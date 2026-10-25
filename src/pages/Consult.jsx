@@ -46,8 +46,8 @@ export default function ConsultPage() {
           <h2 id="experience-title">Experience</h2>
           <ul className="personal-entries">
             <Entry title="AI Engineer @ Texas A&M" href="https://www.tamu.edu/">
+              Handpicked by Texas A&amp;M's CIO to join the university's top AI team.
               Built the Texas A&amp;M Harness and software used by 70,000 people across TAMU facilities.
-              Focused on making AI useful across the university.
             </Entry>
             <Entry title="Founder & Project Lead @ EDEN" href="https://eden-robotics.github.io/Eden/">
               Founded a robotics lab with $50,000 in university backing and $50,000 in support
@@ -56,10 +56,7 @@ export default function ConsultPage() {
             </Entry>
             <Entry title="Research Lead @ ART Lab & DIGIT Lab">
               Applied AI for robotics, robot swarm coordination, and agent-based data extraction
-              and cleaning at Texas A&amp;M.
-            </Entry>
-            <Entry title="Research Project Lead @ TAMU ThinkTank">
-              Led Team Orion, a group of 10, on a 100-page research paper accepted to AIAA 2025.
+              and cleaning at Texas A&amp;M. The two labs had approximately $5 million in combined funding.
             </Entry>
           </ul>
         </section>
