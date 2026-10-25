@@ -50,8 +50,9 @@ export default function ConsultPage() {
               Focused on making AI useful across the university.
             </Entry>
             <Entry title="Founder & Project Lead @ EDEN" href="https://eden-robotics.github.io/Eden/">
-              Founded a university-backed robotics lab and led a team of 12. Built robots with
-              emotion-led decision-making and completed the project in one year.
+              Founded a robotics lab with $50,000 in university backing and $50,000 in support
+              from NVIDIA. Led a team of 12 building robots with emotion-led decision-making
+              and completed the project in one year.
             </Entry>
             <Entry title="Research Lead @ ART Lab & DIGIT Lab">
               Applied AI for robotics, robot swarm coordination, and agent-based data extraction
@@ -70,12 +71,21 @@ export default function ConsultPage() {
               Free communication tools for nonverbal children, reaching 12,500 users.
               Brought the software to underprivileged schools in Pakistan and South America.
             </Entry>
-            <Entry title="Piller">
-              Built bespoke AI agents for real estate firms and realtors. Reached six figures in revenue.
+            <Entry title="Piller — AI Consulting">
+              Built an AI consulting business for real estate firms and realtors from scratch.
+              Generated $80,000 in revenue in three months and $15,000 in monthly recurring
+              revenue from retainers.
             </Entry>
             <Entry title="RecReach">
               A platform for finding pickup basketball games. Built the iOS app and grew its social
               content to more than 3 million views in one summer.
+            </Entry>
+            <Entry title="Open-source Robotics">
+              Worked on open-source robotics projects, including{' '}
+              <ExternalLink href="https://github.com/robotmcp/ros-mcp-server">ROS-MCP-Server</ExternalLink>
+              {' '}(about 1,500 GitHub stars) and{' '}
+              <ExternalLink href="https://github.com/VedSoni-dev/TalkrBot">TalkrBot</ExternalLink>,
+              an AI-powered assistive robot built on ROS 2.
             </Entry>
             <Entry title="Open Source" href="https://github.com/VedSoni-dev">
               <ExternalLink href="https://github.com/VedSoni-dev/merchant-agent">Merchant Agent</ExternalLink>,{' '}
