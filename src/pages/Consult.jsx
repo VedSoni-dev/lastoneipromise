@@ -88,10 +88,6 @@ export default function ConsultPage() {
                 <p>In my YC interview, Diana Hu and François described me as a strong founder
                   they would normally back, but said the product needed a bit more traction.
                   We got that traction, but ended up leaving the company.</p>
-                <figure className="personal-yc-photo">
-                  <img src="/vedant-at-yc.png" alt="Vedant Soni standing behind the Y Combinator sign"
-                    width="1448" height="1086" loading="lazy" decoding="async" />
-                </figure>
               </li>
               <li><strong>Piller</strong>, bespoke AI for real estate firms and realtors.
                 I built AI agents before they were popular and made my first six figures in revenue.</li>
