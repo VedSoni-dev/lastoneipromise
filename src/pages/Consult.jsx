@@ -73,10 +73,6 @@ export default function ConsultPage() {
             <Entry title="Piller">
               Built bespoke AI agents for real estate firms and realtors. Reached six figures in revenue.
             </Entry>
-            <Entry title="10HAI Game Show">
-              Built the games and software for a humans-versus-AI game show, and helped{' '}
-              <ExternalLink href="https://www.linkedin.com/in/mrtle">Martin Lee</ExternalLink> bring it to the screen.
-            </Entry>
             <Entry title="RecReach">
               A platform for finding pickup basketball games. Built the iOS app and grew its social
               content to more than 3 million views in one summer.
