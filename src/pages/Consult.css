@@ -95,8 +95,6 @@
   margin: 0;
 }
 
-.personal-page strong { color: var(--personal-subheading); font-weight: 700; }
-
 .personal-page a {
   color: inherit;
   text-decoration: none;
