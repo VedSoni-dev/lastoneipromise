@@ -1,10 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
+:root {
+  --personal-background: #fff;
+  --personal-text: #626262;
+  --personal-heading: #333;
+  --personal-subheading: #444;
+  --personal-link: #555;
+  --personal-rule: #e5e5e5;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --personal-background: #000;
+  --personal-text: #b6b6b6;
+  --personal-heading: #f5f5f5;
+  --personal-subheading: #e2e2e2;
+  --personal-link: #ccc;
+  --personal-rule: #292929;
+  color-scheme: dark;
+}
+
 .personal-page {
-  min-height: 100vh;
+  min-height: 100svh;
   padding: 48px 24px 32px;
-  background: #fff;
-  color: #767676;
+  background: var(--personal-background);
+  color: var(--personal-text);
   font-family: 'Lato', Arial, sans-serif;
   font-size: 14.4px;
   line-height: 1.6;
@@ -26,7 +46,7 @@
 
 .personal-header h1 {
   margin: 0 0 8px;
-  color: #333;
+  color: var(--personal-heading);
   font-size: 32px;
   font-weight: 700;
   line-height: 1.6;
@@ -56,7 +76,7 @@
 
 .personal-section h2 {
   margin: 0 0 2px;
-  color: #555;
+  color: var(--personal-heading);
   font-size: 22.4px;
   font-weight: 700;
   line-height: 1.6;
@@ -74,7 +94,7 @@
 
 .personal-entry h3 {
   margin: 0 0 4px;
-  color: #444;
+  color: var(--personal-subheading);
   font-size: 16px;
   font-weight: 700;
   line-height: 1.6;
@@ -85,6 +105,8 @@
   margin: 0;
 }
 
+.personal-page strong { color: var(--personal-subheading); font-weight: 700; }
+
 .personal-page a {
   color: inherit;
   text-decoration: none;
@@ -92,19 +114,20 @@
 }
 
 .personal-page a:hover {
-  color: #333;
+  color: var(--personal-heading);
   text-decoration: underline;
 }
 
-.personal-page a:focus-visible {
-  outline: 2px solid #555;
+.personal-page a:focus-visible,
+.personal-page button:focus-visible {
+  outline: 2px solid var(--personal-heading);
   outline-offset: 4px;
 }
 
 .personal-contact a,
 .personal-entry p a,
 .personal-socials a {
-  color: #666;
+  color: var(--personal-link);
 }
 
 .personal-socials {
@@ -117,9 +140,84 @@
 .personal-footer {
   margin-top: 48px;
   padding-top: 20px;
-  border-top: 1px solid #eee;
-  color: #666;
+  border-top: 1px solid var(--personal-rule); /* taste-skill-ignore: preserve existing footer divider */
+  color: var(--personal-text);
   font-size: 14.4px;
+}
+
+.personal-entry .personal-dates {
+  margin: -2px 0 5px;
+  font-size: 13px;
+}
+
+.personal-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin: -12px 0 20px;
+}
+
+/* A polished aluminum shell around an inset, iOS-like sliding control. */
+.theme-switch {
+  display: block;
+  width: 86px;
+  height: 46px;
+  padding: 4px;
+  border: 1px solid #aaa; /* taste-skill-ignore: requested metal control */
+  border-radius: 28px;
+  background: linear-gradient(165deg, #fff 0%, #d6d7d9 25%, #a2a4a7 52%, #e5e6e8 83%, #fafafa 100%); /* taste-skill-ignore: requested metal control */
+  box-shadow: inset 0 1px 0 #fff, 0 2px 4px #00000018; /* taste-skill-ignore: requested metal control */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.theme-switch:focus:not(:focus-visible) { outline: none; }
+
+.theme-switch-track {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 22px;
+  background: linear-gradient(#b8bbc0, #d2d5da); /* taste-skill-ignore: requested metal control */
+  box-shadow: inset 0 1px 3px #00000065, 0 1px 0 #ffffffb3; /* taste-skill-ignore: requested metal control */
+}
+
+.theme-switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #f5f5f5; /* taste-skill-ignore: requested metal control */
+  border-radius: 50%;
+  background: linear-gradient(155deg, #fff 5%, #e8e9eb 40%, #c6c8cc 75%, #f5f5f5); /* taste-skill-ignore: requested metal control */
+  box-shadow: 0 2px 3px #00000048, inset 0 1px 1px #fff; /* taste-skill-ignore: requested metal control */
+  transition: transform 260ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.theme-switch svg {
+  position: absolute;
+  top: 9px;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.theme-sun { left: 9px; color: #44484d; }
+.theme-moon { right: 9px; color: #646870; }
+
+:root[data-theme='dark'] .theme-switch-track {
+  background: linear-gradient(#0a0b0d, #303236); /* taste-skill-ignore: requested metal control */
+}
+
+:root[data-theme='dark'] .theme-switch-thumb { transform: translateX(40px); }
+:root[data-theme='dark'] .theme-sun { color: #92969d; }
+:root[data-theme='dark'] .theme-moon { color: #35383e; }
+.theme-switch:active .theme-switch-thumb { filter: brightness(.94); }
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-switch-thumb { transition: none; }
 }
 
 @media (max-width: 600px) {
