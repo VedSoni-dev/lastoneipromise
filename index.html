@@ -13,17 +13,8 @@
     <meta name="author" content="Vedant Soni" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow" />
-    <meta name="theme-color" content="#ffffff" />
-    <script>
-      // Apply the saved appearance before the first paint, including prerendered pages.
-      (() => {
-        let saved;
-        try { saved = localStorage.getItem('personal-theme'); } catch {}
-        const dark = saved === 'dark' || (saved !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-        document.querySelector('meta[name="theme-color"]').content = dark ? '#000000' : '#ffffff';
-      })();
-    </script>
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="dark" />
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://vedantsoni.com/" />

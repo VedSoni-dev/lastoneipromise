@@ -1,57 +1,9 @@
-import { useEffect, useState } from 'react'
 import SEOHead from '../components/SEOHead'
 import { PERSON } from '../seo'
 import './Consult.css'
 
 function ExternalLink({ href, children, ...props }) {
   return <a href={href} target="_blank" rel="noreferrer" {...props}>{children}</a>
-}
-
-function ThemeSwitch() {
-  const [dark, setDark] = useState(false)
-
-  useEffect(() => {
-    const media = window.matchMedia('(prefers-color-scheme: dark)')
-    const syncTheme = () => {
-      let saved
-      try { saved = localStorage.getItem('personal-theme') } catch { /* Storage may be unavailable. */ }
-      const next = saved === 'dark' || (saved !== 'light' && media.matches)
-      document.documentElement.dataset.theme = next ? 'dark' : 'light'
-      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next ? '#000000' : '#ffffff')
-      setDark(next)
-    }
-    syncTheme()
-    media.addEventListener('change', syncTheme)
-    window.addEventListener('storage', syncTheme)
-    return () => {
-      media.removeEventListener('change', syncTheme)
-      window.removeEventListener('storage', syncTheme)
-    }
-  }, [])
-
-  const toggleTheme = () => {
-    const next = !dark
-    document.documentElement.dataset.theme = next ? 'dark' : 'light'
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next ? '#000000' : '#ffffff')
-    try { localStorage.setItem('personal-theme', next ? 'dark' : 'light') } catch { /* Switching still works without storage. */ }
-    setDark(next)
-  }
-
-  return (
-    <button className="theme-switch" type="button" role="switch" aria-checked={dark}
-      aria-label="Dark mode" title={dark ? 'Switch to light mode' : 'Switch to dark mode'} onClick={toggleTheme}>
-      <span className="theme-switch-track" aria-hidden="true">
-        <svg className="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round">
-          <circle cx="12" cy="12" r="3.5" />
-          <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" />
-        </svg>
-        <svg className="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M20.5 14A8.5 8.5 0 0 1 10 3.5 8.5 8.5 0 1 0 20.5 14Z" />
-        </svg>
-        <span className="theme-switch-thumb" />
-      </span>
-    </button>
-  )
 }
 
 function Entry({ title, href, dates, children }) {
@@ -74,8 +26,6 @@ export default function ConsultPage() {
         <meta itemProp="jobTitle" content={PERSON.jobTitle} />
         <meta itemProp="image" content={PERSON.image} />
         <link itemProp="url" href={PERSON.url} />
-
-        <div className="personal-toolbar"><ThemeSwitch /></div>
 
         <header className="personal-header">
           <div>
