@@ -11,7 +11,7 @@ function Entry({ title, href, dates, children }) {
     <li className="personal-entry">
       <h3>{href ? <ExternalLink href={href}>{title}</ExternalLink> : title}</h3>
       {dates && <p className="personal-dates">{dates}</p>}
-      <p>{children}</p>
+      {children && <p>{children}</p>}
     </li>
   )
 }
@@ -51,6 +51,7 @@ export default function ConsultPage() {
         <section className="personal-section" aria-labelledby="experience-title">
           <h2 id="experience-title">Experience</h2>
           <ul className="personal-entries">
+            <Entry title="Co-founder & CTO @ Neocast" dates="Present" />
             <Entry title="AI Engineer @ Texas A&M" href="https://www.tamu.edu/">
               Handpicked by Texas A&amp;M's CIO to join the university's top AI team.
               Built the Texas A&amp;M Harness and software used by 70,000 people across TAMU facilities.
