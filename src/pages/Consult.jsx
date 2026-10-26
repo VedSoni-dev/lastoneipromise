@@ -55,6 +55,10 @@ export default function ConsultPage() {
               Handpicked by Texas A&amp;M's CIO to join the university's top AI team.
               Built the Texas A&amp;M Harness and software used by 70,000 people across TAMU facilities.
             </Entry>
+            <Entry title="CTO @ Cognition">
+              Built computational neuroscience for AI agents, reaching 35,000 users.
+              Backed by researchers at Google DeepMind, The Residency, and Founders Inc.
+            </Entry>
             <Entry title="Founder @ EDEN" href="https://eden-robotics.github.io/Eden/">
               Founded a robotics lab with $50,000 in university backing and $50,000 in support
               from NVIDIA. Led a team of 12 building robots with emotion-led decision-making
