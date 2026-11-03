@@ -1,21 +1,69 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const TRACK = {
-  title: 'Jumpman',
-  artist: 'Drake & Future',
-  url: 'https://music.apple.com/us/album/jumpman/1440848548?i=1440848846',
-  artwork: 'https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/d3/74/1d/d3741d09-5c9a-461b-aba3-fa345d306d5a/00602547616678.rgb.jpg/300x300bb.jpg',
-  preview: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/93/f1/31/93f131ce-feb5-dbef-ad21-b4c5fd99846f/mzaf_8501334934618208471.plus.aac.p.m4a',
+  title: 'Solar Eclipse',
+  artist: 'Drake & Don Toliver',
+  album: 'HABIBTI (FOMO)',
+  url: 'https://music.apple.com/us/album/solar-eclipse/6818059268?i=6818059593',
+  artwork: 'https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/62/58/98/62589807-decc-d418-eb07-5060de9a2d3e/26UMGIM63617.rgb.jpg/300x300bb.jpg',
+  preview: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/9f/d3/6f/9fd36f93-027f-aef8-67cc-e9701f8cf4f5/mzaf_4702287322687146814.plus.aac.p.m4a',
 }
 
 export default function MusicDock() {
   const audioRef = useRef(null)
+  const userControlledRef = useRef(false)
   const [playing, setPlaying] = useState(false)
   const [loading, setLoading] = useState(false)
   const [failed, setFailed] = useState(false)
   const [progress, setProgress] = useState(0)
 
+  useEffect(() => {
+    const audio = audioRef.current
+    let active = true
+    let waitingForGesture = false
+    audio.volume = 0.35
+
+    function stopListening() {
+      document.removeEventListener('click', startOnInteraction)
+      document.removeEventListener('keydown', startOnInteraction)
+    }
+
+    async function start() {
+      waitingForGesture = false
+      try {
+        await audio.play()
+        stopListening()
+      } catch (error) {
+        if (!active || userControlledRef.current) return
+        if (error.name === 'NotAllowedError') {
+          waitingForGesture = true
+        } else if (error.name !== 'AbortError') {
+          setFailed(true)
+          stopListening()
+        }
+      }
+    }
+
+    function startOnInteraction(event) {
+      if (!waitingForGesture || userControlledRef.current) return
+      // The player's own button handles its gesture so it never toggles twice.
+      if (event.target.closest?.('.music-toggle')) return
+      if (event.type === 'keydown' && (event.repeat || !['Enter', ' '].includes(event.key))) return
+      void start()
+    }
+
+    document.addEventListener('click', startOnInteraction)
+    document.addEventListener('keydown', startOnInteraction)
+    void start()
+    return () => {
+      active = false
+      stopListening()
+      audio.pause()
+    }
+  }, [])
+
   async function toggle() {
+    userControlledRef.current = true
     const audio = audioRef.current
     if (!audio.paused) {
       audio.pause()
@@ -34,7 +82,7 @@ export default function MusicDock() {
   }
 
   return <section className="music-dock" aria-label="Music player">
-    <audio ref={audioRef} src={TRACK.preview} preload="none"
+    <audio ref={audioRef} src={TRACK.preview} preload="auto" loop
       onPlaying={() => { setPlaying(true); setLoading(false) }}
       onPause={() => setPlaying(false)}
       onEnded={() => { setPlaying(false); setProgress(0) }}
@@ -43,12 +91,12 @@ export default function MusicDock() {
         const audio = event.currentTarget
         setProgress(audio.duration && !audio.ended ? audio.currentTime / audio.duration : 0)
       }} />
-    <a className="music-track" href={TRACK.url} target="_blank" rel="noreferrer" aria-label="Jumpman by Drake & Future on Apple Music">
-      <img src={TRACK.artwork} width="44" height="44" alt="What a Time To Be Alive album cover" />
+    <a className="music-track" href={TRACK.url} target="_blank" rel="noreferrer" aria-label={`${TRACK.title} by ${TRACK.artist} on Apple Music`}>
+      <img src={TRACK.artwork} width="44" height="44" alt={`${TRACK.album} album cover`} />
       <span><strong>{TRACK.title}</strong><span>{TRACK.artist}</span></span>
     </a>
     <button className="icon-button music-toggle" onClick={toggle} disabled={loading}
-      aria-label={loading ? 'Loading Jumpman preview' : playing ? 'Pause Jumpman' : 'Play Jumpman preview'}
+      aria-label={loading ? `Loading ${TRACK.title} preview` : playing ? `Pause ${TRACK.title}` : `Play ${TRACK.title} preview`}
       title={playing ? 'Pause' : 'Play preview'} aria-busy={loading}>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         {loading ? <circle className="music-loading" cx="12" cy="12" r="8" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="35 16" /> : playing ? <path d="M6 4h4v16H6zm8 0h4v16h-4z" /> : <path d="M7 3.8a.8.8 0 0 1 1.2-.7l12 8.2a.8.8 0 0 1 0 1.4l-12 8.2a.8.8 0 0 1-1.2-.7z" />}
