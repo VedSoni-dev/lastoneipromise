@@ -1,136 +1,176 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --personal-background: #000;
-  --font-body: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', sans-serif;
-  --notes-ink: #f2f2f7;
-  --notes-secondary: #a4a4aa;
-  --notes-accent: #ffd426;
+  --notes-font: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', sans-serif;
+  --notes-ink: #f5f5f7;
+  --notes-secondary: #a1a1a6;
+  --notes-accent: #ffd60a;
   --notes-paper: #1c1c1e;
+  --notes-raised: #2c2c2e;
+  --notes-rule: #3a3a3c;
   color-scheme: dark;
 }
-.phone-stage { min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 36px 20px 22px; background: #000; color: var(--notes-ink); font-family: var(--font-body); }
-.phone-stage button { border: 0; padding: 0; font: inherit; color: inherit; background: transparent; }
-.phone-stage button:focus { outline: none; }
-.phone-stage button:focus-visible, .phone-stage a:focus-visible, .phone-stage summary:focus-visible { outline: 2px solid var(--notes-accent); outline-offset: 4px; border-radius: 3px; }
-.phone-stage button:disabled { opacity: .35; cursor: default; }
-.phone-stage svg { flex-shrink: 0; }
-.phone-scene { position: relative; }
-.iphone { width: 410px; height: min(830px, calc(100dvh - 100px)); min-height: 580px; position: relative; border-radius: 59px; padding: 11px; background: #070707; border: 2px solid #757472; transform: perspective(1600px) rotateY(-9deg) rotateX(3deg); transform-style: preserve-3d; box-shadow: 0 0 0 1px #353535, inset 0 0 0 2px #292929, inset 0 0 1px 4px #6b6b68, 2px 1px 0 #656565, 4px 2px 0 #444, 6px 3px 0 #292929, 8px 4px 0 #171717; }
-.iphone::before { content: ''; position: absolute; inset: -2px; border-radius: inherit; transform: translateZ(-18px); background: linear-gradient(110deg, #797979, #292929 35%, #101010 75%, #696969); border: 1px solid #626262; pointer-events: none; }
-.phone-screen { height: 100%; display: flex; flex-direction: column; border-radius: 46px; background: var(--notes-paper); overflow: hidden; position: relative; border: 1px solid #262626; }
-.phone-button { position: absolute; background: linear-gradient(90deg,#252525,#777,#252525); width: 4px; border-radius: 3px; left: -5px; }
-.phone-mute { top: 108px; height: 25px; }
-.phone-volume-up { top: 154px; height: 49px; }
-.phone-volume-down { top: 217px; height: 49px; }
-.phone-power { left: auto; right: -5px; top: 177px; height: 76px; }
-.phone-status { height: 63px; flex-shrink: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 25px; position: relative; font-size: 15px; font-weight: 650; letter-spacing: -.25px; }
-.dynamic-island { position: absolute; width: 112px; height: 32px; border-radius: 30px; background: #000; top: 12px; left: 50%; transform: translateX(-50%); }
-.dynamic-island i { width: 9px; height: 9px; background: radial-gradient(circle at 40% 35%, #12243b, #060a13 60%); border: 2px solid #0c0d10; position: absolute; right: 12px; top: 11px; border-radius: 50%; }
-.status-icons { display: flex; gap: 5px; align-items: center; }
-.status-icons svg { width: 16px; height: 14px; }
-.battery { width: 23px; height: 12px; border: 1px solid #8a8a8e; border-radius: 4px; position: relative; padding: 2px; }
-.battery:after { content: ''; width: 2px; height: 5px; position: absolute; right: -4px; top: 3px; background: #8a8a8e; border-radius: 1px; }
-.battery i { display: block; height: 100%; width: 100%; background: #f2f2f7; border-radius: 1px; }
-.phone-toolbar { display: flex; align-items: center; justify-content: space-between; height: 45px; padding: 0 17px 0 9px; color: var(--notes-accent); flex-shrink: 0; }
-.phone-stage .notes-back { display: flex; gap: 1px; align-items: center; min-height: 44px; font-size: 17px; }
-.notes-back svg { width: 25px; height: 25px; }
-.top-actions { display: flex; gap: 14px; }
-.phone-stage .icon-button { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 42px; border-radius: 8px; }
-.phone-stage .icon-button:hover, .phone-stage .icon-button[aria-pressed=true] { background: #ffffff0c; }
-.phone-content { flex: 1; overflow-y: auto; min-height: 0; scrollbar-width: none; overscroll-behavior: contain; }
-.phone-content::-webkit-scrollbar { display: none; }
-.phone-note { padding: 19px 24px 38px; font-size: 15.5px; line-height: 1.5; overflow-wrap: anywhere; }
-.phone-note h1 { font-size: 29px; line-height: 1.15; letter-spacing: -.8px; font-weight: 700; margin: 0 0 25px; }
-.phone-note h2 { font-size: 20px; font-weight: 650; line-height: 1.25; letter-spacing: -.35px; margin: 27px 0 11px; }
-.phone-note p { margin: 0 0 14px; }
-.phone-note .intro-secondary { color: var(--notes-secondary); font-size: 14px; line-height: 1.55; }
-.phone-note a { color: var(--notes-accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-.phone-stage .preview-name { color: var(--notes-accent); text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 4px; text-decoration-color: #ffd42680; cursor: pointer; }
-.personal-entries { list-style: none; }
-.personal-entry { margin: 0; }
-.personal-entry summary { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; font-size: 15px; line-height: 1.4; cursor: pointer; list-style: none; }
-.personal-entry summary::-webkit-details-marker { display: none; }
-.personal-entry summary:hover { color: var(--notes-accent); }
-.check-ring { display: block; flex-shrink: 0; width: 19px; height: 19px; border: 1.4px solid #77777e; border-radius: 50%; margin-top: 1px; position: relative; transition: border-color 120ms, background 120ms; }
-.personal-entry summary:hover .check-ring { border-color: var(--notes-accent); }
-.personal-entry details[open] .check-ring { background: var(--notes-accent); border-color: var(--notes-accent); }
-.personal-entry details[open] .check-ring:after { content: ''; position: absolute; left: 5px; top: 3px; width: 5px; height: 8px; border-right: 1.5px solid #1c1c1e; border-bottom: 1.5px solid #1c1c1e; transform: rotate(45deg); }
-.present-label { margin-left: auto; font-size: 10px; color: var(--notes-secondary); padding-top: 4px; }
-.entry-details { padding: 3px 0 12px 29px; color: #c0c0c6; font-size: 14px; line-height: 1.55; }
-.entry-details p { margin-bottom: 9px; }
-.personal-dates { font-size: 12px; color: var(--notes-secondary); }
-.phone-bottom-toolbar { flex-shrink: 0; height: 46px; display: flex; align-items: center; justify-content: space-between; color: var(--notes-accent); padding: 0 19px; background: #202022; }
-.phone-stage .text-size { font-size: 23px; letter-spacing: -1px; }
-.home-indicator { flex-shrink: 0; height: 25px; display: flex; justify-content: center; align-items: center; background: #202022; }
-.home-indicator span { height: 4px; width: 125px; background: #e5e5e8; border-radius: 4px; }
-.phone-menu { position: absolute; top: 107px; right: 17px; background: #303032; border: 1px solid #444; border-radius: 12px; box-shadow: 0 10px 30px #0008; z-index: 4; min-width: 205px; overflow: hidden; }
-.phone-menu button { display: block; padding: 13px 17px; font-size: 14px; text-align: left; width: 100%; border-bottom: 1px solid #ffffff12; }
-.phone-menu button:hover { background: #3d3d40; }
-.copy-status { position: absolute; top: 105px; right: 15px; z-index: 5; background: #343436; border-radius: 8px; font-size: 12px; color: var(--notes-accent); }
-.copy-status:not(:empty) { padding: 8px 12px; }
-.notes-search { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #303033; border-radius: 10px; margin-bottom: 22px; color: #a4a4aa; }
-.notes-search svg { width: 17px; height: 17px; }
-.notes-search input { width: 100%; min-width: 0; font: inherit; font-size: 16px; background: none; border: 0; color: var(--notes-ink); outline: none; }
-.notes-search:focus-within { outline: 2px solid var(--notes-accent); }
-.note-list { border-radius: 10px; overflow: hidden; background: #272729; }
-.phone-stage .note-row { display: block; width: 100%; padding: 12px 14px; text-align: left; border-bottom: 1px solid #ffffff15; }
-.note-row strong { display: block; font-size: 16px; font-weight: 650; }
-.note-row span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--notes-secondary); font-size: 13px; margin-top: 3px; }
-.phone-stage .note-row:hover { background: #333336; }
-.note-count, .no-results { text-align: center; color: var(--notes-secondary); font-size: 12px; padding-top: 20px; }
-.large-text .phone-note { font-size: 18px; }
-.large-text .personal-entry summary { font-size: 18px; }
-.large-text .entry-details, .large-text .intro-secondary { font-size: 17px; }
-.floating-preview { position: absolute; top: 22%; width: min(350px, calc((100vw - 480px) / 2 - 30px)); z-index: 6; animation: preview-arrive 220ms ease-out both; }
-.preview-left { right: calc(100% + 46px); --preview-rotate: -3deg; }
-.preview-right { left: calc(100% + 46px); --preview-rotate: 3deg; }
-.floating-preview figure { border-radius: 14px; overflow: hidden; background: #242426; border: 1px solid #ffffff20; box-shadow: 0 24px 60px #0008; transform: rotate(var(--preview-rotate)); }
-.floating-preview img { width: 100%; height: auto; max-height: 340px; object-fit: contain; display: block; background: #171717; filter: brightness(.93); }
-.floating-preview.portrait-preview { width: min(270px, calc((100vw - 480px) / 2 - 30px)); top: 18%; }
-.portrait-preview img { max-height: 350px; object-fit: cover; }
-.floating-preview figcaption { display: flex; justify-content: space-between; align-items: center; padding: 2px 9px 2px 16px; gap: 8px; font-size: 13px; color: #dedee3; }
-.floating-preview .icon-button { width: 32px; height: 36px; }
-.floating-preview .icon-button svg { width: 16px; height: 16px; }
-.stage-hint { color: #838387; font-size: 12px; margin-top: 21px; }
-.touch-hint { display: none; }
-.preload-images { display: none; }
-@keyframes preview-arrive { from { opacity: 0; translate: 0 12px; scale: .97; } to { opacity: 1; translate: 0 0; scale: 1; } }
-@media (max-width: 900px) {
-  .iphone { transform: none; transform-style: flat; }
-  .iphone::before { display: none; }
-  .floating-preview, .floating-preview.portrait-preview { position: fixed; top: auto; bottom: max(28px, env(safe-area-inset-bottom)); left: 50%; right: auto; width: min(460px, calc(100vw - 40px)); transform: translateX(-50%); }
-  .floating-preview figure { transform: none; box-shadow: 0 0 0 100vmax #0009, 0 20px 60px #000b; }
-  .floating-preview img { max-height: 50dvh; }
-  .portrait-preview img { max-height: 55dvh; object-fit: contain; }
-  .floating-preview figcaption { font-size: 15px; }
-  .floating-preview .icon-button { height: 44px; width: 44px; }
-  .desktop-hint { display: none; }
-  .touch-hint { display: inline; }
+.phone-stage {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: var(--personal-background);
+  color: var(--notes-ink);
+  font-family: var(--notes-font);
+  font-optical-sizing: auto;
 }
-@media (max-width: 480px) {
-  .phone-stage { padding: 16px 12px 13px; justify-content: flex-start; }
-  .phone-scene { width: 100%; max-width: 410px; }
-  .iphone { width: 100%; height: calc(100dvh - 66px); min-height: 480px; border-radius: 49px; padding: 8px; }
-  .phone-screen { border-radius: 39px; }
-  .phone-status { padding: 0 23px; height: 57px; font-size: 14px; }
-  .dynamic-island { width: 103px; height: 30px; top: 10px; }
-  .phone-note { padding: 17px 19px 32px; font-size: 15px; }
+.phone-stage button {
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.phone-stage :is(button, a, summary):focus { outline: none; }
+.phone-stage :is(button, a, summary):focus-visible {
+  outline: 2px solid var(--notes-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.phone-scene { position: relative; }
+/* The unmodified 1406 × 2822 bezel sits above its 1206 × 2622 screen opening.
+   Keep live text untransformed: CSS perspective rasterizes and softens it. */
+.iphone {
+  position: relative;
+  width: clamp(360px, calc((100svh - 40px) * .49823), 470px);
+  aspect-ratio: 1406 / 2822;
+}
+.phone-screen {
+  position: absolute;
+  left: 7.2546%;
+  top: 3.5436%;
+  width: 85.7752%;
+  height: 92.9128%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16.6% / 7.63%;
+  overflow: hidden;
+  background: var(--notes-paper);
+}
+.device-bezel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+  z-index: 5;
+}
+.phone-status {
+  height: 62px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 29px;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 650;
+  letter-spacing: -.5px;
+}
+.status-icons { display: flex; gap: 5px; align-items: center; }
+.status-icons svg { width: 17px; height: 15px; }
+.battery { width: 24px; height: 12px; padding: 2px; border: 1px solid var(--notes-secondary); border-radius: 4px; position: relative; }
+.battery:after { content: ''; position: absolute; right: -4px; top: 3px; width: 2px; height: 4px; border-radius: 1px; background: var(--notes-secondary); }
+.battery i { display: block; height: 100%; border-radius: 1px; background: var(--notes-ink); }
+.phone-toolbar { display: flex; align-items: center; justify-content: space-between; height: 46px; flex-shrink: 0; padding: 0 14px 0 8px; color: var(--notes-accent); }
+.notes-back { display: inline-flex; align-items: center; min-height: 44px; font-size: 17px; letter-spacing: -.3px; }
+.notes-back svg { width: 26px; height: 26px; }
+.top-actions { display: flex; gap: 12px; }
+.phone-stage .icon-button { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; }
+.icon-button:active { opacity: .6; }
+.phone-content { flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; overscroll-behavior: contain; }
+.phone-content::-webkit-scrollbar { display: none; }
+.phone-note { padding: 21px 24px 36px; font-size: 17px; line-height: 1.48; letter-spacing: -.35px; overflow-wrap: anywhere; }
+.phone-note h1 { font-size: 29px; line-height: 1.18; letter-spacing: -.9px; font-weight: 700; margin: 0 0 20px; }
+.phone-stage .note-title-button { display: block; text-align: left; font: inherit; letter-spacing: inherit; }
+.phone-note h2 { font-size: 21px; line-height: 1.25; letter-spacing: -.45px; font-weight: 650; margin: 29px 0 10px; }
+.phone-note p { margin: 0 0 16px; }
+.phone-note a { color: var(--notes-accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.note-entries { list-style: none; }
+.note-entry summary { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; min-height: 39px; line-height: 1.4; list-style: none; cursor: pointer; }
+.note-entry summary::-webkit-details-marker { display: none; }
+.note-entry summary:hover { color: var(--notes-accent); }
+.check-ring { width: 21px; height: 21px; border: 1.4px solid var(--notes-secondary); border-radius: 50%; margin-top: 1px; position: relative; flex-shrink: 0; }
+.note-entry details[open] .check-ring { border-color: var(--notes-accent); background: var(--notes-accent); }
+.note-entry details[open] .check-ring:after { content: ''; position: absolute; left: 6px; top: 4px; width: 5px; height: 8px; border-right: 1.7px solid var(--notes-paper); border-bottom: 1.7px solid var(--notes-paper); transform: rotate(45deg); }
+.entry-details { padding: 4px 0 14px 31px; font-size: 16px; }
+.entry-details p { margin-bottom: 12px; }
+.note-links { list-style: none; margin: 0 0 16px; }
+.note-links li { margin: 7px 0; }
+.phone-stage .note-attachment { display: block; width: 100%; max-width: 260px; margin-top: 15px; border-radius: 9px; overflow: hidden; }
+.note-attachment img { display: block; width: 100%; max-height: 180px; object-fit: cover; }
+.home-indicator { height: 27px; flex-shrink: 0; display: grid; place-items: center; }
+.home-indicator span { width: 35%; height: 5px; border-radius: 10px; background: var(--notes-ink); }
+.phone-menu { position: absolute; top: 108px; right: 16px; z-index: 4; width: 210px; padding: 4px 0; border-radius: 13px; background: var(--notes-raised); border: 1px solid var(--notes-rule); box-shadow: 0 12px 36px #0006; }
+.phone-menu :is(button, a) { display: block; padding: 12px 17px; width: 100%; min-height: 44px; text-align: left; font-size: 15px; }
+.phone-menu :is(button, a):hover { background: var(--notes-rule); }
+.copy-status { position: absolute; top: 109px; right: 16px; z-index: 4; font-size: 13px; color: var(--notes-accent); border-radius: 8px; background: var(--notes-raised); }
+.copy-status:not(:empty) { padding: 8px 12px; }
+.notes-search { display: flex; align-items: center; gap: 7px; padding: 9px 10px; border-radius: 10px; background: var(--notes-raised); color: var(--notes-secondary); margin: 0 0 24px; }
+.notes-search svg { width: 18px; height: 18px; }
+.notes-search input { width: 100%; min-width: 0; background: none; border: 0; outline: none; font: inherit; color: var(--notes-ink); }
+.notes-search:focus-within { outline: 2px solid var(--notes-accent); }
+.note-list { border-radius: 11px; background: var(--notes-raised); overflow: hidden; }
+.phone-note .note-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 16px; color: var(--notes-ink); text-decoration: none; border-bottom: 1px solid var(--notes-rule); }
+.note-row:last-child { border-bottom: 0; }
+.note-row span { color: var(--notes-secondary); }
+.phone-note .note-row:hover { background: var(--notes-rule); }
+.no-results { color: var(--notes-secondary); text-align: center; }
+.large-text .phone-note { font-size: 20px; }
+.large-text .entry-details { font-size: 19px; }
+.floating-preview { position: absolute; top: 24%; width: min(390px, calc((100vw - 530px) / 2 - 32px)); z-index: 6; animation: preview-appear 140ms ease-out; }
+.preview-left { right: calc(100% + 28px); }
+.preview-right { left: calc(100% + 28px); }
+.floating-preview.portrait-preview { max-width: 280px; }
+.preview-image { position: relative; margin: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--notes-rule); background: var(--notes-paper); }
+.preview-image > img { display: block; width: 100%; max-height: 440px; object-fit: contain; }
+.phone-stage .preview-close { position: absolute; top: 8px; right: 8px; background: #1c1c1ed9; color: var(--notes-ink); width: 36px; height: 36px; }
+.preview-close svg { width: 19px; height: 19px; }
+.image-dialog { margin: auto; padding: 0; width: fit-content; max-width: min(1000px, calc(100vw - 32px)); max-height: calc(100dvh - 48px); background: none; color: var(--notes-ink); border: 0; border-radius: 12px; }
+.image-dialog::backdrop { background: #000c; }
+.image-dialog .preview-image > img { width: auto; max-width: 100%; max-height: calc(100dvh - 64px); }
+.image-dialog .preview-close { width: 44px; height: 44px; }
+@keyframes preview-appear { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 900px) {
+  .floating-preview { display: none; }
+}
+@media (max-width: 500px) {
+  .phone-stage { padding: 0; }
+  .phone-scene { width: 100%; }
+  .iphone { width: 100%; }
+  .phone-status { padding: 0 23px; height: 56px; font-size: 15px; }
+  .phone-toolbar { height: 44px; padding-right: 9px; }
+  .phone-note { padding: 17px 20px 30px; font-size: 16px; }
   .phone-note h1 { font-size: 27px; }
-  .phone-note h2 { font-size: 19px; }
-  .phone-bottom-toolbar { padding: 0 13px; }
-  .stage-hint { margin-top: 11px; font-size: 11px; }
+  .phone-note h2 { font-size: 20px; margin-top: 26px; }
+  .note-entry summary { min-height: 40px; }
+  .phone-menu { top: 100px; }
 }
 @media (max-width: 350px) {
-  .phone-stage { padding-inline: 8px; }
-  .phone-note { padding-inline: 15px; }
-  .phone-note h1 { font-size: 24px; }
-  .phone-status { padding-inline: 18px; }
+  .phone-status { padding: 0 17px; height: 48px; font-size: 13px; }
   .status-icons { gap: 3px; }
-  .status-icons svg { width: 13px; }
-  .dynamic-island { width: 90px; }
-  .personal-entry summary { font-size: 14px; }
+  .status-icons svg { width: 14px; }
+  .phone-note { padding-inline: 17px; }
+  .phone-note h1 { font-size: 24px; }
+  .phone-note h2 { font-size: 19px; }
+  .phone-menu { top: 92px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .floating-preview { animation: none; }
-  .check-ring { transition: none; }
 }
