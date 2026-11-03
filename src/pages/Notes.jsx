@@ -5,8 +5,8 @@ import { PreviewContext, PREVIEWS, WebsiteContent, AboutContent, ExperienceConte
 import './Notes.css'
 
 const notes = [
-  { id: 'website', title: "Vedant's Website", preview: 'Software, AI agents, robots. A few things about me.', Content: WebsiteContent },
-  { id: 'about', title: 'About me', preview: 'I build intuitive software, AI agents, and robots.', Content: AboutContent },
+  { id: 'website', title: "Vedant's Website", preview: 'I like building cool things', Content: WebsiteContent },
+  { id: 'about', title: 'About me', preview: 'I like building cool things', Content: AboutContent },
   { id: 'experience', title: 'Experience', preview: 'Neocast, Texas A&M, Cognition, EDEN.', Content: ExperienceContent },
   { id: 'projects', title: 'Projects', preview: 'Fern / TalkR, Pillar, and a few other things.', Content: ProjectsContent },
   { id: 'honors', title: 'Honors', preview: 'Entrepreneurship and academics.', Content: HonorsContent },

@@ -125,7 +125,7 @@ export function ElsewhereContent() { return <>
 
 export function AboutContent() { return <>
   <p><PreviewName>Hey, I'm Vedant.</PreviewName></p>
-  <p>I build intuitive software, AI agents, and robots. I'm an AI engineer at Texas A&amp;M, with a background in consumer products and applied AI research.</p>
+  <p>I like building cool things</p>
   <h2>A little about me</h2><p>Co-founder &amp; CTO at Neocast. Previously built Fern and Eden Robotics.</p>
   <p>Outside of building, I used to be Grandmaster in League of Legends.</p>
   <p>Reach me at <a href={'mailto:' + PERSON.email}>{PERSON.email}</a>.</p>
@@ -138,8 +138,7 @@ export function ContactContent() { return <>
   <p><ExternalLink href="https://x.com/VedantRobot">X / Twitter</ExternalLink></p>
 </> }
 export function WebsiteContent() { return <>
-  <p><PreviewName>Hey, I'm Vedant.</PreviewName> I build intuitive software, AI agents, and robots.</p>
-  <p className="intro-secondary">AI engineer at Texas A&amp;M. A background in consumer products and applied AI research.</p>
+  <p><PreviewName>Hey, I'm Vedant.</PreviewName> I like building cool things</p>
   <h2>Experience</h2><ExperienceContent />
   <h2>Projects</h2><ProjectsContent />
   <h2>Honors</h2><HonorsContent />

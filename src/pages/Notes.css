@@ -1,5 +1,5 @@
 :root {
-  --personal-background: #141414;
+  --personal-background: #000;
   --font-body: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Segoe UI', sans-serif;
   --notes-ink: #f2f2f7;
   --notes-secondary: #a4a4aa;
@@ -7,14 +7,15 @@
   --notes-paper: #1c1c1e;
   color-scheme: dark;
 }
-.phone-stage { min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 36px 20px 22px; background: radial-gradient(ellipse at 50% 42%, #252525 0, #181818 42%, #111 85%); color: var(--notes-ink); font-family: var(--font-body); }
+.phone-stage { min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 36px 20px 22px; background: #000; color: var(--notes-ink); font-family: var(--font-body); }
 .phone-stage button { border: 0; padding: 0; font: inherit; color: inherit; background: transparent; }
 .phone-stage button:focus { outline: none; }
 .phone-stage button:focus-visible, .phone-stage a:focus-visible, .phone-stage summary:focus-visible { outline: 2px solid var(--notes-accent); outline-offset: 4px; border-radius: 3px; }
 .phone-stage button:disabled { opacity: .35; cursor: default; }
 .phone-stage svg { flex-shrink: 0; }
 .phone-scene { position: relative; }
-.iphone { width: 410px; height: min(830px, calc(100dvh - 100px)); min-height: 580px; position: relative; border-radius: 59px; padding: 11px; background: #070707; border: 2px solid #757472; box-shadow: 0 0 0 1px #353535, inset 0 0 0 2px #292929, inset 0 0 1px 4px #6b6b68, 0 30px 75px #0008; }
+.iphone { width: 410px; height: min(830px, calc(100dvh - 100px)); min-height: 580px; position: relative; border-radius: 59px; padding: 11px; background: #070707; border: 2px solid #757472; transform: perspective(1600px) rotateY(-9deg) rotateX(3deg); transform-style: preserve-3d; box-shadow: 0 0 0 1px #353535, inset 0 0 0 2px #292929, inset 0 0 1px 4px #6b6b68, 2px 1px 0 #656565, 4px 2px 0 #444, 6px 3px 0 #292929, 8px 4px 0 #171717; }
+.iphone::before { content: ''; position: absolute; inset: -2px; border-radius: inherit; transform: translateZ(-18px); background: linear-gradient(110deg, #797979, #292929 35%, #101010 75%, #696969); border: 1px solid #626262; pointer-events: none; }
 .phone-screen { height: 100%; display: flex; flex-direction: column; border-radius: 46px; background: var(--notes-paper); overflow: hidden; position: relative; border: 1px solid #262626; }
 .phone-button { position: absolute; background: linear-gradient(90deg,#252525,#777,#252525); width: 4px; border-radius: 3px; left: -5px; }
 .phone-mute { top: 108px; height: 25px; }
@@ -94,6 +95,8 @@
 .preload-images { display: none; }
 @keyframes preview-arrive { from { opacity: 0; translate: 0 12px; scale: .97; } to { opacity: 1; translate: 0 0; scale: 1; } }
 @media (max-width: 900px) {
+  .iphone { transform: none; transform-style: flat; }
+  .iphone::before { display: none; }
   .floating-preview, .floating-preview.portrait-preview { position: fixed; top: auto; bottom: max(28px, env(safe-area-inset-bottom)); left: 50%; right: auto; width: min(460px, calc(100vw - 40px)); transform: translateX(-50%); }
   .floating-preview figure { transform: none; box-shadow: 0 0 0 100vmax #0009, 0 20px 60px #000b; }
   .floating-preview img { max-height: 50dvh; }
