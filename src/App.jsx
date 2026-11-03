@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
-import ConsultPage from './pages/Consult'
+import NotesPage from './pages/Notes'
 import NotFoundPage from './pages/NotFound'
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
   useEffect(() => { window.scrollTo(0, 0) }, [pathname])
   return (
     <Routes>
-      <Route path="/" element={<ConsultPage />} />
+      <Route path="/" element={<NotesPage />} />
       <Route path="/cool-stuff" element={<Navigate to="/" replace />} />
       <Route path="/coaching" element={<Navigate to="/" replace />} />
       <Route path="/consulting" element={<Navigate to="/" replace />} />

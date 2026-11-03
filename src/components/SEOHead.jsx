@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { SEO, PERSON } from '../seo'
+import { SEO, PERSON, SITE_NAME } from '../seo'
 
 function SEOHead({
   title = SEO.title,
@@ -38,7 +38,7 @@ function SEOHead({
     updateMetaTag('og:image:width', '1200', true)
     updateMetaTag('og:image:height', '630', true)
     updateMetaTag('og:image:alt', `${PERSON.name} — Builder`, true)
-    updateMetaTag('og:site_name', PERSON.name, true)
+    updateMetaTag('og:site_name', SITE_NAME, true)
     updateMetaTag('og:locale', 'en_US', true)
     updateMetaTag('profile:first_name', PERSON.givenName, true)
     updateMetaTag('profile:last_name', PERSON.familyName, true)

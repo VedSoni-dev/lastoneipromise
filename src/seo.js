@@ -1,5 +1,5 @@
 export const SITE_URL = 'https://vedantsoni.com'
-export const SITE_NAME = 'Vedant Soni'
+export const SITE_NAME = "Vedant's Website"
 export const PERSON_ID = `${SITE_URL}/#vedant`
 export const WEBSITE_ID = `${SITE_URL}/#website`
 
@@ -37,7 +37,7 @@ export const PERSON = {
 }
 
 export const SEO = {
-  title: 'Vedant Soni — Builder',
+  title: "Vedant's Website",
   description:
     'Vedant Soni builds intuitive consumer software and works on AI at Texas A&M. Creator of the Texas A&M Harness and founder of Fern and Eden.',
   keywords:
