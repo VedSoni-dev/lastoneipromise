@@ -24,3 +24,7 @@ Also reviewed Vedant's LinkedIn profile and public activity at https://www.linke
 - `/logos/talkr.png`: https://www.trytalkr.com/logo.png (official site icon).
 - `/logos/tamu.png`: https://www.tamu.edu/_files/icons/favicon/favicon-96x96.png (official university icon).
 - `/logos/github.png`: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png (official GitHub mark).
+
+## Notes phone redesign (November 2, 2026)
+
+- neocast.png: screenshot of the public https://neocast.live/ homepage, captured at 1200 by 800 for the Neocast hover preview. Other previews reuse the portfolio's existing photographs and project images.

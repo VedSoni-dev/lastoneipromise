@@ -1,151 +1,127 @@
 import { useEffect, useRef, useState } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import SEOHead from '../components/SEOHead'
-import { AboutContent, ExperienceContent, ProjectsContent, HonorsContent, ElsewhereContent, ContactContent } from './NotesContent'
+import { PreviewContext, PREVIEWS, WebsiteContent, AboutContent, ExperienceContent, ProjectsContent, HonorsContent, ElsewhereContent, ContactContent } from './NotesContent'
 import './Notes.css'
 
 const notes = [
-  { id: 'about', title: 'About me', preview: 'I build intuitive software, AI agents, and robots.', folder: 'Personal', pinned: true, Content: AboutContent },
-  { id: 'experience', title: 'Experience', preview: 'Co-founder & CTO @ Neocast', folder: 'Work', Content: ExperienceContent },
-  { id: 'projects', title: 'Projects', preview: 'Fern / TalkR, Pillar, and a few other things.', folder: 'Work', Content: ProjectsContent },
-  { id: 'honors', title: 'Honors', preview: 'Entrepreneurship and academics.', folder: 'Personal', Content: HonorsContent },
-  { id: 'elsewhere', title: 'Outside of building', preview: 'A little League of Legends.', folder: 'Personal', Content: ElsewhereContent },
-  { id: 'contact', title: 'Say hello', preview: 'Email, GitHub, LinkedIn, and X.', folder: 'Personal', Content: ContactContent },
+  { id: 'website', title: "Vedant's Website", preview: 'Software, AI agents, robots. A few things about me.', Content: WebsiteContent },
+  { id: 'about', title: 'About me', preview: 'I build intuitive software, AI agents, and robots.', Content: AboutContent },
+  { id: 'experience', title: 'Experience', preview: 'Neocast, Texas A&M, Cognition, EDEN.', Content: ExperienceContent },
+  { id: 'projects', title: 'Projects', preview: 'Fern / TalkR, Pillar, and a few other things.', Content: ProjectsContent },
+  { id: 'honors', title: 'Honors', preview: 'Entrepreneurship and academics.', Content: HonorsContent },
+  { id: 'elsewhere', title: 'Outside of building', preview: 'A little League of Legends.', Content: ElsewhereContent },
+  { id: 'contact', title: 'Say hello', preview: 'Email, GitHub, LinkedIn, and X.', Content: ContactContent },
 ].map(note => ({ ...note, search: (note.title + ' ' + renderToStaticMarkup(<note.Content />).replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&#x27;/g, "'")).toLowerCase() }))
 
 function Icon({ name, ...props }) {
   const paths = {
-    sidebar: <><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 4v16"/></>,
-    folder: <path d="M3 7V6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/>,
-    notes: <><rect x="5" y="3" width="15" height="17" rx="2"/><path d="M5 7h15M3 7v13a2 2 0 0 0 2 2M8 11h9M8 15h7"/></>,
+    back: <path d="m15 4-8 8 8 8" />,
+    share: <path d="M12 15V2m-4 4 4-4 4 4M7 9H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-2" />,
+    more: <><circle cx="12" cy="12" r="9"/><path d="M7 12h.01M12 12h.01M17 12h.01" strokeWidth="3"/></>,
     search: <><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></>,
-    pin: <><path d="m9 3 6 0-1 6 4 4v2H6v-2l4-4-1-6ZM12 15v7"/></>,
-    share: <><path d="M12 15V2m-4 4 4-4 4 4M7 9H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-2"/></>,
-    back: <path d="m15 4-8 8 8 8"/>,
-    check: <path d="m5 12 4 4L19 6"/>,
+    checklist: <><circle cx="4" cy="5" r="2"/><circle cx="4" cy="13" r="2"/><path d="M10 5h11M10 13h11M2 21h19"/></>,
+    grid: <><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18M3 15h18"/></>,
+    mail: <><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></>,
+    close: <path d="m6 6 12 12M6 18 18 6" />,
+    check: <path d="m5 12 4 4L19 6" />,
   }
-  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[name]}</svg>
+  return <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[name]}</svg>
 }
 
 export default function NotesPage() {
-  const [folder, setFolder] = useState('All Notes')
-  const [selected, setSelected] = useState('about')
+  const [selected, setSelected] = useState('website')
+  const [view, setView] = useState('note')
   const [query, setQuery] = useState('')
-  const [sidebar, setSidebar] = useState(true)
-  const [mobileView, setMobileView] = useState('list')
-  const [largeText, setLargeText] = useState(false)
+  const [large, setLarge] = useState(false)
+  const [menu, setMenu] = useState(false)
   const [copied, setCopied] = useState('')
-  const searchRef = useRef(null)
+  const [preview, setPreview] = useState(null)
+  const [pinned, setPinned] = useState(false)
+  const [expanded, setExpanded] = useState(false)
   const articleRef = useRef(null)
-  const timer = useRef(null)
-  const filtered = notes.filter(note => (folder === 'All Notes' || note.folder === folder) && note.search.includes(query.trim().toLowerCase()))
-  const current = filtered.find(note => note.id === selected) || filtered[0]
+  const searchRef = useRef(null)
+  const previewCloseRef = useRef(null)
+  const returnFocus = useRef(null)
+  const hideTimer = useRef(null)
+  const copyTimer = useRef(null)
+  const current = notes.find(note => note.id === selected) || notes[0]
+  const filtered = notes.filter(note => note.search.includes(query.trim().toLowerCase()))
 
   useEffect(() => {
     const sync = () => {
       const id = window.location.hash.slice(1)
-      if (notes.some(note => note.id === id)) {
-        setSelected(id); setFolder('All Notes'); setQuery(''); setMobileView('note')
-      } else { setSelected('about'); setMobileView('list') }
+      setSelected(notes.some(note => note.id === id) ? id : 'website'); setView('note')
     }
-    sync()
-    window.addEventListener('hashchange', sync)
-    const shortcut = event => {
-      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
-        event.preventDefault(); setMobileView('list'); requestAnimationFrame(() => searchRef.current?.focus())
-      }
-      if (event.key === 'Escape') { setQuery(''); setMobileView('list') }
+    const keys = event => {
+      if (event.key === 'Escape') { setPreview(null); setPinned(false); setMenu(false) }
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); setView('list'); requestAnimationFrame(() => searchRef.current?.focus()) }
     }
-    window.addEventListener('keydown', shortcut)
-    return () => { window.removeEventListener('hashchange', sync); window.removeEventListener('keydown', shortcut); clearTimeout(timer.current) }
+    sync(); window.addEventListener('hashchange', sync); window.addEventListener('keydown', keys)
+    return () => { window.removeEventListener('hashchange', sync); window.removeEventListener('keydown', keys); clearTimeout(hideTimer.current); clearTimeout(copyTimer.current) }
   }, [])
 
-  useEffect(() => { articleRef.current?.scrollTo(0, 0); setCopied('') }, [current?.id])
-
   useEffect(() => {
-    if (mobileView === 'note' && window.matchMedia('(max-width: 700px)').matches) {
-      articleRef.current?.querySelector('h1')?.focus({ preventScroll: true })
-    }
-  }, [mobileView, current?.id])
+    articleRef.current?.scrollTo(0, 0)
+    setPreview(null); setPinned(false); setExpanded(false); setCopied(''); setMenu(false)
+  }, [selected, view])
 
-  function openNote(id) {
-    setSelected(id); setMobileView('note')
-    window.history.pushState(null, '', '#' + id)
+  function openNote(id) { setSelected(id); setView('note'); window.history.pushState(null, '', '#' + id) }
+  function show(image) { clearTimeout(hideTimer.current); if (!pinned) setPreview(image) }
+  function hide() { if (!pinned) hideTimer.current = setTimeout(() => setPreview(null), 180) }
+  function pin(image) { clearTimeout(hideTimer.current); returnFocus.current = document.activeElement; setPreview(image); setPinned(true); requestAnimationFrame(() => previewCloseRef.current?.focus()) }
+  function closePreview() { setPinned(false); returnFocus.current?.focus({ preventScroll: true }); setPreview(null) }
+  function toggleDetails() {
+    const next = !expanded
+    articleRef.current?.querySelectorAll('details').forEach(detail => { detail.open = next })
+    setExpanded(next)
+  }
+  async function share() {
+    const hash = selected === 'website' ? '' : '#' + selected
+    window.history.replaceState(null, '', '/' + hash)
+    try { await navigator.clipboard.writeText(window.location.href); setCopied('Link copied') }
+    catch { setCopied('Copy the link in your address bar') }
+    clearTimeout(copyTimer.current); copyTimer.current = setTimeout(() => setCopied(''), 3000)
   }
 
-  function chooseFolder(value) {
-    setFolder(value); setQuery(''); setMobileView('list')
-  }
-
-  async function shareNote() {
-    if (!current) return
-    window.history.replaceState(null, '', '#' + current.id)
-    try {
-      await navigator.clipboard.writeText(`${window.location.origin}/#${current.id}`)
-      setCopied('Link copied')
-    } catch { setCopied('Copy the link from your address bar') }
-    clearTimeout(timer.current)
-    timer.current = setTimeout(() => setCopied(''), 3500)
-  }
-
-  return (
-    <div className={`notes-app ${sidebar ? '' : 'sidebar-hidden'} mobile-${mobileView}`}>
-      <SEOHead />
-      <aside className="notes-sidebar" aria-label="Folders">
-        <header className="sidebar-header"><span className="notes-app-icon"><Icon name="notes" /></span><span>Vedant's Website</span></header>
-        <div className="folder-group-label">Folders</div>
-        <nav className="folder-list">
-          {['All Notes', 'Personal', 'Work'].map(name => <button key={name} onClick={() => chooseFolder(name)} className={folder === name ? 'selected' : ''} aria-current={folder === name ? 'true' : undefined}>
-            <Icon name={name === 'All Notes' ? 'notes' : 'folder'} /><span>{name}</span><span className="folder-count">{name === 'All Notes' ? notes.length : notes.filter(note => note.folder === name).length}</span>
-          </button>)}
-        </nav>
-        <div className="sidebar-bottom">A few notes from Vedant.</div>
-      </aside>
-
-      <section className="notes-list-pane" aria-label="Notes">
-        <header className="list-toolbar">
-          <button className="icon-button desktop-sidebar-toggle" title="Toggle sidebar" aria-label="Toggle sidebar" aria-expanded={sidebar} onClick={() => setSidebar(!sidebar)}><Icon name="sidebar" /></button>
-          <button className="mobile-folder-back" onClick={() => setMobileView('folders')}><Icon name="back" />Folders</button>
-          <span className="list-folder-title">{folder}</span><span className="list-count">{filtered.length}</span>
-        </header>
-        <h1 className="mobile-site-title">Vedant's Website</h1>
-        <div className="notes-search"><Icon name="search" /><input ref={searchRef} type="search" aria-label="Search notes" placeholder="Search" value={query} onChange={event => setQuery(event.target.value)} /></div>
-        <div className="notes-list">
-          {[true, false].map(pinned => {
-            const group = filtered.filter(note => Boolean(note.pinned) === pinned)
-            return group.length > 0 && <div key={String(pinned)}>
-              <h2 className="note-group-title">{pinned ? <><Icon name="pin" />Pinned</> : query ? 'Results' : 'Notes'}</h2>
-              {group.map(note => <button className={`note-row ${current?.id === note.id ? 'selected' : ''}`} key={note.id} aria-current={current?.id === note.id ? 'true' : undefined} onClick={() => openNote(note.id)}>
-                <span className="note-row-title">{note.title}</span>
-                <span className="note-row-preview">{note.preview}</span>
-                <span className="note-row-folder"><Icon name="folder" />{note.folder}</span>
-              </button>)}
-            </div>
-          })}
-          {filtered.length === 0 && <div className="no-results"><Icon name="search" /><h2>No notes found</h2><p>Try a different search.</p></div>}
+  return <div className="phone-stage">
+    <SEOHead />
+    <div className="phone-scene">
+      <div className="iphone">
+        <span className="phone-button phone-mute" aria-hidden="true" /><span className="phone-button phone-volume-up" aria-hidden="true" /><span className="phone-button phone-volume-down" aria-hidden="true" /><span className="phone-button phone-power" aria-hidden="true" />
+        <div className="phone-screen">
+          <div className="phone-status" aria-hidden="true"><span>9:41</span><div className="dynamic-island"><i /></div><div className="status-icons"><svg viewBox="0 0 20 16"><path d="M1 14V10h3v4zm5 0V7h3v7zm5 0V4h3v10zm5 0V1h3v13z" fill="currentColor"/></svg><svg viewBox="0 0 20 16"><path d="M2 5q8-7 16 0M5 8q5-4 10 0M8 11q2-2 4 0" fill="none" stroke="currentColor" strokeWidth="2.3"/><circle cx="10" cy="14" r="1.3" fill="currentColor"/></svg><span className="battery"><i /></span></div></div>
+          <header className="phone-toolbar">
+            <button className="notes-back" onClick={() => { if (view === 'note') setView('list'); else openNote('website') }}><Icon name="back" />{view === 'note' ? 'Notes' : 'Home'}</button>
+            <div className="top-actions"><button className="icon-button" aria-label="Copy note link" title="Copy note link" onClick={share}><Icon name={copied === 'Link copied' ? 'check' : 'share'} /></button><button className="icon-button" aria-label="Note options" aria-expanded={menu} title="Note options" onClick={() => setMenu(!menu)}><Icon name="more" /></button></div>
+          </header>
+          {menu && <div className="phone-menu"><button onClick={() => {setLarge(!large);setMenu(false)}}>{large ? 'Standard text size' : 'Larger text'}</button><button onClick={() => {setMenu(false);setView('list');requestAnimationFrame(() => searchRef.current?.focus())}}>Search notes</button><button onClick={() => {openNote('contact');setMenu(false)}}>Contact Vedant</button></div>}
+          <div className="copy-status" role="status">{copied}</div>
+          <main className={`phone-content ${large ? 'large-text' : ''}`} ref={articleRef}>
+            {view === 'note' ? <PreviewContext.Provider value={{show, hide, pin}}><article className="phone-note" key={selected}>
+              <h1>{current.title}</h1><current.Content />
+            </article></PreviewContext.Provider> : <section className="phone-note note-picker" aria-label="Notes">
+              <h1>Notes</h1><div className="notes-search"><Icon name="search"/><input ref={searchRef} type="search" placeholder="Search" aria-label="Search notes" value={query} onChange={event => setQuery(event.target.value)} /></div>
+              <div className="note-list">{filtered.map(note => <button className="note-row" key={note.id} onClick={() => openNote(note.id)}><strong>{note.title}</strong><span>{note.preview}</span></button>)}</div>
+              {filtered.length === 0 && <p className="no-results">No notes found.</p>}
+              <p className="note-count">{filtered.length} notes</p>
+            </section>}
+          </main>
+          <footer className="phone-bottom-toolbar">
+            <button className="icon-button text-size" aria-label="Larger text" aria-pressed={large} title="Larger text" onClick={() => setLarge(!large)}>Aa</button>
+            <button className="icon-button" aria-label={expanded ? 'Collapse all details' : 'Expand all details'} title="Show or hide details" disabled={view !== 'note'} onClick={toggleDetails}><Icon name="checklist" /></button>
+            <button className="icon-button" aria-label="All notes" title="All notes" onClick={() => setView('list')}><Icon name="grid" /></button>
+            <button className="icon-button" aria-label="Search notes" title="Search notes" onClick={() => {setView('list');requestAnimationFrame(() => searchRef.current?.focus())}}><Icon name="search" /></button>
+            <button className="icon-button" aria-label="Contact Vedant" title="Contact Vedant" onClick={() => openNote('contact')}><Icon name="mail" /></button>
+          </footer>
+          <div className="home-indicator" aria-hidden="true"><span /></div>
         </div>
-        <footer className="list-footer" role="status">{filtered.length} {filtered.length === 1 ? 'Note' : 'Notes'}</footer>
-      </section>
-
-      <main className={`note-pane ${largeText ? 'large-text' : ''}`}>
-        <header className="note-toolbar">
-          <button className="mobile-note-back" onClick={() => setMobileView('list')}><Icon name="back" />Notes</button>
-          <div className="note-toolbar-leading"><Icon name="notes" /><span>Vedant's Website</span></div>
-          <div className="note-actions">
-            <button className="icon-button text-size-button" onClick={() => setLargeText(!largeText)} aria-pressed={largeText} aria-label="Larger text" title="Larger text">Aa</button>
-            <span className="toolbar-divider" />
-            <button className="icon-button" onClick={shareNote} disabled={!current} title="Copy note link" aria-label="Copy note link"><Icon name={copied === 'Link copied' ? 'check' : 'share'} /></button>
-          </div>
-        </header>
-        <div className="copy-status" role="status">{copied}</div>
-        <div className="note-scroll" ref={articleRef}>
-          {current ? <article className="note-document" key={current.id}>
-            <div className="note-context">{current.folder}</div>
-            <h1 tabIndex={-1}>{current.title}</h1>
-            <current.Content />
-          </article> : <div className="empty-note">No note selected</div>}
-        </div>
-      </main>
+      </div>
+      {preview && <aside className={`floating-preview preview-${preview.side} ${preview.portrait ? 'portrait-preview' : ''} ${pinned ? 'preview-pinned' : ''}`} aria-label={`${preview.title} image preview`} onMouseEnter={() => clearTimeout(hideTimer.current)} onMouseLeave={hide}>
+        <figure><img src={preview.src} alt={preview.alt} /><figcaption><span>{preview.title}</span><button ref={previewCloseRef} className="icon-button" onClick={closePreview} aria-label="Close image preview"><Icon name="close" /></button></figcaption></figure>
+      </aside>}
     </div>
-  )
+    <p className="stage-hint"><span className="desktop-hint">Hover to explore.</span><span className="touch-hint">Tap a name to explore.</span></p>
+    <div className="preload-images" aria-hidden="true">{Object.values(PREVIEWS).map(image => <img key={image.src} src={image.src} alt="" loading="lazy" />)}</div>
+  </div>
 }

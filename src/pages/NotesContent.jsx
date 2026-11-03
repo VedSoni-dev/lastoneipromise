@@ -1,15 +1,45 @@
 import { PERSON } from '../seo'
+import { createContext, useContext } from 'react'
+
+export const PreviewContext = createContext(null)
+export const PREVIEWS = {
+  portrait: { src: '/coaching-photo.jpg', title: 'Vedant Soni', alt: 'Vedant Soni in a blue tie', side: 'left', portrait: true },
+  neocast: { src: '/projects/neocast.png', title: 'Neocast', alt: 'The Neocast website', side: 'right' },
+  cognition: { src: '/cognition-preview.png', title: 'Cognition', alt: 'Cognition project website', side: 'left' },
+  eden: { src: '/eden-preview.png', title: 'EDEN Robotics', alt: 'EDEN robotics research website', side: 'right' },
+  fern: { src: '/projects/fern.png', title: 'Fern / TalkR', alt: 'TalkR picture-based communication tools', side: 'left' },
+  recreach: { src: '/recreach-preview.png', title: 'RecReach', alt: 'RecReach basketball app', side: 'right' },
+  opensource: { src: '/projects/merchant-agent.png', title: 'Merchant Agent', alt: 'Merchant Agent open-source project', side: 'left' },
+  honors: { src: '/vedant-at-yc.png', title: 'Along the way', alt: 'Vedant at Y Combinator', side: 'left', portrait: true },
+}
+const entryPreviews = { 'Co-founder & CTO @ Neocast': 'neocast', 'CTO @ Cognition': 'cognition', 'Founder @ EDEN': 'eden', 'Fern / TalkR': 'fern', 'RecReach': 'recreach', 'Open-source Robotics': 'eden', 'Open Source': 'opensource', 'Entrepreneurship': 'honors' }
+
+export function PreviewName({ children, image = 'portrait' }) {
+  const preview = useContext(PreviewContext)
+  return <button className="preview-name" onMouseEnter={() => preview?.show(PREVIEWS[image])} onMouseLeave={() => preview?.hide()} onFocus={() => preview?.show(PREVIEWS[image])} onBlur={() => preview?.hide()} onClick={() => preview?.pin(PREVIEWS[image])}>{children}</button>
+}
 
 function ExternalLink({ href, children, ...props }) {
   return <a href={href} target="_blank" rel="noreferrer" {...props}>{children}</a>
 }
 
 function Entry({ title, href, dates, children }) {
+  const preview = useContext(PreviewContext)
+  const image = PREVIEWS[entryPreviews[title]]
   return (
     <li className="personal-entry">
-      <h3>{href ? <ExternalLink href={href}>{title}</ExternalLink> : title}</h3>
-      {dates && <p className="personal-dates">{dates}</p>}
-      {children && <p>{children}</p>}
+      <details>
+        <summary onMouseEnter={() => image && preview?.show(image)} onMouseLeave={() => preview?.hide()} onFocus={() => image && preview?.show(image)} onBlur={() => preview?.hide()} onClick={() => { if (image && window.matchMedia('(max-width: 900px), (hover: none)').matches) preview?.pin(image) }}>
+          <span className="check-ring" aria-hidden="true" /><span>{title}</span>
+          {dates === 'Present' && <span className="present-label">Now</span>}
+        </summary>
+        <div className="entry-details">
+          {dates && <p className="personal-dates">{dates}</p>}
+          {children && <p>{children}</p>}
+          {href && <p><ExternalLink href={href}>Visit {title.split(' @ ').at(-1)} ↗</ExternalLink></p>}
+          {image && <button className="preview-name" onClick={() => preview?.pin(image)}>View image ↗</button>}
+        </div>
+      </details>
     </li>
   )
 }
@@ -94,8 +124,8 @@ export function ElsewhereContent() { return <>
         </> }
 
 export function AboutContent() { return <>
+  <p><PreviewName>Hey, I'm Vedant.</PreviewName></p>
   <p>I build intuitive software, AI agents, and robots. I'm an AI engineer at Texas A&amp;M, with a background in consumer products and applied AI research.</p>
-  <img className="note-portrait" src="/coaching-photo.jpg" alt="Vedant Soni wearing a blue tie, standing in front of a brick wall" width="180" height="180" />
   <h2>A little about me</h2><p>Co-founder &amp; CTO at Neocast. Previously built Fern and Eden Robotics.</p>
   <p>Outside of building, I used to be Grandmaster in League of Legends.</p>
   <p>Reach me at <a href={'mailto:' + PERSON.email}>{PERSON.email}</a>.</p>
@@ -106,4 +136,13 @@ export function ContactContent() { return <>
   <p><ExternalLink href="https://github.com/VedSoni-dev">GitHub</ExternalLink></p>
   <p><ExternalLink href="https://www.linkedin.com/in/vedantsonimech">LinkedIn</ExternalLink></p>
   <p><ExternalLink href="https://x.com/VedantRobot">X / Twitter</ExternalLink></p>
+</> }
+export function WebsiteContent() { return <>
+  <p><PreviewName>Hey, I'm Vedant.</PreviewName> I build intuitive software, AI agents, and robots.</p>
+  <p className="intro-secondary">AI engineer at Texas A&amp;M. A background in consumer products and applied AI research.</p>
+  <h2>Experience</h2><ExperienceContent />
+  <h2>Projects</h2><ProjectsContent />
+  <h2>Honors</h2><HonorsContent />
+  <h2>Outside of building</h2><ElsewhereContent />
+  <h2>Say hello</h2><ContactContent />
 </> }
