@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import SEOHead from '../components/SEOHead'
+import MusicDock from '../components/MusicDock'
 import { NOTES, searchNotes } from '../data/notes'
 import NotesContent, { PreviewContext } from './NotesContent'
 import './Notes.css'
@@ -173,6 +174,7 @@ export default function NotesPage() {
               {filtered.length === 0 && <p className="no-results">No notes found</p>}
             </section>}
           </main>
+          <MusicDock />
           <div className="home-indicator" aria-hidden="true"><span /></div>
         </div>
         <img className="device-bezel" src="/device/iphone-16-pro.png" width="1406" height="2822" alt="" aria-hidden="true" fetchpriority="high" draggable="false" />
